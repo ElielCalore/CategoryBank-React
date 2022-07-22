@@ -1,3 +1,4 @@
+//TEMPLATES IMPORTS
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
@@ -5,6 +6,12 @@ import { Signup } from "./pages/Signup";
 import { AuthContextComponent } from "./contexts/authContext";
 import { Profile } from "./pages/Profile";
 import { ErrorPage } from "./pages/ErrorPage";
+
+//IMPORT
+import { Routes, Route } from "react-router-dom";
+import { Login } from "./pages/login copy/login";
+import { CSVParser } from "./pages/csvParser";
+import { CSVParserAdriano } from "./pages/csvParserAdriano";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
@@ -16,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/csv" element={<CSVParser />} />
           <Route
             path="/profile"
             element={<ProtectedRoute component={Profile} />}
