@@ -103,8 +103,11 @@ export function CSVParser() {
     }
   }
 
+
+   
   function createObject(d, b) {
-    d.map((currEle) => {
+
+    setTransaction(d.map((currEle) => {
       let realAmount = 0;
       if (
         Number(currEle[banks[b]["amount"]]) !== 0 &&
@@ -117,20 +120,16 @@ export function CSVParser() {
           Number(currEle[banks[b]["debit"]]);
       }
       let tempTransaction = {};
-      tempTransaction = {
+      return tempTransaction = {
         date: currEle[banks[b]["date"]],
         description: currEle[banks[b]["description"]],
         amount: realAmount,
       };
-      console.log(tempTransaction);
-
-      setTransaction(tempTransaction);
-
-      console.log(transaction);
-      // sendTransaction(tempTransaction);
-      // return String("hello");
-    });
+    }))
   }
+
+  console.log(transaction)
+
 
   function processCSV(e) {
     setTransaction([]);
@@ -149,6 +148,7 @@ export function CSVParser() {
     });
   }
 
+
   async function sendToBack(e) {
     e.preventDefault();
 
@@ -164,6 +164,7 @@ export function CSVParser() {
     //   }
     // }
   }
+
 
   return (
     <>
