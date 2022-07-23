@@ -10,12 +10,13 @@ export function CSVParser() {
   const navigate = useNavigate();
   const banks = {
     Nubank: {
-      delimiter: "",
-      columns: [""],
-      date: "",
-      description: "",
+      delimiter: ",",
+      columns: ["Data", "Valor", "Identificador", "Descrição"],
+      date: "Data",
+      description: "Descrição",
       credit: "",
       debit: "",
+      amount: "Valor",
     },
     Monzo: {
       delimiter: ",",
@@ -43,6 +44,7 @@ export function CSVParser() {
       description: "Description",
       credit: "Money In",
       debit: "Money Out",
+      amount: "",
     },
     Halifax: {
       delimiter: ",",
@@ -60,38 +62,78 @@ export function CSVParser() {
       description: "Transaction Description",
       credit: "Credit Amount",
       debit: "Debit Amount",
+      amount: "",
+    },
+    Bradesco: {
+      delimiter: ";",
+      columns: [
+        "Data",
+        "Histórico",
+        "Docto.",
+        "Crédito (R$)",
+        "Débito (R$)",
+        "Saldo (R$)",
+        "",
+      ],
+      date: "Data",
+      description: "Histórico",
+      credit: "Crédito (R$)",
+      debit: "Débito (R$)",
     },
   };
 
   const [bankModel, setBankModel] = useState("");
-  const [transactions, setTransactions] = useState([]);
+  const [transaction, setTransaction] = useState({
+    date: "",
+    description: "",
+    amount: 0,
+  });
 
   let data = [];
 
+  async function sendTransaction(transact) {
+    try {
+      const res = await axios.post(
+        "https://ironrest.herokuapp.com/classify/",
+        transact
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   function createObject(d, b) {
-    // console.log(b);
     d.map((currEle) => {
-      // console.log(currEle[banks[b]["date"]]);
-      return setTransactions([
-        ...transactions,
-        transactions.push({
-          date: currEle[banks[b]["date"]],
-          description: currEle[banks[b]["description"]],
-          credit: Number(currEle[banks[b]["credit"]]),
-          debit: Number(currEle[banks[b]["debit"]]),
-        }),
-      ]);
+      let realAmount = 0;
+      if (
+        Number(currEle[banks[b]["amount"]]) !== 0 &&
+        currEle[banks[b]["amount"]]
+      ) {
+        realAmount = Number(currEle[banks[b]["amount"]]);
+      } else {
+        realAmount =
+          Number(currEle[banks[b]["credit"]]) +
+          Number(currEle[banks[b]["debit"]]);
+      }
+      let tempTransaction = {};
+      tempTransaction = {
+        date: currEle[banks[b]["date"]],
+        description: currEle[banks[b]["description"]],
+        amount: realAmount,
+      };
+      console.log(tempTransaction);
+
+      setTransaction(tempTransaction);
+
+      console.log(transaction);
+      // sendTransaction(tempTransaction);
+      // return String("hello");
     });
-
-    ///fazer axios dentro map
-
-    console.log(transactions);
   }
 
   function processCSV(e) {
-    setTransactions([]);
-    console.log(transactions);
-    console.log(bankModel);
+    setTransaction([]);
     const files = e.target.files;
     Papa.parse(files[0], {
       skipEmptyLines: true,
@@ -99,37 +141,27 @@ export function CSVParser() {
       columns: banks[bankModel].columns,
       delimiter: banks[bankModel].delimiter,
       complete: function (results) {
+        data = [];
         data = results.data;
         console.log(data);
         createObject(data, bankModel);
       },
     });
-
-    // return data;
   }
 
   async function sendToBack(e) {
     e.preventDefault();
 
-    for (let i = 0; i < transactions.length - 1; i++) {
-      try {
-        const res = await axios.post(
-          "https://ironrest.herokuapp.com/classify/",
-          transactions[i]
-        );
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    // try {
-    //   const res = await axios.post("https://ironrest.herokuapp.com/classify/", {
-    //     transactions,
-    //   });
-    //   console.log(res);
-    // } catch (error) {
-    //   console.log(error);
+    // for (let i = 0; i < transactions.length - 1; i++) {
+    //   try {
+    //     const res = await axios.post(
+    //       "https://ironrest.herokuapp.com/classify/",
+    //       transactions[i]
+    //     );
+    //     console.log(res);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
     // }
   }
 
@@ -159,32 +191,7 @@ export function CSVParser() {
         </select>
         <input type="file" accept=".csv" onChange={processCSV} />
         <button onClick={sendToBack}>SEND</button>
-
-        {/* <button
-          onClick={(e) => {
-            e.preventDefault();
-            setTransactions(data);
-            console.log(transactions);
-          }}
-        >
-          <p>Console Log Transactions</p>
-        </button> */}
       </div>
     </>
   );
 }
-
-//TESTING AMOUNT AS FIELD (RATHER THAN CREDIT AND DEBIT)
-// let MoneyIn = "20";
-// let MoneyOut = "";
-// let Amount = "";
-
-// let realValue = 0;
-
-// if (Number(Amount) != 0) {
-//   realValue = Number(Amount);
-// } else {
-//   realValue = Number(MoneyIn) + Number(MoneyOut);
-// }
-
-// console.log(realValue);
