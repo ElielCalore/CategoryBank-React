@@ -1,0 +1,32 @@
+.csvForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  color: white;
+  width: 600px;
+  margin: 120px;
+  border: 1px solid white;
+  padding: 45px;
+  border-radius: 9px;
+}
+
+.csvForm input {
+  font-size: 24px;
+}
+.csvForm label {
+  font-size: 24px;
+}
+
+.csvForm select {
+  font-size: 24px;
+}
+
+.csvForm option {
+  font-size: 24px;
+}
+.csvForm button {
+  font-size: 24px;
+  width: 120px;
+  border-radius: 9px;
+}

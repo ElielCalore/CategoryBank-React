@@ -1,115 +1,196 @@
 import Papa from "papaparse";
 import { useState } from "react";
+import styles from "./styles.module.css";
+
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
 export function CSVParser() {
+  const navigate = useNavigate();
   const banks = {
-    nubank: {
-      delimiter: "",
-      columns: [""],
-      date: "",
-      description: "",
+    Nubank: {
+      delimiter: ",",
+      columns: ["Data", "Valor", "Identificador", "Descrição"],
+      date: "Data",
+      description: "Descrição",
       credit: "",
       debit: "",
+      amount: "Valor",
     },
-    monzo: {
-      delimiter: "",
-      columns: [""],
-      date: "",
-      description: "",
-      credit: "",
-      debit: "",
+    Monzo: {
+      delimiter: ",",
+      columns: [
+        "Transaction ID",
+        "Date",
+        "Time",
+        "Type",
+        "Name",
+        "Emoji",
+        "Category",
+        "Amount",
+        "Currency",
+        "Local amount",
+        "Local currency",
+        "Notes and #tags",
+        "Address",
+        "Receipt",
+        "Description",
+        "Category split",
+        "Money Out",
+        "Money In",
+      ],
+      date: "Date",
+      description: "Description",
+      credit: "Money In",
+      debit: "Money Out",
+      amount: "",
     },
-    halifax: {
-      delimiter: "",
-      columns: [""],
-      date: "",
-      description: "",
-      credit: "",
-      debit: "",
+    Halifax: {
+      delimiter: ",",
+      columns: [
+        "Transaction Date",
+        "Transaction Type",
+        "Sort Code",
+        "Account Number",
+        "Transaction Description",
+        "Debit Amount",
+        "Credit Amount",
+        "Balance",
+      ],
+      date: "Transaction Date",
+      description: "Transaction Description",
+      credit: "Credit Amount",
+      debit: "Debit Amount",
+      amount: "",
+    },
+    Bradesco: {
+      delimiter: ";",
+      columns: [
+        "Data",
+        "Histórico",
+        "Docto.",
+        "Crédito (R$)",
+        "Débito (R$)",
+        "Saldo (R$)",
+        "",
+      ],
+      date: "Data",
+      description: "Histórico",
+      credit: "Crédito (R$)",
+      debit: "Débito (R$)",
     },
   };
 
-  const [transactions, setTransactions] = useState([]);
+  const [bankModel, setBankModel] = useState("");
+  const [transaction, setTransaction] = useState({
+    date: "",
+    description: "",
+    amount: 0,
+  });
 
   let data = [];
 
-  function createObject(d) {
-    // console.log(typeof d);
+  async function sendTransaction(transact) {
+    try {
+      const res = await axios.post(
+        "https://ironrest.herokuapp.com/classify/",
+        transact
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function createObject(d, b) {
     d.map((currEle) => {
-      //   console.log(currEle["Transaction Date"]);
-      return setTransactions([
-        ...transactions,
-        transactions.push({
-          date: currEle["Transaction Date"],
-          description: currEle["Transaction Description"],
-          credit: currEle["Credit Amount"],
-          debit: currEle["Debit Amount"],
-        }),
-      ]);
+      let realAmount = 0;
+      if (
+        Number(currEle[banks[b]["amount"]]) !== 0 &&
+        currEle[banks[b]["amount"]]
+      ) {
+        realAmount = Number(currEle[banks[b]["amount"]]);
+      } else {
+        realAmount =
+          Number(currEle[banks[b]["credit"]]) +
+          Number(currEle[banks[b]["debit"]]);
+      }
+      let tempTransaction = {};
+      tempTransaction = {
+        date: currEle[banks[b]["date"]],
+        description: currEle[banks[b]["description"]],
+        amount: realAmount,
+      };
+      console.log(tempTransaction);
+
+      setTransaction(tempTransaction);
+
+      console.log(transaction);
+      // sendTransaction(tempTransaction);
+      // return String("hello");
     });
-
-    ///fazer axios dentro map
-
-    console.log(transactions);
   }
 
   function processCSV(e) {
+    setTransaction([]);
     const files = e.target.files;
     Papa.parse(files[0], {
       skipEmptyLines: true,
       header: true,
+      columns: banks[bankModel].columns,
+      delimiter: banks[bankModel].delimiter,
       complete: function (results) {
+        data = [];
         data = results.data;
         console.log(data);
-        createObject(data);
+        createObject(data, bankModel);
       },
     });
-
-    // return data;
   }
 
   async function sendToBack(e) {
     e.preventDefault();
 
-    for (let i = 0; i < transactions.length - 1; i++) {
-      try {
-        const res = await axios.post(
-          "https://ironrest.herokuapp.com/classify/",
-          transactions[i]
-        );
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    // try {
-    //   const res = await axios.post("https://ironrest.herokuapp.com/classify/", {
-    //     transactions,
-    //   });
-    //   console.log(res);
-    // } catch (error) {
-    //   console.log(error);
+    // for (let i = 0; i < transactions.length - 1; i++) {
+    //   try {
+    //     const res = await axios.post(
+    //       "https://ironrest.herokuapp.com/classify/",
+    //       transactions[i]
+    //     );
+    //     console.log(res);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
     // }
   }
 
   return (
     <>
-      <div>
-        <input type="file" accept=".csv" onChange={processCSV} />
-        <button onClick={sendToBack}>SEND</button>
-
-        {/* <button
-          onClick={(e) => {
-            e.preventDefault();
-            setTransactions(data);
-            console.log(transactions);
+      <div className={styles.csvForm}>
+        <select
+          value={bankModel}
+          onChange={(e) => {
+            setBankModel(e.target.value);
+            // console.log(bankModel);
           }}
         >
-          <p>Console Log Transactions</p>
-        </button> */}
+          <option value="" disabled defaultValue="Select your bank">
+            Select your bank
+          </option>
+          <option>Nubank</option>
+          <option>Halifax</option>
+          <option>Monzo</option>
+          <option
+            onClick={() => {
+              return navigate("/login");
+            }}
+          >
+            Create new model
+          </option>
+        </select>
+        <input type="file" accept=".csv" onChange={processCSV} />
+        <button onClick={sendToBack}>SEND</button>
       </div>
     </>
   );
