@@ -9,7 +9,7 @@ import { ErrorPage } from "./pages/ErrorPage";
 
 //IMPORTS
 import { LoginAdriano } from "./pages/login copy/login";
-import { CSVParser } from "./pages/csvParser";
+import { UploadCSV } from "./pages/UploadCSV";
 import { CSVParserAdriano } from "./pages/csvParserAdriano";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/csv" element={<CSVParser />} />
+          <Route path="/upload-csv" element={<UploadCSV />} />
           <Route
             path="/profile"
             element={<ProtectedRoute component={Profile} />}
