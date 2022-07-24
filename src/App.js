@@ -11,7 +11,6 @@ import { ErrorPage } from "./pages/ErrorPage";
 
 import { LoginAdriano } from "./pages/login copy/login";
 import { UploadCSV } from "./pages/UploadCSV";
-import { CSVParserAdriano } from "./pages/csvParserAdriano";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
