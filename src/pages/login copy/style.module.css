@@ -3,7 +3,8 @@
 .logoFont {
     font-family: 'Yesteryear', cursive;
     font-size: 80px;
-    margin: 0
+    color: #1D3557;
+    margin: 15px;
 }
 
 .darkblue {
@@ -55,4 +56,15 @@ body {
 .button:hover {
     background-color:  #ec452f !important;
     border-color:  #ec452f !important;
+}
+
+.a {
+    text-decoration: none;
+    color: black;
+    /* height: 25px; */
+    /* width: 120px; */
+}
+
+.a:hover {
+    color: #457B9D; 
 }
