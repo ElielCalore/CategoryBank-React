@@ -20,6 +20,7 @@ function App() {
       <AuthContextComponent>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/loginAdriano" element={<LoginAdriano />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/upload-csv" element={<UploadCSV />} />
