@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-export function CSVParser() {
+export function UploadCSV() {
   const navigate = useNavigate();
   const banks = {
     Nubank: {
@@ -83,31 +83,11 @@ export function CSVParser() {
   };
 
   const [bankModel, setBankModel] = useState("");
-  const [transaction, setTransaction] = useState({
-    date: "",
-    description: "",
-    amount: 0,
-  });
-
-  let data = [];
-
-  async function sendTransaction(transact) {
-    try {
-      const res = await axios.post(
-        "https://ironrest.herokuapp.com/classify/",
-        transact
-      );
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-
-   
+  const [transactions, setTransactions] = useState([]);
+  
   function createObject(d, b) {
 
-    setTransaction(d.map((currEle) => {
+    setTransactions(d.map((currEle) => {
       let realAmount = 0;
       if (
         Number(currEle[banks[b]["amount"]]) !== 0 &&
@@ -119,20 +99,19 @@ export function CSVParser() {
           Number(currEle[banks[b]["credit"]]) +
           Number(currEle[banks[b]["debit"]]);
       }
-      let tempTransaction = {};
-      return tempTransaction = {
+      return  {
         date: currEle[banks[b]["date"]],
         description: currEle[banks[b]["description"]],
         amount: realAmount,
-      };
+      }
     }))
   }
+  console.log(transactions)
 
-  console.log(transaction)
-
-
+  
   function processCSV(e) {
-    setTransaction([]);
+    let data = [];
+    setTransactions([]);
     const files = e.target.files;
     Papa.parse(files[0], {
       skipEmptyLines: true,
@@ -140,7 +119,7 @@ export function CSVParser() {
       // columns: banks[bankModel].columns,
       delimiter: banks[bankModel].delimiter,
       complete: function (results) {
-        data = [];
+        // data = [];
         data = results.data;
         console.log(data);
         createObject(data, bankModel);
@@ -151,6 +130,7 @@ export function CSVParser() {
 
   async function sendToBack(e) {
     e.preventDefault();
+    return;
 
     // for (let i = 0; i < transactions.length - 1; i++) {
     //   try {
@@ -191,8 +171,25 @@ export function CSVParser() {
           </option>
         </select>
         <input type="file" accept=".csv" onChange={processCSV} />
+        {transactions[0] ? <>
+        <table>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+        {transactions.map((elem)=> {
+          return (
+            <tr>
+              <td><p>{elem.date}</p></td>
+              <td><p>{elem.description}</p></td>
+              <td><p>{elem.amount}</p></td>
+            </tr>
+          )          
+        })}
+        </table></> : <><p>false</p></> }
         <button onClick={sendToBack}>SEND</button>
       </div>
-    </>
+    </>  
   );
 }

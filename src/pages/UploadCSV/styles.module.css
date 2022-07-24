@@ -4,8 +4,8 @@
   align-items: center;
   gap: 30px;
   color: white;
-  width: 600px;
-  margin: 120px;
+  width: 1200px;
+  margin: 55px 0px 55px 55px;
   border: 1px solid white;
   padding: 45px;
   border-radius: 9px;
@@ -29,4 +29,10 @@
   font-size: 24px;
   width: 120px;
   border-radius: 9px;
+}
+
+.csvForm table, td, tr, th {
+  width: 100%;
+  border: 1px solid white;
+  padding: 5px;
 }

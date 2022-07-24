@@ -8,9 +8,9 @@ import { Profile } from "./pages/Profile";
 import { ErrorPage } from "./pages/ErrorPage";
 
 //IMPORTS
+
 import { LoginAdriano } from "./pages/login copy/login";
-import { CSVParser } from "./pages/csvParser";
-import { CSVParserAdriano } from "./pages/csvParserAdriano";
+import { UploadCSV } from "./pages/UploadCSV";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
@@ -20,9 +20,10 @@ function App() {
       <AuthContextComponent>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/loginAdriano" element={<LoginAdriano />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/csv" element={<CSVParser />} />
+          <Route path="/upload-csv" element={<UploadCSV />} />
           <Route
             path="/profile"
             element={<ProtectedRoute component={Profile} />}
