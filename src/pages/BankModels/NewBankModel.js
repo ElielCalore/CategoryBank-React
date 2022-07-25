@@ -1,6 +1,6 @@
 import { BankModelForm } from "../../components/BankModelForm/BankModelForm";
 import { useState } from "react";
-import axios from "axios";
+import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 
 export function NewBankModel() {
@@ -18,10 +18,7 @@ export function NewBankModel() {
 
   async function Save() {
     try {
-      const res = await axios.post(
-        `https://ironrest.herokuapp.com/classify/`,
-        bankModel
-      );
+      const res = await api.post("/bank/custom-bank", bankModel);
       return navigate("/my-banks");
     } catch (error) {
       return console.log(error);
