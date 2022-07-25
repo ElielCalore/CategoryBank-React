@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
+//import axios from "axios";
 
 export function UploadCSV() {
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ export function UploadCSV() {
 
   const [bankModel, setBankModel] = useState("");
   const [transactions, setTransactions] = useState([]);
-
+  const [toggle, setToggle] = useState([{ id : 0, value: false}])
 
     
 
@@ -134,55 +134,44 @@ export function UploadCSV() {
 
   async function sendToBack(e) {
     e.preventDefault();
+    return;
 
-    for (let i = 0; i < transactions.length; i++) {
-      try {
-        const res = await axios.post(
-          "https://ironrest.herokuapp.com/classify/",
-          transactions[i]
-        );
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    // for (let i = 0; i < transactions.length - 1; i++) {
+    //   try {
+    //     const res = await axios.post(
+    //       "https://ironrest.herokuapp.com/classify/",
+    //       transactions[i]
+    //     );
+    //     console.log(res);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
   }
 
+  function editPencil (e) {
+    const clone = [...toggle] 
+    if (toggle[e.target.id]["value"] === true) {
+       clone[e.target.id]["value"] = false 
+    } else {
+       clone[e.target.id]["value"] = true
+    }
 
+    setToggle(clone)
+  }
 
-
-  // useEffect(() => {
-  //   function createToggle(t) {
-  //     console.log(t)
-  //       setToggle(t.map((current, i) => {
-  //         return  {id : i,
-  //                 value: true} 
-  //       }))
-  //   } createToggle(transactions)
-  // },[transactions])
+  useEffect(() => {
+    function createToggle(t) {
+      console.log(t)
+        setToggle(t.map((current, i) => {
+          return  {id : i,
+                  value: true} 
+        }))
+    } createToggle(transactions)
+  },[transactions])
 
   console.log(transactions);
-
-  function handleUpdate(e) {
-
-    if (e.target.name === "amount") {
-      if (typeof Number(e.target.value) === NaN || typeof Number(e.target.value)) {
-        return console.log("ERROR")
-      }
-    }
-
-    const clone = [...transactions]
-    console.log(clone[e.target.id])
-    clone[e.target.id][e.target.name] = e.target.value
-    setTransactions(clone)
-  }
-
-  function handleDelete(e) {
-    const clone = [...transactions]
-    clone.splice(e.target.id, 1)
-    setTransactions(clone)
-  }
-
+  console.log(toggle)
 
 
 
@@ -221,26 +210,26 @@ export function UploadCSV() {
                 <th>Description</th>
                 <th>Amount</th>
               </tr>
-
               {transactions.map((elem, i) => {
                 return (
                   <tr>
                     <td>
-                      <p>{transactions[i]["date"]}</p>
+                      <input value={elem.date}/>
                     </td>
                     <td>
-                      <input value={transactions[i]["description"]} name="description" onChange={handleUpdate} id={i}/>
+                      <p>{elem.description}</p>
                     </td>
                     <td>
-                      <p>{transactions[i]["amount"]}</p>
+                      <p>{elem.amount}</p>
                     </td>
                     <td>                      
-                      <button className={`btn btn-danger`} onClick={handleDelete} id={i}>delete</button>
+                      {toggle.length > 0 && toggle[i].value === false? 
+                      <button className={`btn btn-primary`} onClick={editPencil} id={i}>lapis</button> : 
+                      <button className={`btn btn-danger`} onClick={editPencil} id={i}>delete</button>}
                     </td>
                   </tr>
                 );
               })}
-
             </table>
           </>
         ) : (
