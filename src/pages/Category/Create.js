@@ -50,7 +50,7 @@ export function Create() {
           />
         </div>
         <div>
-          <button onClick={handleSubmit} className={"btn btn-primary"}>
+          <button onClick={handleSubmit} className="btn btn-primary">
             submit
           </button>
         </div>

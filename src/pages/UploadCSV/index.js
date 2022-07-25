@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
+//import axios from "axios";
 
 export function UploadCSV() {
   const navigate = useNavigate();
@@ -84,32 +84,32 @@ export function UploadCSV() {
 
   const [bankModel, setBankModel] = useState("");
   const [transactions, setTransactions] = useState([]);
-  
+
   function createObject(d, b) {
-
-    setTransactions(d.map((currEle) => {
-      let realAmount = 0;
-      //
-      if (
-        Number(currEle[banks[b]["amount"]]) !== 0 &&
-        currEle[banks[b]["amount"]]
-      ) {
-        realAmount = Number(currEle[banks[b]["amount"]]);
-      } else {
-        realAmount =
-          Number(currEle[banks[b]["credit"]]) +
-          Number(currEle[banks[b]["debit"]]);
-      }
-      return  {
-        date: currEle[banks[b]["date"]],
-        description: currEle[banks[b]["description"]],
-        amount: realAmount,
-      }
-    }))
+    setTransactions(
+      d.map((currEle) => {
+        let realAmount = 0;
+        //
+        if (
+          Number(currEle[banks[b]["amount"]]) !== 0 &&
+          currEle[banks[b]["amount"]]
+        ) {
+          realAmount = Number(currEle[banks[b]["amount"]]);
+        } else {
+          realAmount =
+            Number(currEle[banks[b]["credit"]]) +
+            Number(currEle[banks[b]["debit"]]);
+        }
+        return {
+          date: currEle[banks[b]["date"]],
+          description: currEle[banks[b]["description"]],
+          amount: realAmount,
+        };
+      })
+    );
   }
-  console.log(transactions)
+  console.log(transactions);
 
-  
   function processCSV(e) {
     let data = [];
     setTransactions([]);
@@ -129,7 +129,6 @@ export function UploadCSV() {
     });
   }
 
-
   async function sendToBack(e) {
     e.preventDefault();
     return;
@@ -146,7 +145,6 @@ export function UploadCSV() {
     //   }
     // }
   }
-
 
   return (
     <>
@@ -173,25 +171,38 @@ export function UploadCSV() {
           </option>
         </select>
         <input type="file" accept=".csv" onChange={processCSV} />
-        {transactions[0] ? <>
-        <table>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Amount</th>
-          </tr>
-        {transactions.map((elem)=> {
-          return (
-            <tr>
-              <td><p>{elem.date}</p></td>
-              <td><p>{elem.description}</p></td>
-              <td><p>{elem.amount}</p></td>
-            </tr>
-          )          
-        })}
-        </table></> : <><p>false</p></> }
+        {transactions[0] ? (
+          <>
+            <table>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+              </tr>
+              {transactions.map((elem) => {
+                return (
+                  <tr>
+                    <td>
+                      <p>{elem.date}</p>
+                    </td>
+                    <td>
+                      <p>{elem.description}</p>
+                    </td>
+                    <td>
+                      <p>{elem.amount}</p>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          </>
+        ) : (
+          <>
+            <p>false</p>
+          </>
+        )}
         <button onClick={sendToBack}>SEND</button>
       </div>
-    </>  
+    </>
   );
 }
