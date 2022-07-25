@@ -47,7 +47,7 @@ export function PageCategory() {
             <div className={"container mb-5"} key={current.name}>
               <div className="row mb-3 p-4 align-items-center">
                 <div className="col-3">
-                  <strong>{current.name}</strong>
+                  <strong>{current.code}</strong>
                 </div>
                 <div className="col-7">{current.description}</div>
                 <div className="col-1">
