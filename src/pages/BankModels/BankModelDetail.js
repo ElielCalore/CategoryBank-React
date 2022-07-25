@@ -23,7 +23,7 @@ export function BankModelDetail() {
   return (
     <>
       <h1>Bank Model Details</h1>
-      <BankModelForm bank={bankModel} />
+      <BankModelForm bank={bankModel} setBank={setBankModel} />
     </>
   );
 }
