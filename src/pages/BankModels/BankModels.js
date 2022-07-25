@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ClassifyModel from "../../assets/bank/ClassifyTemplate.csv";
 
 export function BankModels() {
   const [banks, setBanks] = useState([]);
@@ -39,8 +40,11 @@ export function BankModels() {
       </div>
       <div>
         <Link to="/new-bank-model/">
-          <button className="m-4 btn btn-primary">Create New Model</button>{" "}
+          <button className="m-4 btn btn-primary">Create New Model</button>
         </Link>
+        <a href={ClassifyModel} download="ClassifyTemplate.csv">
+          <button className="m-4 btn btn-primary">Download Our Model</button>
+        </a>
       </div>
     </>
   );

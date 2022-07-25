@@ -23,6 +23,7 @@ import { BankModels } from "./pages/BankModels/BankModels";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { BankModelDetail } from "./pages/BankModels/BankModelDetail";
+import { NewBankModel } from "./pages/BankModels/NewBankModel";
 
 function App() {
   return (
@@ -41,8 +42,10 @@ function App() {
           {/* BANKS */}
           <Route path="/my-banks" element={<BankModels />} />
           <Route path="/bank-model/:bankId" element={<BankModelDetail />} />
+          <Route path="/new-bank-model" element={<NewBankModel />} />
+
           <Route path="/profile" element={<ProtectedRoute component={Profile} />}/>
-          <Route path="/profiletest" element={Profile}/>
+          <Route path="/profiletest" element={Profile} />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
