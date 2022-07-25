@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BankModelForm } from "./BankModelForm";
 
 export function BankModelDetail() {
@@ -19,11 +19,11 @@ export function BankModelDetail() {
       }
     };
     fetchBankModel();
-  }, []);
+  }, [bankId]);
   return (
     <>
       <h1>Bank Model Details</h1>
-      <BankModelForm bank={bankModel} />
+      <BankModelForm bank={bankModel} setBank={setBankModel} />
     </>
   );
 }

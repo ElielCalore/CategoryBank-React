@@ -36,7 +36,7 @@ function App() {
           {/* CATEGORY */}
           <Route path="/page-category" element={<PageCategory />} />
           <Route path="/create" element={<Create />} />
-          <Route path="/edit-delete/:id" element={<Edit />} />
+          <Route path="/edit/:id" element={<Edit />} />
           <Route path="/delete/:id" element={<Delete />} />
           {/* BANKS */}
           <Route path="/my-banks" element={<BankModels />} />
