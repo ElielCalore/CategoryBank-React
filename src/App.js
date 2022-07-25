@@ -10,7 +10,6 @@ import "./app.css";
 
 //IMPORTS
 
-import { LoginAdriano } from "./pages/login copy/login";
 import { UploadCSV } from "./pages/UploadCSV";
 
 //CATEGORY PAGES
@@ -32,7 +31,6 @@ function App() {
       <AuthContextComponent>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/loginAdriano" element={<LoginAdriano />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/upload-csv" element={<UploadCSV />} />
@@ -45,11 +43,8 @@ function App() {
           <Route path="/my-banks" element={<BankModels />} />
           <Route path="/bank-model/:bankId" element={<BankModelDetail />} />
           <Route path="/new-bank-model" element={<NewBankModel />} />
-          <Route
-            path="/profile"
-            element={<ProtectedRoute component={Profile} />}
-          />
 
+          <Route path="/profile" element={<ProtectedRoute component={Profile} />}/>
           <Route path="/profiletest" element={Profile} />
 
           <Route path="*" element={<ErrorPage />} />

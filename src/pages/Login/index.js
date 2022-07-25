@@ -3,6 +3,7 @@ import { AuthContext } from "../../contexts/authContext";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.css";
+import { Navbar } from "../../components/Navbar"
 
 export function Login() {
   const [form, setForm] = useState({
@@ -17,6 +18,7 @@ export function Login() {
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
+  
 
   async function handleSumit(e) {
     e.preventDefault();
@@ -34,10 +36,11 @@ export function Login() {
   }
 
   return (
-    <div>
-      <nav className="navbar navbar-light bg-dark2">
-        <div></div>
-      </nav>
+
+    <>
+    <Navbar/>
+
+    <div className={styles.divLogin}>
 
       <div className="d-flex align-items-center justify-content-center mt-5">
         <div className={styles.formContainer}>
@@ -48,7 +51,6 @@ export function Login() {
             <h2 className={`mb-4 ${styles.textWhite}`}>Welcome back!</h2>
 
             <div className="container">
-              {/* <label>Name</label> */}
               <input
                 className={`form-control mb-4 ${styles.input}`}
                 placeholder="user"
@@ -60,7 +62,6 @@ export function Login() {
             </div>
 
             <div className="container">
-              {/* <label>Password</label> */}
               <input
                 type="password"
                 className={`form-control mb-4 ${styles.input}`}
@@ -73,10 +74,10 @@ export function Login() {
               Login
             </button>
 
-            <p className="mt-5">sign up</p>
           </form>
         </div>
       </div>
     </div>
+    </>
   );
 }
