@@ -1,10 +1,10 @@
 //TEMPLATES IMPORTS
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
-import { Signup } from "./pages/Signup";
+import { Login } from "./pages/User/Login/index";
+import { Signup } from "./pages/User/Signup/index";
 import { AuthContextComponent } from "./contexts/authContext";
-import { Profile } from "./pages/Profile";
+import { Profile } from "./pages/User/Profile/index";
 import { ErrorPage } from "./pages/ErrorPage";
 import "./app.css";
 
@@ -33,19 +33,47 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          {/* TRANSACTIONS */}
           <Route path="/upload-csv" element={<UploadCSV />} />
           {/* CATEGORY */}
-          <Route path="/page-category" element={<PageCategory />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/delete/:id" element={<Delete />} />
+          <Route
+            path="/page-category"
+            element={<ProtectedRoute component={PageCategory} />}
+          />
+          <Route
+            path="/create"
+            element={<ProtectedRoute component={Create} />}
+          />
+          <Route
+            path="/edit/:id"
+            element={<ProtectedRoute component={Edit} />}
+          />
+          <Route
+            path="/delete/:id"
+            element={<ProtectedRoute component={Delete} />}
+          />
           {/* BANKS */}
-          <Route path="/my-banks" element={<BankModels />} />
-          <Route path="/bank-model/:bankId" element={<BankModelDetail />} />
-          <Route path="/new-bank-model" element={<NewBankModel />} />
+          <Route
+            path="/my-banks"
+            element={<ProtectedRoute component={BankModels} />}
+          />
+          <Route
+            path="/bank-model/:bankId"
+            element={<ProtectedRoute component={BankModelDetail} />}
+          />
+          <Route
+            path="/new-bank-model"
+            element={<ProtectedRoute component={NewBankModel} />}
+          />
 
-          <Route path="/profile" element={<ProtectedRoute component={Profile} />}/>
-          <Route path="/profiletest" element={Profile} />
+          <Route
+            path="/profile"
+            element={<ProtectedRoute component={Profile} />}
+          />
+          <Route
+            path="/profiletest"
+            element={<ProtectedRoute component={Profile} />}
+          />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>

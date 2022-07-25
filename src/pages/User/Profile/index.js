@@ -2,7 +2,8 @@ import { useContext } from "react";
 //import { useEffect, UseState } from "react";
 //import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/authContext";
+// import { AuthContext } from "../../contexts/authContext";
+import { AuthContext } from "../../../contexts/authContext";
 
 export function Profile() {
   // const [user, setUser] = useState({ name: "", email: "" });
