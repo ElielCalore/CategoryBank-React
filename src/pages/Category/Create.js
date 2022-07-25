@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 
 export function Create() {
@@ -16,7 +16,7 @@ export function Create() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await axios.post("https://ironrest.herokuapp.com/elielcaloreteste", form);
+      await api.post("/category/new-category", form);
     } catch (err) {
       console.log(err);
     }
