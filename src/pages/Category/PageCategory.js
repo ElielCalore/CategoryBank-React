@@ -35,7 +35,7 @@ export function PageCategory() {
 
       <div className="d-flex p-3 flex-column mb-10 ">
         <div className="card-body">
-          <Link to="/create" className={"btn btn-primary"}>
+          <Link to="/create" className="btn btn-primary">
             Create Category
           </Link>
         </div>
@@ -44,7 +44,7 @@ export function PageCategory() {
 
         {data.map((current) => {
           return (
-            <div className={"container mb-5"} key={current.name}>
+            <div className="container mb-5" key={current.name}>
               <div className="row mb-3 p-4 align-items-center">
                 <div className="col-3">
                   <strong>{current.code}</strong>
@@ -53,7 +53,7 @@ export function PageCategory() {
                 <div className="col-1">
                   <Link
                     to={`/edit-delete/${current._id}`}
-                    className={"btn btn-primary $"}
+                    className="btn btn-primary"
                   >
                     Edit
                   </Link>
@@ -62,7 +62,7 @@ export function PageCategory() {
                 <div className="col-1">
                   <Link
                     to={`/details/${current._id}`}
-                    className={"btn btn-primary"}
+                    className="btn btn-primary"
                   >
                     Details
                   </Link>
@@ -70,7 +70,7 @@ export function PageCategory() {
                 <div className="col-1">
                   <Link
                     to={`/delete/${current._id}`}
-                    className={"btn btn-primary"}
+                    className="btn btn-primary"
                   >
                     Delete
                   </Link>

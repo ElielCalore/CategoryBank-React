@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export function Edit() {
   const { id } = useParams();
@@ -72,7 +72,7 @@ export function Edit() {
           />
         </div>
         <div>
-          <button onClick={handleSubmit} className={"btn btn-primary"}>
+          <button onClick={handleSubmit} className="btn btn-primary">
             Submit
           </button>
         </div>
