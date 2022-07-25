@@ -34,54 +34,49 @@ export function Login() {
   }
 
   return (
-
     <div>
-    <nav className="navbar navbar-light bg-dark2">
-        <div>
+      <nav className="navbar navbar-light bg-dark2">
+        <div></div>
+      </nav>
 
+      <div className="d-flex align-items-center justify-content-center mt-5">
+        <div className={styles.formContainer}>
+          <form
+            className="d-flex align-items-center flex-column mt-4"
+            onSubmit={handleSumit}
+          >
+            <h2 className={`mb-4 ${styles.textWhite}`}>Welcome back!</h2>
+
+            <div className="container">
+              {/* <label>Name</label> */}
+              <input
+                className={`form-control mb-4 ${styles.input}`}
+                placeholder="user"
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="container">
+              {/* <label>Password</label> */}
+              <input
+                type="password"
+                className={`form-control mb-4 ${styles.input}`}
+                placeholder="password"
+                onChange={handleChange}
+              />
+            </div>
+
+            <button className={`btn btn-danger ${styles.button}`} type="submit">
+              Login
+            </button>
+
+            <p className="mt-5">sign up</p>
+          </form>
         </div>
-    </nav>
-
-
-
- 
-
-
-
-
-    <div className="d-flex align-items-center justify-content-center mt-5" >
-    <div className={styles.formContainer}>
-      <form className="d-flex align-items-center flex-column mt-4" onSubmit={handleSumit}>
-        <h2 className={`mb-4 ${styles.textWhite}`}>Welcome back!</h2>
-
-        <div className="container">
-          {/* <label>Name</label> */}
-          <input className={`form-control mb-4 ${styles.input}`} placeholder="user" type="email"
-        name="email"
-        value={form.email}
-        onChange={handleChange}
-      />
-        </div>
-
-        <div className="container">
-          {/* <label>Password</label> */}
-          <input type='password' className={`form-control mb-4 ${styles.input}`} placeholder="password"
-        onChange={handleChange}
-      />
-        </div>
-
-        <button className={`btn btn-danger ${styles.button}`} type="submit">
-          Login
-        </button>
-
-        <p className="mt-5">sign up</p>
-      </form>
+      </div>
     </div>
-  </div>
-
-
-
-  </div>
-
   );
 }
