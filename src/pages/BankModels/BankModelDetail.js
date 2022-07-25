@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "../../api/api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BankModelForm } from "../../components/BankModelForm/BankModelForm";
@@ -11,9 +11,7 @@ export function BankModelDetail() {
   useEffect(() => {
     const fetchBankModel = async () => {
       try {
-        const res = await axios.get(
-          `https://ironrest.herokuapp.com/classify/${bankId}`
-        );
+        const res = await api.get(`bank/${bankId}`);
         setBankModel({ ...res.data });
       } catch (error) {
         console.log(error);
@@ -25,10 +23,7 @@ export function BankModelDetail() {
   async function SaveChanges() {
     try {
       delete bankModel._id;
-      const res = await axios.put(
-        `https://ironrest.herokuapp.com/classify/${bankId}`,
-        bankModel
-      );
+      const res = await api.patch(`bank/update-bank/${bankId}`, bankModel);
       return navigate("/my-banks");
     } catch (error) {
       console.log(error);
@@ -37,9 +32,7 @@ export function BankModelDetail() {
 
   async function Delete() {
     try {
-      const res = await axios.delete(
-        `https://ironrest.herokuapp.com/classify/${bankId}`
-      );
+      const res = await api.delete(`bank/delete/${bankId}`);
       return navigate("/my-banks");
     } catch (error) {
       console.log(error);

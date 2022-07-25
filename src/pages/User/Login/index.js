@@ -60,6 +60,8 @@ export function Login() {
 
               <div className="container">
                 <input
+                  name="password"
+                  value={form.password}
                   type="password"
                   className={`form-control mb-4 ${styles.input}`}
                   placeholder="password"

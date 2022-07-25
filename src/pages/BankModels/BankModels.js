@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "../../api/api";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ClassifyModel from "../../assets/bank/ClassifyTemplate.csv";
@@ -9,7 +9,7 @@ export function BankModels() {
   useEffect(() => {
     const fetchBanks = async () => {
       try {
-        const res = await axios.get("https://ironrest.herokuapp.com/classify/");
+        const res = await api.get("/bank/bank-model");
         setBanks(res.data);
       } catch (error) {
         console.log(error);
