@@ -47,6 +47,12 @@ function App() {
             path="/profile"
             element={<ProtectedRoute component={Profile} />}
           />
+
+                    <Route
+            path="/profiletest"
+            element={Profile}
+          />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AuthContextComponent>

@@ -118,7 +118,7 @@ export function UploadCSV() {
     Papa.parse(files[0], {
       skipEmptyLines: true,
       header: true,
-      columns: banks[bankModel].columns,
+      // columns: banks[bankModel].columns,
       delimiter: banks[bankModel].delimiter,
       complete: function (results) {
         // data = [];
