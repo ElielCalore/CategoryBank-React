@@ -89,6 +89,7 @@ export function UploadCSV() {
 
     setTransactions(d.map((currEle) => {
       let realAmount = 0;
+      //
       if (
         Number(currEle[banks[b]["amount"]]) !== 0 &&
         currEle[banks[b]["amount"]]
@@ -113,6 +114,7 @@ export function UploadCSV() {
     let data = [];
     setTransactions([]);
     const files = e.target.files;
+    //export this as function
     Papa.parse(files[0], {
       skipEmptyLines: true,
       header: true,
