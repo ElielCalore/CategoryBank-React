@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { api } from "../../../api/api";
 //import { useNavigate } from "react-router-dom";
-
+import { Toaster, toast } from "react-hot-toast";
 import { useEffect } from "react";
 
 export function ListTransactions() {
@@ -9,6 +9,7 @@ export function ListTransactions() {
 	const [categories, setCategories] = useState([]);
 	const [toggle, setToggle] = useState([])
 	// [{ id : 0, value: false}]
+
 
 	useEffect(() => {
 		async function GetTransactions(e) {
