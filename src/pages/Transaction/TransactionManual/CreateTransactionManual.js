@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { api } from "../../../api/api";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useEffect } from "react";
-// import { Toast } from "bootstrap";
+import { Toaster, toast } from "react-hot-toast";
 
 export function CreateTransactionManual() {
   const navigate = useNavigate();
@@ -19,9 +18,15 @@ export function CreateTransactionManual() {
       try {
         const response = await api.get("/user/profile");
         setCategory(response.data.categories);
+        toast.success("Successfully Created!");
       } catch (error) {
-        console.log(error);
+        if (error) {
+          return toast.error("could not create transactions!");
+        }
       }
+      setTimeout(() => {
+        navigate("/transaction/list-transactions");
+      }, 1000);
     }
     handleCategory();
   }, []);
@@ -52,6 +57,7 @@ export function CreateTransactionManual() {
 
   return (
     <div className="col-md-8 col-sm-12 col-lg-8 container mt-5">
+      <Toaster />
       <form>
         <div className="mb-4">
           <label htmlFor="date-input" className="form-label">

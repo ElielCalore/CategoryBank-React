@@ -40,19 +40,19 @@ function App() {
           <Route path="/upload-csv" element={<UploadCSV />} />
           {/* CATEGORY */}
           <Route
-            path="/page-category"
+            path="/category/page-category"
             element={<ProtectedRoute component={PageCategory} />}
           />
           <Route
-            path="/create"
+            path="/category/create"
             element={<ProtectedRoute component={Create} />}
           />
           <Route
-            path="/edit/:id"
+            path="/category/edit/:id"
             element={<ProtectedRoute component={Edit} />}
           />
           <Route
-            path="/delete/:id"
+            path="/category/delete/:id"
             element={<ProtectedRoute component={Delete} />}
           />
           {/* BANKS */}
@@ -81,7 +81,10 @@ function App() {
             path="/transaction/manual/create"
             element={<CreateTransactionManual />}
           />
-          <Route path="/list-transactions" element={<ListTransactions />} />
+          <Route
+            path="/transaction/list-transactions"
+            element={<ListTransactions />}
+          />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AuthContextComponent>
