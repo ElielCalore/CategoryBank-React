@@ -43,10 +43,14 @@ export function CreateTransactionManual() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(form);
     try {
       await api.post("/transaction/new-transaction", form);
       toast.success("Successfully Created!");
+
+      setTimeout(() => {
+        navigate("/transaction/list-transactions");
+      }, 1000);
+
     } catch (err) {
       console.log(err);
     }
