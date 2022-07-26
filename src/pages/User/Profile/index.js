@@ -40,7 +40,7 @@ export function Profile() {
               width: "120px",
             }}
           >
-            <Link to="/page-category">
+            <Link to="/category/page-category">
               <Card
                 hoverable
                 style={{
@@ -94,7 +94,7 @@ export function Profile() {
               width: "120px",
             }}
           >
-            <Link to="/list-transactions">
+            <Link to="/transaction/list-transactions">
               <Card
                 hoverable
                 style={{

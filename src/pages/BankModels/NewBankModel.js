@@ -2,6 +2,7 @@ import { BankModelForm } from "../../components/BankModelForm/BankModelForm";
 import { useState } from "react";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import { LoggedNavbar } from "../../components/LoggedNavbar";
 
 export function NewBankModel() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export function NewBankModel() {
 
   return (
     <>
+      <LoggedNavbar />
       <h1>Create New Bank Model</h1>
       <BankModelForm bank={bankModel} setBank={setBankModel} />
       <div className="p-2">

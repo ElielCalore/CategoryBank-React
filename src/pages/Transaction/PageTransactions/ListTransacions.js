@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { api } from "../../../api/api";
-//import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { useEffect } from "react";
+import { LoggedNavbar } from "../../../components/LoggedNavbar";
 
 export function ListTransactions() {
 	const [transactions, setTransactions] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [toggle, setToggle] = useState([])
 	// [{ id : 0, value: false}]
+
 
 
 	useEffect(() => {
@@ -128,4 +130,5 @@ export function ListTransactions() {
     )}
     </> 
   )
+
 }
