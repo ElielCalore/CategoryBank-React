@@ -26,9 +26,11 @@ export function Profile() {
 
   return (
     <>
-      <h1>{loggedInUser.user.name}</h1>
-      <p>{loggedInUser.user.email}</p>
-      <button onClick={handleLogOut}>Sair</button>
+      <div className="d-flex">
+        <h1>{loggedInUser.user.name}</h1>
+        <p>{loggedInUser.user.email}</p>
+        <button onClick={handleLogOut}>Sair</button>
+      </div>
     </>
   );
 }

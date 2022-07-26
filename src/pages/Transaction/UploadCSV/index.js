@@ -78,7 +78,6 @@ export function UploadCSV() {
           "transaction/new-transaction",
           transactions[i]
         );
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
