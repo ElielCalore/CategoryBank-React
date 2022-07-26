@@ -11,7 +11,7 @@ export function CreateTransactionManual() {
     date: "",
     description: "",
     amount: 0,
-    categories: {},
+    category: "",
   });
   const [category, setCategory] = useState([]);
   useEffect(() => {
@@ -28,9 +28,8 @@ export function CreateTransactionManual() {
 
   function SubmitCategory(e) {
     e.preventDefault();
-    console.log(e.target.value);
     try {
-      setForm({ ...form, categories: e.target.value });
+      setForm({ ...form, category: e.target.value });
     } catch (err) {
       console.log(err);
     }
@@ -42,7 +41,7 @@ export function CreateTransactionManual() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    console.log(form);
     try {
       await api.post("/transaction/new-transaction", form);
     } catch (err) {
@@ -64,16 +63,6 @@ export function CreateTransactionManual() {
             name="date"
             className="form-control mb-4"
             value={form.date}
-          />
-          <label htmlFor="name-input" className="form-label">
-            <h5>Transaction Name: </h5>
-          </label>
-          <input
-            onChange={handleChange}
-            type="text"
-            name="name"
-            className="form-control mb-4"
-            value={form.name}
           />
           <label htmlFor="description-input" className="form-label">
             <h5>Transaction description: </h5>
@@ -100,10 +89,13 @@ export function CreateTransactionManual() {
         <label htmlFor="category-input" className="form-label">
           <h5>Select Category: </h5>
         </label>
-        <select name="select" onChange={SubmitCategory}>
+        <select name="select" onChange={SubmitCategory} defaultValue="Default">
+          <option disabled value="Default">
+            Select A Category
+          </option>
           {category.map((currentElement) => {
             return (
-              <option value={currentElement.code}>{currentElement.code}</option>
+              <option value={currentElement._id}>{currentElement.code}</option>
             );
           })}
         </select>

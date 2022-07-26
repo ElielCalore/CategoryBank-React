@@ -5,12 +5,7 @@ import { api } from "../../../api/api";
 import { useEffect } from "react";
 
 export function ListTransactions() {
-  const [data, setData] = useState({
-    date: "",
-    description: "",
-    amount: 0,
-    categories: {},
-  });
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     async function GetTransactions(e) {
@@ -39,32 +34,35 @@ export function ListTransactions() {
         </div>
         <div className="col-3"></div>
         <div className="col-3"></div>
-
-        {data.map((current) => {
-          return (
-            <div className="container mb-5" key={current.date}>
-              <div className="row mb-3 p-4 align-items-center">
-                <div className="row-3">
-                  <strong>DATE: {current.date}</strong>
+        {data.length === 0 ? (
+          <></>
+        ) : (
+          data.map((current) => {
+            return (
+              <div className="container mb-5" key={current.date}>
+                <div className="row mb-3 p-4 align-items-center">
+                  <div className="row-3">
+                    <strong>DATE: {current.date}</strong>
+                  </div>
+                  <div className="row-3">
+                    <strong>DESCRIPTION: {current.description}</strong>
+                  </div>
+                  <div className="row-3">
+                    <strong>AMOUNT: {current.amount}</strong>
+                  </div>
+                  <div className="row-3">
+                    <strong>CATEGORY: {current.category}</strong>
+                  </div>
                 </div>
-                <div className="row-3">
-                  <strong>DESCRIPTION: {current.description}</strong>
-                </div>
-                <div className="row-3">
-                  <strong>AMOUNT: {current.amount}</strong>
-                </div>
-                <div className="row-3">
-                  <strong>CATEGORY: {current.category}</strong>
+                <div className="row-1">
+                  <button className="btn btn-primary">Edit</button>
+                  <button className="btn btn-primary">Details</button>
+                  <button className="btn btn-primary">Delete</button>
                 </div>
               </div>
-              <div className="row-1">
-                <button className="btn btn-primary">Edit</button>
-                <button className="btn btn-primary">Details</button>
-                <button className="btn btn-primary">Delete</button>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );
