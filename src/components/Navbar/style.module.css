@@ -30,3 +30,9 @@
   background-color: #ec452f !important;
   border-color: #ec452f !important;
 }
+
+.buttonClear {
+  background-color: transparent;
+  border: none;
+  color: #fcfaf9 !important;
+}

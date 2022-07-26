@@ -3,7 +3,6 @@ import { AuthContext } from "../../../contexts/authContext";
 import { api } from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.css";
-import { Navbar } from "../../../components/Navbar";
 
 export function Login() {
   const [form, setForm] = useState({
@@ -35,8 +34,6 @@ export function Login() {
   }
 
   return (
-    <>
-      <Navbar />
 
       <div className={styles.divLogin}>
         <div className="d-flex align-items-center justify-content-center mt-5">
@@ -79,6 +76,6 @@ export function Login() {
           </div>
         </div>
       </div>
-    </>
+
   );
 }
