@@ -24,7 +24,6 @@ export function Create() {
       if (err.response.data._message === "Category validation failed") {
         return toast.error("There are Fields that have not been filled in!");
       }
-      console.log(err);
     }
     setTimeout(() => {
       navigate("/category/page-category");

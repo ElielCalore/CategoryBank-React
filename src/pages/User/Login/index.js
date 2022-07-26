@@ -3,6 +3,7 @@ import { AuthContext } from "../../../contexts/authContext";
 import { api } from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.css";
+import { Toaster, toast } from "react-hot-toast";
 
 export function Login() {
   const [form, setForm] = useState({
@@ -26,15 +27,20 @@ export function Login() {
       setLoggedInUser({ ...response.data });
 
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
-
-      navigate("/profile");
+      toast.success("Login Successful!!");
     } catch (error) {
-      console.log(error);
+      if (error) {
+        return toast.error("Invalid email or password!");
+      }
     }
+    setTimeout(() => {
+      navigate("/profile");
+    }, 1000);
   }
 
   return (
-
+    <>
+      <Toaster />
       <div className={styles.divLogin}>
         <div className="d-flex align-items-center justify-content-center mt-5">
           <div className={styles.formContainer}>
@@ -76,6 +82,6 @@ export function Login() {
           </div>
         </div>
       </div>
-
+    </>
   );
 }

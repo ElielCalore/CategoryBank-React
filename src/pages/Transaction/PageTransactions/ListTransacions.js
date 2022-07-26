@@ -13,6 +13,7 @@ import editicon from "../../../assets/images/edit.png"
 import { LoggedNavbar } from "../../../components/LoggedNavbar";
 
 export function ListTransactions() {
+
 	const [transactions, setTransactions] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [toggle, setToggle] = useState([
@@ -31,6 +32,24 @@ export function ListTransactions() {
 	]);
 
 
+  useEffect(() => {
+    async function GetTransactions(e) {
+      try {
+        const response = await api.get("/user/profile");
+        setTransactions(response.data.transactions);
+        setCategories(response.data.categories);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    GetTransactions();
+  }, []);
+
+  function handleDelete(e) {
+    const clone = [...transactions];
+    clone.splice(e.target.id, 1);
+    setTransactions(clone);
+  }
 
 	useEffect(() => {
 		async function GetTransactions() {
@@ -181,4 +200,5 @@ export function ListTransactions() {
 			)}
 		</>
 	);
+
 }
