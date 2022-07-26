@@ -1,6 +1,7 @@
 import Papa from "papaparse";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
+import { LoggedNavbar } from "../../../components/LoggedNavbar";
 
 import { useNavigate } from "react-router-dom";
 
@@ -118,6 +119,7 @@ export function UploadCSV() {
 
   return (
     <>
+      <LoggedNavbar />
       <div className={styles.csvForm}>
         <select
           defaultValue={"Select your bank"}

@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { api } from "../../../api/api";
-//import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 import { useEffect } from "react";
 import styles from "./style.module.css"
 
 //import images
 import deleteicon from "../../../assets/images/delete.png"
 import editicon from "../../../assets/images/edit.png"
+
+
+import { LoggedNavbar } from "../../../components/LoggedNavbar";
 
 export function ListTransactions() {
 	const [transactions, setTransactions] = useState([]);
@@ -26,6 +29,8 @@ export function ListTransactions() {
 		{ id: 0, value: true },
 		{ id: 0, value: true },
 	]);
+
+
 
 	useEffect(() => {
 		async function GetTransactions() {

@@ -2,6 +2,7 @@ import { api } from "../../api/api";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ClassifyModel from "../../assets/bank/ClassifyTemplate.csv";
+import { LoggedNavbar } from "../../components/LoggedNavbar";
 
 export function BankModels() {
   const [banks, setBanks] = useState([]);
@@ -21,6 +22,7 @@ export function BankModels() {
   return (
     <>
       <div>
+        <LoggedNavbar />
         <div>
           <h1>Your current Bank Models</h1>
           <p>Here you can find all your Bank Statement csv models.</p>

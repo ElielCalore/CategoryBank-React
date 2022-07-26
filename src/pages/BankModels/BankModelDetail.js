@@ -2,6 +2,7 @@ import { api } from "../../api/api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BankModelForm } from "../../components/BankModelForm/BankModelForm";
+import { LoggedNavbar } from "../../components/LoggedNavbar";
 
 export function BankModelDetail() {
   const { bankId } = useParams();
@@ -41,6 +42,7 @@ export function BankModelDetail() {
 
   return (
     <>
+      <LoggedNavbar />
       <h1>Bank Model Details</h1>
       <BankModelForm bank={bankModel} setBank={setBankModel} />
       <div className="d-flex">
