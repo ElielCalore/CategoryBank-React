@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { api } from "../../../api/api";
 //import { useNavigate } from "react-router-dom";
-
+import { Toaster, toast } from "react-hot-toast";
 import { useEffect } from "react";
 
 export function ListTransactions() {
@@ -14,7 +14,9 @@ export function ListTransactions() {
         console.log(response.data);
         setData(response.data);
       } catch (error) {
-        console.log(error);
+        if (error) {
+          return toast.error("could not load transactions!");
+        }
       }
     }
     GetTransactions();
@@ -22,6 +24,7 @@ export function ListTransactions() {
 
   return (
     <div className="container-fluid mt-5">
+      <Toaster />
       <div>
         <h2>Transactions</h2>
       </div>

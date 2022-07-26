@@ -1,6 +1,7 @@
 import { api } from "../../api/api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 export function Delete() {
   const { id } = useParams();
@@ -17,7 +18,9 @@ export function Delete() {
         const response = await api.get(`category/${id}`);
         setForm({ ...response.data });
       } catch (err) {
-        console.log(err);
+        if (err) {
+          return toast.error("Could not load Category!");
+        }
       }
     }
 
@@ -32,14 +35,20 @@ export function Delete() {
     e.preventDefault();
     try {
       await api.delete(`category/delete/${id}`);
+      toast.success("Successfully Deleted!");
     } catch (error) {
-      console.log(error);
+      if (error) {
+        return toast.error("Unable to Delete Category!");
+      }
     }
-    navigate("/page-category");
+    setTimeout(() => {
+      navigate("/category/page-category");
+    }, 1000);
   }
 
   return (
     <div className="col-md-8 col-sm-12 col-lg-8 container mt-5">
+      <Toaster />
       <form>
         <div className="mb-4">
           <label htmlFor="code-input" className="form-label">
