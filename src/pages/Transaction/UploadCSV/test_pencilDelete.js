@@ -156,13 +156,11 @@ export function UploadCSV() {
     } else {
        clone[e.target.id]["value"] = true
     }
-
     setToggle(clone)
   }
 
   useEffect(() => {
     function createToggle(t) {
-      console.log(t)
         setToggle(t.map((current, i) => {
           return  {id : i,
                   value: true} 
