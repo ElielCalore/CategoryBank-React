@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // import { AuthContext } from "../../contexts/authContext";
 import { AuthContext } from "../../../contexts/authContext";
-import { LoggedNavbar } from "../../../components/LoggedNavbar"
+import { LoggedNavbar } from "../../../components/LoggedNavbar";
 
 export function Profile() {
   // const [user, setUser] = useState({ name: "", email: "" });
