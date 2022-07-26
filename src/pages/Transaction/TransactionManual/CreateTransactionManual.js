@@ -18,15 +18,11 @@ export function CreateTransactionManual() {
       try {
         const response = await api.get("/user/profile");
         setCategory(response.data.categories);
-        toast.success("Successfully Created!");
       } catch (error) {
         if (error) {
           return toast.error("could not create transactions!");
         }
       }
-      setTimeout(() => {
-        navigate("/transaction/list-transactions");
-      }, 1000);
     }
     handleCategory();
   }, []);
@@ -46,9 +42,12 @@ export function CreateTransactionManual() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(form);
     try {
       await api.post("/transaction/new-transaction", form);
+      toast.success("Successfully Created!");
+      setTimeout(() => {
+        navigate("/transaction/list-transactions");
+      }, 1000);
     } catch (err) {
       console.log(err);
     }
