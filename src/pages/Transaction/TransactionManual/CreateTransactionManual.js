@@ -13,12 +13,10 @@ export function CreateTransactionManual() {
     categories: {},
   });
   const [category, setCategory] = useState([]);
-  console.log(category);
   useEffect(() => {
     async function handleCategory(e) {
       try {
         const response = await api.get("/user/profile");
-        console.log(response.data.categories);
         setCategory(response.data.categories);
       } catch (error) {
         console.log(error);
@@ -29,12 +27,12 @@ export function CreateTransactionManual() {
 
   function SubmitCategory(e) {
     e.preventDefault();
+    console.log(e.target.value);
     try {
       setForm({ ...form, categories: e.target.value });
     } catch (err) {
       console.log(err);
     }
-    navigate("/page-category");
   }
 
   function handleChange(e) {
@@ -43,12 +41,13 @@ export function CreateTransactionManual() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     try {
       await api.post("/transaction/new-transaction", form);
     } catch (err) {
       console.log(err);
     }
-    navigate("/page-category");
+    // navigate("/list-transactions");
   }
 
   return (

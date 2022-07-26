@@ -19,6 +19,7 @@ import { PageCategory } from "./pages/Category/PageCategory";
 //TRANSACTION PAGES
 import { CreateTransactionManual } from "./pages/Transaction/TransactionManual/CreateTransactionManual";
 import { UploadCSV } from "./pages/Transaction/UploadCSV/index";
+import { ListTransactions } from "./pages/Transaction/PageTransactions/ListTransacions";
 
 //BANK PAGES
 import { BankModels } from "./pages/BankModels/BankModels";
@@ -80,7 +81,7 @@ function App() {
             path="/transaction/manual/create"
             element={<CreateTransactionManual />}
           />
-
+          <Route path="/list-transactions" element={<ListTransactions />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AuthContextComponent>
