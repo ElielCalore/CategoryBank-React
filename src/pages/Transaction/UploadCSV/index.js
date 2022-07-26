@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
+import { DateConverter } from "./date";
 import { api } from "../../../api/api";
 
 export function UploadCSV() {
@@ -30,7 +30,6 @@ export function UploadCSV() {
   function createObject(d, b) {
     setTransactions(
       d.map((currEle) => {
-        console.log(currEle[b["date"]]);
         let realAmount = 0;
         //
         if (Number(currEle[b["amount"]]) !== 0 && currEle[b["amount"]]) {
@@ -71,10 +70,15 @@ export function UploadCSV() {
 
     for (let i = 0; i < transactions.length; i++) {
       try {
-        const res = await axios.post(
-          "https://ironrest.herokuapp.com/classify/",
+        transactions[i]["date"] = DateConverter(
+          transactions[i]["date"],
+          bankModel["dateFormat"]
+        );
+        const res = await api.post(
+          "transaction/new-transaction",
           transactions[i]
         );
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -102,7 +106,7 @@ export function UploadCSV() {
     }
 
     const clone = [...transactions];
-    console.log(clone[e.target.id]);
+    // console.log(clone[e.target.id]);
     clone[e.target.id][e.target.name] = e.target.value;
     setTransactions(clone);
   }

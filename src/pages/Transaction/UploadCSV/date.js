@@ -1,4 +1,4 @@
-export function DateConverter({ s }) {
+export function DateConverter(string, format) {
   // DD/MM/YYYY MM/DD/YYYY YYYY/MM/DD => DD/MM/YYYY
 
   // DD/MM/YYYY
@@ -24,18 +24,18 @@ export function DateConverter({ s }) {
     return day + "/" + month + "/" + year;
   }
 
-  const typeModel = "YY/MM/DD";
+  const typeModel = format;
   let result = "";
 
   if (typeModel === "DD/MM/YY") {
-    result = DDMMYYYY(s);
+    result = DDMMYYYY(string);
   }
   if (typeModel === "MM/DD/YY") {
-    result = MMDDYYYY(s);
+    result = MMDDYYYY(string);
   }
   if (typeModel === "YY/MM/DD") {
-    result = YYYYMMDD(s);
+    result = YYYYMMDD(string);
   }
 
-  console.log(result);
+  return result;
 }
