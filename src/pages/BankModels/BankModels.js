@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ClassifyModel from "../../assets/bank/ClassifyTemplate.csv";
 import { LoggedNavbar } from "../../components/LoggedNavbar";
+import { Toaster, toast } from "react-hot-toast";
 
 export function BankModels() {
   const [banks, setBanks] = useState([]);
@@ -13,7 +14,9 @@ export function BankModels() {
         const res = await api.get("/bank/bank-model");
         setBanks(res.data);
       } catch (error) {
-        console.log(error);
+        if (error) {
+          return toast.error("Unable to load the information!");
+        }
       }
     };
     fetchBanks();

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { LoggedNavbar } from "../../components/LoggedNavbar";
+import { Toaster, toast } from "react-hot-toast";
 
 export function NewBankModel() {
   const navigate = useNavigate();
@@ -19,16 +20,23 @@ export function NewBankModel() {
 
   async function Save() {
     try {
-      const res = await api.post("/bank/custom-bank", bankModel);
-      return navigate("/my-banks");
+      await api.post("/bank/custom-bank", bankModel);
+
+      toast.success("Successfully Created!");
     } catch (error) {
-      return console.log(error);
+      if (error) {
+        return toast.error("Couldn't Save!");
+      }
     }
+    setTimeout(() => {
+      navigate("/my-banks");
+    }, 1000);
   }
 
   return (
     <>
       <LoggedNavbar />
+      <Toaster />
       <h1>Create New Bank Model</h1>
       <BankModelForm bank={bankModel} setBank={setBankModel} />
       <div className="p-2">
