@@ -3,7 +3,7 @@ import { api } from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-import { Toast } from "bootstrap";
+// import { Toast } from "bootstrap";
 
 export function CreateTransactionManual() {
   const navigate = useNavigate();
