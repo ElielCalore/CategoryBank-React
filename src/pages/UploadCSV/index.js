@@ -8,86 +8,10 @@ import axios from "axios";
 
 export function UploadCSV() {
   const navigate = useNavigate();
-  const banks = {
-    Nubank: {
-      delimiter: ",",
-      columns: ["Data", "Valor", "Identificador", "Descrição"],
-      date: "Data",
-      description: "Descrição",
-      credit: "",
-      debit: "",
-      amount: "Valor",
-    },
-    Monzo: {
-      delimiter: ",",
-      columns: [
-        "Transaction ID",
-        "Date",
-        "Time",
-        "Type",
-        "Name",
-        "Emoji",
-        "Category",
-        "Amount",
-        "Currency",
-        "Local amount",
-        "Local currency",
-        "Notes and #tags",
-        "Address",
-        "Receipt",
-        "Description",
-        "Category split",
-        "Money Out",
-        "Money In",
-      ],
-      date: "Date",
-      description: "Description",
-      credit: "Money In",
-      debit: "Money Out",
-      amount: "",
-    },
-    Halifax: {
-      delimiter: ",",
-      columns: [
-        "Transaction Date",
-        "Transaction Type",
-        "Sort Code",
-        "Account Number",
-        "Transaction Description",
-        "Debit Amount",
-        "Credit Amount",
-        "Balance",
-      ],
-      date: "Transaction Date",
-      description: "Transaction Description",
-      credit: "Credit Amount",
-      debit: "Debit Amount",
-      amount: "",
-    },
-    Bradesco: {
-      delimiter: ";",
-      columns: [
-        "Data",
-        "Histórico",
-        "Docto.",
-        "Crédito (R$)",
-        "Débito (R$)",
-        "Saldo (R$)",
-        "",
-      ],
-      date: "Data",
-      description: "Histórico",
-      credit: "Crédito (R$)",
-      debit: "Débito (R$)",
-    },
-  };
-
+  const [banks, setBanks] = useState([]);
+  //useEffect para definir esses banks
   const [bankModel, setBankModel] = useState("");
   const [transactions, setTransactions] = useState([]);
-
-
-    
-
 
   function createObject(d, b) {
     setTransactions(
@@ -148,15 +72,12 @@ export function UploadCSV() {
     }
   }
 
-
-
-
   // useEffect(() => {
   //   function createToggle(t) {
   //     console.log(t)
   //       setToggle(t.map((current, i) => {
   //         return  {id : i,
-  //                 value: true} 
+  //                 value: true}
   //       }))
   //   } createToggle(transactions)
   // },[transactions])
@@ -164,29 +85,26 @@ export function UploadCSV() {
   console.log(transactions);
 
   function handleUpdate(e) {
-
     if (e.target.name === "amount") {
-      if (typeof Number(e.target.value) === NaN || typeof Number(e.target.value)) {
-        return console.log("ERROR")
+      if (
+        typeof Number(e.target.value) === NaN ||
+        typeof Number(e.target.value)
+      ) {
+        return console.log("ERROR");
       }
     }
 
-    const clone = [...transactions]
-    console.log(clone[e.target.id])
-    clone[e.target.id][e.target.name] = e.target.value
-    setTransactions(clone)
+    const clone = [...transactions];
+    console.log(clone[e.target.id]);
+    clone[e.target.id][e.target.name] = e.target.value;
+    setTransactions(clone);
   }
 
   function handleDelete(e) {
-    const clone = [...transactions]
-    clone.splice(e.target.id, 1)
-    setTransactions(clone)
+    const clone = [...transactions];
+    clone.splice(e.target.id, 1);
+    setTransactions(clone);
   }
-
-
-
-
-
 
   return (
     <>
@@ -229,18 +147,28 @@ export function UploadCSV() {
                       <p>{transactions[i]["date"]}</p>
                     </td>
                     <td>
-                      <input value={transactions[i]["description"]} name="description" onChange={handleUpdate} id={i}/>
+                      <input
+                        value={transactions[i]["description"]}
+                        name="description"
+                        onChange={handleUpdate}
+                        id={i}
+                      />
                     </td>
                     <td>
                       <p>{transactions[i]["amount"]}</p>
                     </td>
-                    <td>                      
-                      <button className={`btn btn-danger`} onClick={handleDelete} id={i}>delete</button>
+                    <td>
+                      <button
+                        className={`btn btn-danger`}
+                        onClick={handleDelete}
+                        id={i}
+                      >
+                        delete
+                      </button>
                     </td>
                   </tr>
                 );
               })}
-
             </table>
           </>
         ) : (

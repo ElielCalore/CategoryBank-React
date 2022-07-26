@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "../../api/api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -14,9 +14,7 @@ export function Edit() {
   useEffect(() => {
     async function EditedCategory() {
       try {
-        const response = await axios.get(
-          `https://ironrest.herokuapp.com/elielcaloreteste/${id}`
-        );
+        const response = await api.get(`category/${id}`);
         setForm({ ...response.data });
       } catch (err) {
         console.log(err);
@@ -35,10 +33,7 @@ export function Edit() {
     try {
       const clone = { ...form };
       delete clone._id;
-      await axios.put(
-        `https://ironrest.herokuapp.com/elielcaloreteste/${id}`,
-        clone
-      );
+      await api.patch(`category/update/${id}`, clone);
     } catch (error) {
       console.log(error);
     }

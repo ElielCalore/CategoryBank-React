@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "../../api/api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -14,9 +14,7 @@ export function Delete() {
   useEffect(() => {
     async function deletedCategory() {
       try {
-        const response = await axios.get(
-          `https://ironrest.herokuapp.com/elielcaloreteste/${id}`
-        );
+        const response = await api.get(`category/${id}`);
         setForm({ ...response.data });
       } catch (err) {
         console.log(err);
@@ -33,9 +31,7 @@ export function Delete() {
   async function handleDelete(e) {
     e.preventDefault();
     try {
-      await axios.delete(
-        `https://ironrest.herokuapp.com/elielcaloreteste/${id}`
-      );
+      await api.delete(`category/delete/${id}`);
     } catch (error) {
       console.log(error);
     }

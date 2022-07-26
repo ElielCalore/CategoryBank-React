@@ -1,5 +1,5 @@
+import { api } from "../../api/api";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 export function PageCategory() {
@@ -10,9 +10,7 @@ export function PageCategory() {
   useEffect(() => {
     async function Categories() {
       try {
-        const response = await axios.get(
-          "https://ironrest.herokuapp.com/elielcaloreteste"
-        );
+        const response = await api.get("/category/categories");
         setData(response.data);
       } catch (error) {
         console.log(error);
