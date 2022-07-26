@@ -61,7 +61,7 @@ export function CreateTransactionManual() {
           </label>
           <input
             onChange={handleChange}
-            type="text"
+            type="date"
             name="date"
             className="form-control mb-4"
             value={form.date}

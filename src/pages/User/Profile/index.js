@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // import { AuthContext } from "../../contexts/authContext";
 import { AuthContext } from "../../../contexts/authContext";
+import { LoggedNavbar } from "../../../components/LoggedNavbar";
 
 export function Profile() {
   // const [user, setUser] = useState({ name: "", email: "" });
@@ -26,11 +27,11 @@ export function Profile() {
 
   return (
     <>
-      <div className="d-flex">
-        <h1>{loggedInUser.user.name}</h1>
-        <p>{loggedInUser.user.email}</p>
-        <button onClick={handleLogOut}>Sair</button>
-      </div>
+      <LoggedNavbar />
+
+      <h1>{loggedInUser.user.name}</h1>
+      <p>{loggedInUser.user.email}</p>
+      <button onClick={handleLogOut}>Sair</button>
     </>
   );
 }
