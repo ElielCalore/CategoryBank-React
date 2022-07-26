@@ -18,6 +18,9 @@ import { Edit } from "./pages/Category/Edit";
 import { Delete } from "./pages/Category/Delete";
 import { PageCategory } from "./pages/Category/PageCategory";
 
+//TRANSACTION PAGES
+import { CreateTransactionManual } from "./pages/Transaction/TransactionManual/CreateTransactionManual";
+
 //BANK PAGES
 import { BankModels } from "./pages/BankModels/BankModels";
 
@@ -73,6 +76,10 @@ function App() {
           <Route
             path="/profiletest"
             element={<ProtectedRoute component={Profile} />}
+          />
+          <Route
+            path="/transaction/manual/create"
+            element={<CreateTransactionManual />}
           />
 
           <Route path="*" element={<ErrorPage />} />
