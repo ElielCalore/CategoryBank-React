@@ -10,8 +10,6 @@ import "./app.css";
 
 //IMPORTS
 
-import { UploadCSV } from "./pages/UploadCSV";
-
 //CATEGORY PAGES
 import { Create } from "./pages/Category/Create";
 import { Edit } from "./pages/Category/Edit";
@@ -20,6 +18,7 @@ import { PageCategory } from "./pages/Category/PageCategory";
 
 //TRANSACTION PAGES
 import { CreateTransactionManual } from "./pages/Transaction/TransactionManual/CreateTransactionManual";
+import { UploadCSV } from "./pages/Transaction/UploadCSV/index";
 
 //BANK PAGES
 import { BankModels } from "./pages/BankModels/BankModels";

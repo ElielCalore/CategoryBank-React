@@ -43,6 +43,16 @@ export function BankModelForm(props) {
           ></input>
         </div>
         <div className="p-4" style={{ width: "400px" }}>
+          <label>Description Colunm</label>
+          <input
+            name="description"
+            style={{ width: "400px" }}
+            placeholder="Which colunm corresponds to Date?"
+            value={bankModel.description}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className="p-4" style={{ width: "400px" }}>
           <label>Date Colunm</label>
           <input
             name="date"
@@ -55,11 +65,12 @@ export function BankModelForm(props) {
         <div className="p-4" style={{ width: "400px" }}>
           <label>Date Format Colunm</label>
           <select
+            defaultValue="default"
             name="dateFormat"
             value={bankModel.dateFormat}
             onChange={handleChange}
           >
-            <option disabled defaultValue>
+            <option disabled value="default">
               Select a Date Format
             </option>
             <option>DD/MM/YY</option>
