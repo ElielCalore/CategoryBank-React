@@ -51,19 +51,7 @@ export function ListTransactions() {
     setTransactions(clone);
   }
 
-	useEffect(() => {
-		async function GetTransactions() {
-			try {
-				const response = await api.get("/user/profile");
-				setTransactions(response.data.transactions);
-				setCategories(response.data.categories);
-				console.log(response.data)
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		GetTransactions();
-	}, []);
+
 
 	function handleDelete(e) {
 		const clone = [...transactions];
@@ -110,6 +98,10 @@ export function ListTransactions() {
 
 	return (
 		<>
+
+			<LoggedNavbar />	
+
+
 			{transactions.length === 0 ? (
 				<></>
 			) : (
