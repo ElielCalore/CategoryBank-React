@@ -5,68 +5,127 @@ import { Toaster, toast } from "react-hot-toast";
 import { useEffect } from "react";
 
 export function ListTransactions() {
-  const [data, setData] = useState([]);
+	const [transactions, setTransactions] = useState([]);
+	const [categories, setCategories] = useState([]);
+	const [toggle, setToggle] = useState([])
+	// [{ id : 0, value: false}]
 
-  useEffect(() => {
-    async function GetTransactions(e) {
-      try {
-        const response = await api.get("/transaction/transactions");
-        console.log(response.data);
-        setData(response.data);
-      } catch (error) {
-        if (error) {
-          return toast.error("could not load transactions!");
-        }
-      }
-    }
-    GetTransactions();
-  }, []);
 
-  return (
-    <div className="container-fluid mt-5">
-      <Toaster />
-      <div>
-        <h2>Transactions</h2>
-      </div>
+	useEffect(() => {
+		async function GetTransactions(e) {
+			try {
+				const response = await api.get("/user/profile");
+				setTransactions(response.data.transactions);
+				setCategories(response.data.categories);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		GetTransactions();
+	}, []);
 
-      <div className="d-flex p-3 flex-column mb-10 ">
-        <div className="card-body">
-          <div>
-            <button className="btn btn-primary">Create Transaction</button>
-          </div>
-        </div>
-        <div className="col-3"></div>
-        <div className="col-3"></div>
-        {data.length === 0 ? (
-          <></>
-        ) : (
-          data.map((current) => {
-            return (
-              <div className="container mb-5" key={current.date}>
-                <div className="row mb-3 p-4 align-items-center">
-                  <div className="row-3">
-                    <strong>DATE: {current.date}</strong>
-                  </div>
-                  <div className="row-3">
-                    <strong>DESCRIPTION: {current.description}</strong>
-                  </div>
-                  <div className="row-3">
-                    <strong>AMOUNT: {current.amount}</strong>
-                  </div>
-                  <div className="row-3">
-                    <strong>CATEGORY: {current.category}</strong>
-                  </div>
-                </div>
-                <div className="row-1">
-                  <button className="btn btn-primary">Edit</button>
-                  <button className="btn btn-primary">Details</button>
-                  <button className="btn btn-primary">Delete</button>
-                </div>
-              </div>
-            );
-          })
-        )}
-      </div>
-    </div>
-  );
+
+	function handleDelete(e) {
+		const clone = [...transactions];
+		clone.splice(e.target.id, 1);
+		setTransactions(clone);
+	  }
+
+	function handleUpdate(e) {
+		if (e.target.name === "amount") {
+		  if (
+			typeof Number(e.target.value) === NaN ||
+			typeof Number(e.target.value)
+		  ) {
+			return console.log("ERROR");
+		  }
+		}
+	
+		const clone = [...transactions];
+		clone[e.target.id][e.target.name] = e.target.value;
+		setTransactions(clone);
+	  }
+	  
+	function handleEdit (e) {
+		const clone = [...toggle] 
+		if (toggle[e.target.id]["value"] === true) {
+		   clone[e.target.id]["value"] = false 
+		} else {
+		   clone[e.target.id]["value"] = true
+		}
+		console.log(clone[e.target.id])
+		setToggle(clone)
+	  }
+
+	useEffect(() => {
+		function createToggle(t) {
+			setToggle(t.map((current, i) => {
+			  return  {id : i,
+					  value: true} 
+			}))
+		} createToggle(transactions)
+	  },[transactions])  
+
+
+	return (
+    <>
+		{transactions.length === 0 ? (<></>) : (
+
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>Description</th>
+				<th>Amount</th>
+				<th>Category</th>
+			</tr>
+
+			{transactions.map((current, i) => {
+				// console.log(toggle[i].value)
+				return (
+					<tr>
+						<td>
+							<p>{current.date}</p>
+						</td>
+						<td>
+							
+							{/* {toggle[i].value === true ? 
+								(<input value={current.description} name="description" id={i} onChange={handleUpdate}/>) : 
+								(<p>{current.description}<p/>) }	 */}
+							<input value={current.description} name="description" id={i} onChange={handleUpdate}/>			
+						</td>
+						<td>
+							<p>{current.amount}</p>
+						</td>
+              <td>
+                <select>
+                {categories.map((cat) => {
+                    return (
+                        <option value={cat.code}>{cat.code}</option>
+                    )
+                })}
+                </select>
+              </td>
+						<td>
+						  <button className={`btn btn-danger`} id={i} onClick={handleDelete}>
+							delete
+						  </button>
+						</td>
+
+						<td>
+						  <button className={`btn btn-primary`} id={i} onClick={handleEdit}>
+							edit
+						  </button>
+						</td>
+					</tr>
+				);
+			})}
+			<tr>
+				<td>
+					<button>SAVE</button>
+				</td>
+			</tr>
+		</table>
+    )}
+    </> 
+  )
 }
