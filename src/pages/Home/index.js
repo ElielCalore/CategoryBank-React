@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Navbar } from "../../components/Navbar"
 
 // IMPORT IMAGES
 import classify from "../../assets/images/landingpage.png"
@@ -12,6 +11,7 @@ import styles from "./style.module.css"
 //IMPORT COMPONENTS
 import { Login } from "../User/Login"
 import { Signup } from "../User/Signup"
+import { Navbar } from "../../components/Navbar"
 
 export function Home() {
 
@@ -26,8 +26,6 @@ export function Home() {
 
   function handleNav(e) {
     const buttonsState = navButtons.map((current) => {
-      // console.log(current.id)
-      // console.log(e.target.id)
         if (current.id === e.target.id) {
           return (current = {id: current.id, value: true})
         }
@@ -53,13 +51,18 @@ export function Home() {
 
     {navButtons[1].value &&
     <div className={`container-fluid ${styles.divHome}`} style={{ backgroundImage: `url(${about})` }}>
-         <div className={`${styles.formContainer2} ${styles.textBlue}`}> <h1 className="m-5">Simplify your expense tracking</h1> </div>
+         <div className={styles.textWhite}> <h1 className="m-5">Adriano Caio Eliel</h1> </div>
     </div>
     }
 
     {navButtons[2].value &&
-    <div className={`container-fluid ${styles.divHome}`} style={{ backgroundImage: `url(${mission})` }}>
-        <div className={styles.textWhite}> <h1 className="m-5">Bora codar!!!!</h1> </div>
+    <div className={`container-fluid d-flex align-items-center justify-content-center ${styles.divHome}`} style={{ backgroundImage: `url(${mission})` }}>
+        <div className={`container ${styles.textBlue} ${styles.formContainer2}`}> <h1 className={styles.paragraph2}>Simplify your expense tracking</h1>
+              <p className={styles.paragraph}> we believe the right financial tools can help you build peace of mind, establish healthy financial habits, 
+                and achieve your goals. Our mission is to be the tool that does this for you.
+                We're a team of startup veterans with product, design, and engineering experience 
+                at some of the best technology companies in the world. We're in this together.</p>
+         </div>
     </div>
     }
 
