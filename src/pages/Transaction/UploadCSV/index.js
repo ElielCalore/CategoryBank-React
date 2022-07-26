@@ -5,32 +5,43 @@ import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import { api } from "../../../api/api";
 
 export function UploadCSV() {
   const navigate = useNavigate();
   const [banks, setBanks] = useState([]);
   //useEffect para definir esses banks
-  const [bankModel, setBankModel] = useState("");
+
+  useEffect(() => {
+    const fetchBanks = async () => {
+      try {
+        const res = await api.get("/bank/bank-model");
+        setBanks(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchBanks();
+  }, []);
+
+  const [bankModel, setBankModel] = useState({});
   const [transactions, setTransactions] = useState([]);
 
   function createObject(d, b) {
     setTransactions(
       d.map((currEle) => {
+        console.log(currEle[b["date"]]);
         let realAmount = 0;
         //
-        if (
-          Number(currEle[banks[b]["amount"]]) !== 0 &&
-          currEle[banks[b]["amount"]]
-        ) {
-          realAmount = Number(currEle[banks[b]["amount"]]);
+        if (Number(currEle[b["amount"]]) !== 0 && currEle[b["amount"]]) {
+          realAmount = Number(currEle[b["amount"]]);
         } else {
           realAmount =
-            Number(currEle[banks[b]["credit"]]) +
-            Number(currEle[banks[b]["debit"]]);
+            Number(currEle[b["credit"]]) + Number(currEle[b["debit"]]);
         }
         return {
-          date: currEle[banks[b]["date"]],
-          description: currEle[banks[b]["description"]],
+          date: currEle[b["date"]],
+          description: currEle[b["description"]],
           amount: realAmount,
         };
       })
@@ -46,11 +57,10 @@ export function UploadCSV() {
       skipEmptyLines: true,
       header: true,
       // columns: banks[bankModel].columns,
-      delimiter: banks[bankModel].delimiter,
+      delimiter: bankModel.delimiter,
       complete: function (results) {
         // data = [];
         data = results.data;
-        console.log(data);
         createObject(data, bankModel);
       },
     });
@@ -65,7 +75,6 @@ export function UploadCSV() {
           "https://ironrest.herokuapp.com/classify/",
           transactions[i]
         );
-        console.log(res);
       } catch (error) {
         console.log(error);
       }
@@ -81,8 +90,6 @@ export function UploadCSV() {
   //       }))
   //   } createToggle(transactions)
   // },[transactions])
-
-  console.log(transactions);
 
   function handleUpdate(e) {
     if (e.target.name === "amount") {
@@ -110,23 +117,25 @@ export function UploadCSV() {
     <>
       <div className={styles.csvForm}>
         <select
-          value={bankModel}
+          defaultValue={"Select your bank"}
           onChange={(e) => {
-            setBankModel(e.target.value);
-            // console.log(bankModel);
+            if (e.target.value === "Create new model") {
+              return navigate("/new-bank-model");
+            }
+            setBankModel(banks[e.target.value]);
           }}
         >
-          <option value="" disabled defaultValue="Select your bank">
+          <option value={"Select your bank"} disabled>
             Select your bank
           </option>
-          <option>Nubank</option>
-          <option>Halifax</option>
-          <option>Monzo</option>
-          <option
-            onClick={() => {
-              return navigate("/login");
-            }}
-          >
+          {banks.map((elem, i) => {
+            return (
+              <option id={elem._id} value={i}>
+                {elem.bankName}
+              </option>
+            );
+          })}
+          <option name="new-model" id="new-model">
             Create new model
           </option>
         </select>
@@ -172,9 +181,7 @@ export function UploadCSV() {
             </table>
           </>
         ) : (
-          <>
-            <p>false</p>
-          </>
+          <></>
         )}
         <button onClick={sendToBack}>SEND</button>
       </div>
