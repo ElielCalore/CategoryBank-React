@@ -3,6 +3,7 @@ import { api } from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import { Toast } from "bootstrap";
 
 export function CreateTransactionManual() {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ export function CreateTransactionManual() {
           </label>
           <input
             onChange={handleChange}
-            type="text"
+            type="date"
             name="date"
             className="form-control mb-4"
             value={form.date}
