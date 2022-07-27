@@ -27,15 +27,15 @@ export function Login() {
       setLoggedInUser({ ...response.data });
 
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
-      toast.success("Login Successful!!");
     } catch (error) {
       if (error) {
         return toast.error("Invalid email or password!");
       }
     }
+
     setTimeout(() => {
       navigate("/profile");
-    }, 1000);
+    }, 10);
   }
 
   return (

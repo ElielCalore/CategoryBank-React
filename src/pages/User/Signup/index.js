@@ -28,14 +28,14 @@ export function Signup(props) {
         return toast.error("Invalid email or password!");
       }
     }
-    toast.success("Profile created successfully!");
+
     setTimeout(() => {
+      toast.success("Profile created successfully!");
       const clone = [...navButtons];
       clone[4].value = true;
       clone[5].value = false;
-      console.log(clone);
       setNavButtons(clone);
-    }, 1000);
+    }, 500);
   }
 
   return (
@@ -44,6 +44,9 @@ export function Signup(props) {
       <div className="d-flex align-items-center justify-content-center mt-5">
         <div className={styles.formContainer}>
           <form onSubmit={handleSubmit} className="d-flex flex-column">
+            <div className="text-center b-1">
+              <strong>Sign-up</strong>
+            </div>
             <label htmlFor="formName">Name:</label>
             <input
               className="form-control mb-4"
@@ -72,15 +75,7 @@ export function Signup(props) {
               value={form.password}
               onChange={handleChange}
             />
-            <label htmlFor="formConfirmPassword">Confirm Password:</label>
-            <input
-              className="form-control mb-4"
-              id="formConfirmPassword"
-              type="password"
-              name="confirmPassword"
-              value={form.confirmPassword}
-              onChange={handleChange}
-            />
+
             <button type="submit" className={`btn btn-danger ${styles.button}`}>
               Cadastrar
             </button>
