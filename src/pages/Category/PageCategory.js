@@ -26,57 +26,57 @@ export function PageCategory() {
   return (
     <div>
       <LoggedNavbar />
-      <div className="container-fluid mt-5">
+      <div className="container-fluid mt-5 ">
         <Toaster />
         <div>
-          <h2>Categories</h2>
+          <h2 className="text-center m-5">Categories</h2>
         </div>
 
-        <div className="d-flex p-3 flex-column mb-10 ">
-          <div className="card-body">
-            <Link to="/category/create" className="btn btn-primary">
-              Create Category
-            </Link>
-          </div>
-          <div className="col-3"></div>
-          <div className="col-3"></div>
+        <div className="col-3"></div>
+        <div className="col-3"></div>
 
-          {data.map((current) => {
-            return (
-              <div className="container mb-5" key={current.code}>
-                <div className="row mb-3 p-4 align-items-center">
-                  <div className="col-3">
-                    <strong>{current.code}</strong>
-                  </div>
-                  <div className="col-7">{current.description}</div>
-                  <div className="col-1">
-                    <Link
-                      to={`/category/edit/${current._id}`}
-                      className="btn btn-primary"
+        {data.map((current) => {
+          return (
+            <div
+              className="container mb-1 border border-dark"
+              key={current.code}
+            >
+              <div className="row mb-3 p-4 align-items-center">
+                <div className="col-3">
+                  <strong>CODE: </strong>
+                  <p>{current.code}</p>
+                </div>
+                <div className="col-7">
+                  <strong>DESCRIPTION: </strong>
+                  <p>{current.description}</p>
+                </div>
+                <div class="col gap-0  mx-auto py-3 m-3">
+                  <Link to={`/category/edit/${current._id}`}>
+                    <button
+                      class="btn btn-primary btn-lg px-3 mx-1"
+                      type="button"
                     >
-                      Edit
-                    </Link>
-                  </div>
-                  <div className="col-1">
-                    <Link
-                      to={`/details/${current._id}`}
-                      className="btn btn-primary"
-                    >
-                      Details
-                    </Link>
-                  </div>
-                  <div className="col-1">
-                    <Link
-                      to={`/category/delete/${current._id}`}
-                      className="btn btn-primary"
-                    >
-                      Delete
-                    </Link>
-                  </div>
+                      EDIT
+                    </button>
+                  </Link>
+                  <Link to={`/category/delete/${current._id}`}>
+                    <button class="btn btn-primary btn-lg px-2" type="button">
+                      DELETE
+                    </button>
+                  </Link>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
+        <div className="d-flex p-3 flex-column mb-10 text-center">
+          <div className="card-body">
+            <Link to="/category/create" className="btn btn-primary">
+              <button class="btn btn-primary btn-lg px-5 mx-5" type="button">
+                Create Category
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -29,27 +29,27 @@ export function ListTransactions() {
     ]);
 
 
-  useEffect(() => {
-    async function GetTransactions(e) {
-      try {
-        const response = await api.get("/user/profile");
-        setTransactions(response.data.transactions);
-        setCategories(response.data.categories);
-      } catch (error) {
-        console.log(error);
-      }
+    useEffect(() => {
+        async function GetTransactions(e) {
+        try {
+            const response = await api.get("/user/profile");
+            setTransactions(response.data.transactions);
+            setCategories(response.data.categories);
+        } catch (error) {
+            console.log(error);
+        }
+        }
+        GetTransactions();
+    }, []);
+
+
+    function handleDelete(e) {
+        const clone = [...transactions];
+        clone.splice(e.target.id, 1);
+        setTransactions(clone);
     }
-    GetTransactions();
-  }, []);
 
 
-  function handleDelete(e) {
-    const clone = [...transactions];
-    clone.splice(e.target.id, 1);
-    setTransactions(clone);
-  }
-
-    
     function handleUpdate(e) {
         if (e.target.name === "amount") {
             if (typeof Number(e.target.value) === NaN || typeof Number(e.target.value)) {
@@ -73,6 +73,7 @@ export function ListTransactions() {
         setToggle(clone);
     }
 
+
     useEffect(() => {
         function createToggle(t) {
             setToggle(
@@ -85,7 +86,8 @@ export function ListTransactions() {
             createToggle(transactions);
         }
     }, [transactions]);
-	
+
+
     return (
         <>
             <LoggedNavbar />
