@@ -19,12 +19,12 @@ export function Create() {
     e.preventDefault();
     try {
       await api.post("/category/new-category", form);
-      toast.success("Successfully Created!");
     } catch (err) {
       if (err.response.data._message === "Category validation failed") {
         return toast.error("There are Fields that have not been filled in!");
       }
     }
+    toast.success("Successfully Created!");
     setTimeout(() => {
       navigate("/category/page-category");
     }, 1000);

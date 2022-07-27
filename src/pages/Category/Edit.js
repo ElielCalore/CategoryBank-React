@@ -24,7 +24,6 @@ export function Edit() {
         }
       }
     }
-
     EditedCategory();
   }, [id]);
 
@@ -38,13 +37,12 @@ export function Edit() {
       const clone = { ...form };
       delete clone._id;
       await api.patch(`category/update/${id}`, clone);
-
-      toast.success("Successfully Update!");
     } catch (error) {
       if (error) {
         return toast.error("There are Fields that have not been filled in!");
       }
     }
+    toast.success("Successfully Update!");
     setTimeout(() => {
       navigate("/category/page-category");
     }, 1000);

@@ -24,7 +24,6 @@ export function Delete() {
         }
       }
     }
-
     deletedCategory();
   }, [id]);
 
@@ -36,12 +35,12 @@ export function Delete() {
     e.preventDefault();
     try {
       await api.delete(`category/delete/${id}`);
-      toast.success("Successfully Deleted!");
     } catch (error) {
       if (error) {
         return toast.error("Unable to Delete Category!");
       }
     }
+    toast.success("Successfully Deleted!");
     setTimeout(() => {
       navigate("/category/page-category");
     }, 1000);
@@ -78,7 +77,7 @@ export function Delete() {
           </div>
           <div>
             <button onClick={handleDelete} className="btn btn-danger">
-              Delete
+              CONFIRM
             </button>
           </div>
         </form>
