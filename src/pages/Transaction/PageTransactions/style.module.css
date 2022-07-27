@@ -120,6 +120,9 @@ body {
   border-color: transparent;
 }
 
+.inputbar {
+  width: 400px !important;
+}
 
 
 

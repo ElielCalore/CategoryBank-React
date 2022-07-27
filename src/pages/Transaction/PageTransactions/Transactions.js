@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../../api/api";
-import { LoggedNavbar } from "../../../components/LoggedNavbar/index"
+import { LoggedNavbar } from "../../../components/LoggedNavbar/index";
+import styles from "./style.module.css"
 
 export function Transactions() {
 	const [transactions, setTransactions] = useState([]);
@@ -9,12 +10,16 @@ export function Transactions() {
 	const [edit, setEdit] = useState(false);
 	// const [ loading, setLoading ] = useState(true)
 
+	const [searchbar, setSearchbar] = useState({ name: "" });
+	const [transactionsClone, setTransactionsClone] = useState([]);
+
 	useEffect(() => {
 		async function GetData() {
 			try {
 				const response = await api.get("/user/profile");
 				setTransactions(response.data.transactions);
 				setCategories(response.data.categories);
+				setTransactionsClone(response.data.transactions);
 				// setLoading(false)
 			} catch (error) {
 				console.log(error);
@@ -59,14 +64,32 @@ export function Transactions() {
 		handleEdit();
 	}
 
+	function handleChange(event) {
+		setSearchbar({ ...searchbar, [event.target.name]: event.target.value });
+		setTransactionsClone(transactions.filter((current) => current.description.toLowerCase().includes(searchbar.name.toLowerCase())));
+		console.log(transactionsClone);
+		if (event.target.value.length < 3) {
+			setTransactionsClone(transactions);
+		}
+	}
+
 	return (
 		<>
-        <LoggedNavbar /> 
-			<div>
-				<button onClick={handleEdit}>Edit</button>
-				<Link to="/transaction/manual/create"><button>Add Transaction</button></Link>
-            	<Link to="/upload-csv"><button>Upload CSV file</button></Link>
+			<LoggedNavbar />
 
+			<h2>Transactions</h2>
+			<div className="d-flex">
+				<button onClick={handleEdit}>Edit</button>
+				<Link to="/transaction/manual/create">
+					<button>Add Transaction</button>
+				</Link>
+				<Link to="/upload-csv">
+					<button>Upload CSV file</button>
+				</Link>
+				<form>
+					<label>Search :</label>
+					<input name="name" type="text" onChange={handleChange} className={styles.inputbar}/>
+				</form>
 			</div>
 
 			{edit ? (
@@ -81,7 +104,7 @@ export function Transactions() {
 								<th>Category</th>
 							</thead>
 							<tbody>
-								{transactions.map((curr, i) => {
+								{transactionsClone.map((curr, i) => {
 									return (
 										<>
 											<tr>
@@ -131,7 +154,7 @@ export function Transactions() {
 								<th>Category</th>
 							</thead>
 							<tbody>
-								{transactions.map((curr, i) => {
+								{transactionsClone.map((curr, i) => {
 									return (
 										<>
 											<tr>
@@ -163,11 +186,9 @@ export function Transactions() {
 								})}
 							</tbody>
 						</table>
-
 					</div>
 				</>
 			)}
-
 		</>
 	);
 }
