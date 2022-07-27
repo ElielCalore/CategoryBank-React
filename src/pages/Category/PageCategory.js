@@ -29,8 +29,8 @@ export function PageCategory() {
 			<h2>Categories</h2>
 
 			<div>
-				<Link to="/category/create" className="btn btn-primary">
-					<button class="btn btn-primary btn-lg px-5 mx-5" type="button">
+				<Link to="/category/create">
+					<button type="button">
 						Create Category
 					</button>
 				</Link>
@@ -55,12 +55,12 @@ export function PageCategory() {
 							</td>
 							<td>
 								<Link to={`/category/edit/${current._id}`}>
-									<button class="btn btn-primary btn-lg px-3 mx-1">EDIT</button>
+									<button>EDIT</button>
 								</Link>
 							</td>
 							<td>
 								<Link to={`/category/delete/${current._id}`}>
-									<button class="btn btn-danger btn-lg px-2">DELETE</button>
+									<button>DELETE</button>
 								</Link>
 							</td>
 						</tr>
