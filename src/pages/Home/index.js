@@ -163,7 +163,9 @@ export function Home() {
 
       {navButtons[4].value && <Login />}
 
-      {navButtons[5].value && <Signup />}
+      {navButtons[5].value && (
+        <Signup props={navButtons} setProps={setNavButtons} />
+      )}
     </>
   );
 }
