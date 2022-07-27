@@ -16,6 +16,7 @@ import styles from "./style.module.css";
 //IMPORT COMPONENTS
 import { Login } from "../User/Login";
 import { Signup } from "../User/Signup";
+import { Link } from "react-router-dom";
 
 export function Home() {
   const [navButtons, setNavButtons] = useState([
@@ -74,10 +75,14 @@ export function Home() {
               </div>
               <div className="d-flex justify-content-center align-items-center">
                 <div>
-                  <img src={linkedin} className="m-1" alt="linkedin" />
+                  <a href={"https://www.linkedin.com/in/adrianoharm/"}>
+                    <img src={linkedin} className="m-1" alt="linkedin" />
+                  </a>
                 </div>
                 <div>
-                  <img src={github} className="m-1" alt="github" />
+                  <a href={"https://github.com/adhkr81"}>
+                    <img src={github} className="m-1" alt="github" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -93,10 +98,14 @@ export function Home() {
               </div>
               <div className="d-flex justify-content-center align-items-center">
                 <div>
-                  <img src={linkedin} className="m-1" alt="linkedin" />
+                  <a href={"https://www.linkedin.com/in/caiopgarcia/"}>
+                    <img src={linkedin} className="m-1" alt="linkedin" />
+                  </a>
                 </div>
                 <div>
-                  <img src={github} className="m-1" alt="github" />
+                  <a href={"https://github.com/caio-garcia"}>
+                    <img src={github} className="m-1" alt="github" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -116,10 +125,14 @@ export function Home() {
               </div>
               <div className="d-flex justify-content-center align-items-center">
                 <div>
-                  <img src={linkedin} className="m-1" alt="linkedin" />
+                  <a href={"https://www.linkedin.com/in/elielcalore/"}>
+                    <img src={linkedin} className="m-1" alt="linkedin" />
+                  </a>
                 </div>
                 <div>
-                  <img src={github} className="m-1" alt="github" />
+                  <a href={"https://github.com/ElielCalore"}>
+                    <img src={github} className="m-1" alt="github" />
+                  </a>
                 </div>
               </div>
             </div>
