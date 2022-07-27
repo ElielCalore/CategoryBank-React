@@ -1,7 +1,14 @@
 import styles from "./style.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function LoggedNavbar() {
+  const navigate = useNavigate();
+
+  function handleLogOut() {
+    localStorage.removeItem("loggedInUser");
+    navigate("/");
+  }
+
   return (
     <nav className={`navbar ${styles.bgBlue}`}>
       <ul
@@ -21,7 +28,7 @@ export function LoggedNavbar() {
             <div className={`container ${styles.textWhite}`}>
               <Link to={"/my-banks"}>
                 <button className={styles.buttonClear} id="user">
-                  Bank
+                  Banks
                 </button>
               </Link>
             </div>
@@ -40,17 +47,19 @@ export function LoggedNavbar() {
           <div className={`container ${styles.textWhite}`}>
             <Link to={"/category/page-category"}>
               <button className={styles.buttonClear} id="category">
-                Category
+                Categories
               </button>
             </Link>
           </div>
         </li>
         <li className="nav-item">
-          <Link to={"/"}>
-            <button className={`btn btn-danger ${styles.button}`} id="logout">
-              Log out
-            </button>
-          </Link>
+          <button
+            className={`btn btn-danger ${styles.button}`}
+            id="logout"
+            onClick={handleLogOut}
+          >
+            Log out
+          </button>
         </li>
       </ul>
     </nav>
