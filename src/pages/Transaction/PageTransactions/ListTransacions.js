@@ -8,6 +8,8 @@ import styles from "./style.module.css"
 import deleteicon from "../../../assets/images/delete.png"
 import editicon from "../../../assets/images/edit.png"
 import { LoggedNavbar } from "../../../components/LoggedNavbar";
+
+
 export function ListTransactions() {
     const [transactions, setTransactions] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -25,23 +27,29 @@ export function ListTransactions() {
         { id: 0, value: true },
         { id: 0, value: true },
     ]);
-  useEffect(() => {
-    async function GetTransactions(e) {
-      try {
-        const response = await api.get("/user/profile");
-        setTransactions(response.data.transactions);
-        setCategories(response.data.categories);
-      } catch (error) {
-        console.log(error);
-      }
+
+
+    useEffect(() => {
+        async function GetTransactions(e) {
+        try {
+            const response = await api.get("/user/profile");
+            setTransactions(response.data.transactions);
+            setCategories(response.data.categories);
+        } catch (error) {
+            console.log(error);
+        }
+        }
+        GetTransactions();
+    }, []);
+
+
+    function handleDelete(e) {
+        const clone = [...transactions];
+        clone.splice(e.target.id, 1);
+        setTransactions(clone);
     }
-    GetTransactions();
-  }, []);
-  function handleDelete(e) {
-    const clone = [...transactions];
-    clone.splice(e.target.id, 1);
-    setTransactions(clone);
-  }
+
+
     function handleUpdate(e) {
         if (e.target.name === "amount") {
             if (typeof Number(e.target.value) === NaN || typeof Number(e.target.value)) {
@@ -52,6 +60,8 @@ export function ListTransactions() {
         clone[e.target.id][e.target.name] = e.target.value;
         setTransactions(clone);
     }
+
+
     function handleEdit(e) {
         const clone = [...toggle];
         if (toggle[e.target.id]["value"] === true) {
@@ -62,6 +72,8 @@ export function ListTransactions() {
         console.log(clone[e.target.id]);
         setToggle(clone);
     }
+
+
     useEffect(() => {
         function createToggle(t) {
             setToggle(
@@ -74,6 +86,8 @@ export function ListTransactions() {
             createToggle(transactions);
         }
     }, [transactions]);
+
+
     return (
         <>
             <LoggedNavbar />
