@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { api } from "../../../api/api";
+import { LoggedNavbar } from "../../../components/LoggedNavbar/index"
 
 export function Transactions() {
 	const [transactions, setTransactions] = useState([]);
@@ -61,6 +63,8 @@ export function Transactions() {
 
 	return (
 		<>
+        <LoggedNavbar /> 
+
 			{edit ? (
 				//Edit
 				<>
@@ -159,6 +163,8 @@ export function Transactions() {
 					</div>
 				</>
 			)}
+            <Link to="/transaction/manual/create"><button>Create manual Transaction</button></Link>
+            <Link to="/upload-csv"><button>Upload Bank Statement</button></Link>
 		</>
 	);
 }
