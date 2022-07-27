@@ -21,7 +21,7 @@ export function DateConverter(string, format) {
     let day = s.substring(8, 10);
     let month = s.substring(5, 7);
     let year = s.substring(0, 4);
-    return day + "/" + month + "/" + year;
+    return `${day}/${month}/${year}`;
   }
 
   const typeModel = format;
