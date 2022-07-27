@@ -2,7 +2,7 @@ import Papa from "papaparse";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { LoggedNavbar } from "../../../components/LoggedNavbar";
-
+import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 import { DateConverter } from "./date";
@@ -75,25 +75,18 @@ export function UploadCSV() {
           transactions[i]["date"],
           bankModel["dateFormat"]
         );
-        const res = await api.post(
-          "transaction/new-transaction",
-          transactions[i]
-        );
+        await api.post("transaction/new-transaction", transactions[i]);
       } catch (error) {
-        console.log(error);
+        if (error) {
+          return toast.error("Could not upload the file, please try again!");
+        }
       }
+      toast.success("File uploaded successfully!");
+      setTimeout(() => {
+        navigate("/transaction/list-transactions");
+      }, 1000);
     }
   }
-
-  // useEffect(() => {
-  //   function createToggle(t) {
-  //     console.log(t)
-  //       setToggle(t.map((current, i) => {
-  //         return  {id : i,
-  //                 value: true}
-  //       }))
-  //   } createToggle(transactions)
-  // },[transactions])
 
   function handleUpdate(e) {
     if (e.target.name === "amount") {
@@ -106,7 +99,6 @@ export function UploadCSV() {
     }
 
     const clone = [...transactions];
-    // console.log(clone[e.target.id]);
     clone[e.target.id][e.target.name] = e.target.value;
     setTransactions(clone);
   }
@@ -119,6 +111,7 @@ export function UploadCSV() {
 
   return (
     <>
+      <Toaster />
       <LoggedNavbar />
       <div className={styles.csvForm}>
         <select
@@ -128,7 +121,7 @@ export function UploadCSV() {
               return navigate("/new-bank-model");
             }
             setBankModel(banks[e.target.value]);
-            console.log(bankModel.date)
+            console.log(bankModel.date);
           }}
         >
           <option value={"Select your bank"} disabled>
@@ -145,10 +138,12 @@ export function UploadCSV() {
             Create new model
           </option>
         </select>
-        {bankModel.length === 0? 
-        <input type="file" accept=".csv" onChange={processCSV} disabled/> :
-        <input type="file" accept=".csv" onChange={processCSV}/>}
-        
+        {bankModel.length === 0 ? (
+          <input type="file" accept=".csv" onChange={processCSV} disabled />
+        ) : (
+          <input type="file" accept=".csv" onChange={processCSV} />
+        )}
+
         {transactions[0] ? (
           <>
             <table>
