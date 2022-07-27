@@ -32,6 +32,14 @@ export function PageCategory() {
           <h2 className="text-center m-5">Categories</h2>
         </div>
 
+        <div className="card-body">
+            <Link to="/category/create" className="btn btn-primary">
+              <button class="btn btn-primary btn-lg px-5 mx-5" type="button">
+                Create Category
+              </button>
+            </Link>
+          </div>
+
         <div className="col-3"></div>
         <div className="col-3"></div>
 
@@ -70,13 +78,7 @@ export function PageCategory() {
           );
         })}
         <div className="d-flex p-3 flex-column mb-10 text-center">
-          <div className="card-body">
-            <Link to="/category/create" className="btn btn-primary">
-              <button class="btn btn-primary btn-lg px-5 mx-5" type="button">
-                Create Category
-              </button>
-            </Link>
-          </div>
+
         </div>
       </div>
     </div>

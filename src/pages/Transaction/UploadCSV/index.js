@@ -144,7 +144,10 @@ export function UploadCSV() {
             Create new model
           </option>
         </select>
-        <input type="file" accept=".csv" onChange={processCSV} />
+        {/* {bankModel.length === 0? 
+        <input type="file" accept=".csv" onChange={processCSV} disabled/> :
+        <input type="file" accept=".csv" onChange={processCSV}/>} */}
+        
         {transactions[0] ? (
           <>
             <table>

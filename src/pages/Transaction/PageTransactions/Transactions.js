@@ -40,7 +40,6 @@ export function Transactions() {
 	async function handleDelete(e) {
 		try {
 			const res = await api.delete(`/transaction/delete/${e.target.value}`);
-			console.log(res);
 			const clone = [...transactions];
 			clone.splice(e.target.id, 1);
 			setTransactions(clone);
@@ -53,7 +52,6 @@ export function Transactions() {
 		for (let i = 0; i < transactions.length; i++) {
 			try {
 				const res = await api.patch("transaction/categorize", { ...transactions[i], transactionId: transactions[i]._id, categoryId: transactions[i].category });
-				console.log(res);
 			} catch (error) {
 				console.log(error);
 			}
@@ -64,6 +62,12 @@ export function Transactions() {
 	return (
 		<>
         <LoggedNavbar /> 
+			<div>
+				<button onClick={handleEdit}>Edit</button>
+				<Link to="/transaction/manual/create"><button>Add Transaction</button></Link>
+            	<Link to="/upload-csv"><button>Upload CSV file</button></Link>
+
+			</div>
 
 			{edit ? (
 				//Edit
@@ -159,12 +163,11 @@ export function Transactions() {
 								})}
 							</tbody>
 						</table>
-						<button onClick={handleEdit}>edit</button>
+
 					</div>
 				</>
 			)}
-            <Link to="/transaction/manual/create"><button>Create manual Transaction</button></Link>
-            <Link to="/upload-csv"><button>Upload Bank Statement</button></Link>
+
 		</>
 	);
 }

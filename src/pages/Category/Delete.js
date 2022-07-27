@@ -56,24 +56,11 @@ export function Delete() {
             <label htmlFor="code-input" className="form-label">
               <h5>product code: </h5>
             </label>
-            <input
-              onChange={handleChange}
-              type="text"
-              name="code"
-              className="form-control mb-4"
-              value={form.code}
-            />
+            <p>{form.code}</p>
             <label htmlFor="about-input" className="form-label">
               <h5>category description: </h5>
             </label>
-            <textarea
-              id="description-input"
-              onChange={handleChange}
-              type="text"
-              name="description"
-              className="form-control mb-4"
-              value={form.description}
-            />
+            <p>{form.description}</p>
           </div>
           <div>
             <button onClick={handleDelete} className="btn btn-danger">
