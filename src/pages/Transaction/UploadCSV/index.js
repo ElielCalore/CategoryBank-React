@@ -25,7 +25,7 @@ export function UploadCSV() {
     fetchBanks();
   }, []);
 
-  const [bankModel, setBankModel] = useState({});
+  const [bankModel, setBankModel] = useState([]);
   const [transactions, setTransactions] = useState([]);
 
   function createObject(d, b) {
@@ -128,6 +128,7 @@ export function UploadCSV() {
               return navigate("/new-bank-model");
             }
             setBankModel(banks[e.target.value]);
+            console.log(bankModel.date)
           }}
         >
           <option value={"Select your bank"} disabled>
@@ -144,9 +145,9 @@ export function UploadCSV() {
             Create new model
           </option>
         </select>
-        {/* {bankModel.length === 0? 
+        {bankModel.length === 0? 
         <input type="file" accept=".csv" onChange={processCSV} disabled/> :
-        <input type="file" accept=".csv" onChange={processCSV}/>} */}
+        <input type="file" accept=".csv" onChange={processCSV}/>}
         
         {transactions[0] ? (
           <>
