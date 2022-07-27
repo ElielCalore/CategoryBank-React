@@ -102,7 +102,7 @@ export function ListTransactions() {
               // const tran = {...current, visible: true}
               return (
                 <>
-                  {true ? (
+                  {toggle[i].value === false ? (
                     <>
                       <tr>
                         <td>

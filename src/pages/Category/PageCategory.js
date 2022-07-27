@@ -26,7 +26,7 @@ export function PageCategory() {
   return (
     <div>
       <LoggedNavbar />
-      <div className="container-fluid mt-5 ">
+      <div className="container-fluid mt-5">
         <Toaster />
         <div>
           <h2 className="text-center m-5">Categories</h2>

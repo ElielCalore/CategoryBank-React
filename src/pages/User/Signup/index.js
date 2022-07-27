@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import styles from "./style.module.css";
 import { Toaster, toast } from "react-hot-toast";
 
-export function Signup() {
-  const navigate = useNavigate();
+export function Signup(props) {
+  const navButtons = props.props;
+  const setNavButtons = props.setProps;
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -19,18 +20,21 @@ export function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     try {
       // const imgURL = await handleUpload();
       await api.post("/user/signup", { ...form });
-      toast.success("Profile created successfully!");
     } catch (error) {
       if (error) {
         return toast.error("Invalid email or password!");
       }
     }
+    toast.success("Profile created successfully!");
     setTimeout(() => {
-      navigate("/login");
+      const clone = [...navButtons];
+      clone[4].value = true;
+      clone[5].value = false;
+      console.log(clone);
+      setNavButtons(clone);
     }, 1000);
   }
 
