@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { LoggedNavbar } from "../../../components/LoggedNavbar/index";
+import { DateConverter } from "../UploadCSV/date";
 
 export function CreateTransactionManual() {
   const navigate = useNavigate();
+  const [transactionType, setTransactionType] = useState("Money Out");
   const [form, setForm] = useState({
     date: "",
     description: "",
@@ -41,22 +43,37 @@ export function CreateTransactionManual() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  function handleTransactionType(e) {
+    console.log(e.target.value);
+    if (e.target.value === "Money Out") {
+      return setTransactionType("Money Out");
+    } else {
+      return setTransactionType("Money In");
+    }
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log(transactionType);
+
+    if (transactionType === "Money Out") {
+      form.amount = form.amount * -1;
+    }
+
     try {
       await api.post("/transaction/new-transaction", form);
       toast.success("Successfully Created!");
 
-      setTimeout(() => {
+      return setTimeout(() => {
         navigate("/transaction/list-transactions");
-      }, 1000);
-
+      }, 800);
     } catch (err) {
       console.log(err);
+      return toast.error("Please fill in all the boxes");
     }
-    setTimeout(() => {
-      navigate("/transaction/list-transactions");
-    }, 1000);
+    // setTimeout(() => {
+    //   navigate("/transaction/list-transactions");
+    // }, 1000);
   }
 
   return (
@@ -66,14 +83,25 @@ export function CreateTransactionManual() {
         <Toaster />
         <form>
           <div className="mb-4">
+            <div>
+              <label>Transaction Type</label>
+              <select defaultValue="default" onChange={handleTransactionType}>
+                <option disabled value="default">
+                  Select transaction type
+                </option>
+                <option>Money In</option>
+                <option>Money Out</option>
+              </select>
+            </div>
             <label htmlFor="date-input" className="form-label">
               <h5>Transaction Date: </h5>
             </label>
             <input
               onChange={handleChange}
-              type="date"
+              type="text"
               name="date"
               className="form-control mb-4"
+              placeholder="DD/MM/YYYY"
               value={form.date}
             />
             <label htmlFor="description-input" className="form-label">
@@ -95,6 +123,7 @@ export function CreateTransactionManual() {
             onChange={handleChange}
             type="number"
             name="amount"
+            min="0"
             className="form-control mb-4"
             value={form.amount}
           />
