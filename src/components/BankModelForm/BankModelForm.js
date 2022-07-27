@@ -67,7 +67,7 @@ export function BankModelForm(props) {
           <select
             defaultValue="default"
             name="dateFormat"
-            value={bankModel.dateFormat}
+            // value={bankModel.dateFormat}
             onChange={handleChange}
           >
             <option disabled value="default">
@@ -84,29 +84,18 @@ export function BankModelForm(props) {
           </div>
           <div>
             <div>
-              <input
-                type="radio"
-                id="amount"
-                name="format"
-                value="amount"
-                // checked
-                onClick={(e) => {
+              <select
+                defaultValue="default"
+                onChange={(e) => {
                   setFormat(e.target.value);
                 }}
-              />
-              Amount only
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="debit-credit"
-                name="format"
-                value="debit-credit"
-                onClick={(e) => {
-                  setFormat(e.target.value);
-                }}
-              />
-              Debit/Credit format
+              >
+                <option disabled value="default">
+                  Select the File Format
+                </option>
+                <option value="amount">Amount colunm only</option>
+                <option value="debit-credit">Debit/Credit colunms</option>
+              </select>
             </div>
           </div>
         </fieldset>

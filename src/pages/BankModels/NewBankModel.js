@@ -25,7 +25,7 @@ export function NewBankModel() {
       toast.success("Successfully Created!");
     } catch (error) {
       if (error) {
-        return toast.error("Couldn't Save!");
+        return toast.error("Please fill in all the boxes!");
       }
     }
     setTimeout(() => {
