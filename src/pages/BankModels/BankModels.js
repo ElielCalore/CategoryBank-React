@@ -31,7 +31,7 @@ export function BankModels() {
           <p>Here you can find all your Bank Statement csv models.</p>
         </div>
       </div>
-      <div className="container mb-1 border border-dark">
+      <div className="d-flex" style={{ flexWrap: "wrap" }}>
         {banks.map((elem) => {
           return (
             <div className="gap-0  mx-auto py-3 m-3" key={elem._id}>

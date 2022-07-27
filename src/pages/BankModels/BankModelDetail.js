@@ -36,7 +36,7 @@ export function BankModelDetail() {
     toast.success("Successfully Edited!");
     setTimeout(() => {
       navigate("/my-banks");
-    }, 1000);
+    }, 800);
   }
 
   async function Delete() {
@@ -47,10 +47,10 @@ export function BankModelDetail() {
         return toast.error("User does not have permission to delete!");
       }
     }
-    toast.success("Successfully Delited!");
+    toast.success("Successfully Deleted!");
     setTimeout(() => {
       navigate("/my-banks");
-    }, 1000);
+    }, 800);
   }
 
   return (
