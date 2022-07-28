@@ -113,8 +113,11 @@ export function UploadCSV() {
     <>
       <Toaster />
       <LoggedNavbar />
-      <div className={styles.csvForm}>
+      <div className="d-flex align-items-center justify-content-center mt-5">
+      <div className={`d-flex flex-column ${styles.formContainer}`}>
+      <h1 className="mb-2 mt-2">Upload CSV</h1>
         <select
+          className="form-control mb-4 mt-4"
           defaultValue={"Select your bank"}
           onChange={(e) => {
             if (e.target.value === "Create new model") {
@@ -187,7 +190,8 @@ export function UploadCSV() {
         ) : (
           <></>
         )}
-        <button onClick={sendToBack}>SEND</button>
+        <button onClick={sendToBack} className={`btn btn-primary mt-4 mb-2 ${styles.loggedBtn}`}>SEND</button>
+      </div>
       </div>
     </>
   );
