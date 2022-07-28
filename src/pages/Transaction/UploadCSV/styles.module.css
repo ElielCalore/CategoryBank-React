@@ -31,8 +31,13 @@
   border-radius: 9px;
 }
 
-.csvForm table, td, tr, th {
+td .csvForm {
   width: 100%;
   border: 1px solid white;
   padding: 5px;
 }
+/* .csvForm table, td, tr, th {
+  width: 100%;
+  border: 1px solid white;
+  padding: 5px;
+} */
