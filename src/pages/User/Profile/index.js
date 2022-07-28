@@ -4,6 +4,9 @@ import { AuthContext } from "../../../contexts/authContext";
 import { api } from "../../../api/api";
 import { useNavigate, Link } from "react-router-dom";
 import { LoggedNavbar } from "../../../components/LoggedNavbar";
+import { TheChart } from "../../../components/Chart";
+import { TheChartEliel } from "../../../components/Chart/chartEliel";
+import styles from "./style.module.css";
 
 import { Card } from "antd";
 import {
@@ -29,158 +32,69 @@ export function Profile() {
   return (
     <>
       <LoggedNavbar />
-      <div style={{ margin: "50px" }}>
-        <h1>Welcome back, {loggedInUser.user.name}!</h1>
+<div className="container">
 
-        <div style={{ padding: "10px", margin: "35px" }}>
-          <h2>Transactions</h2>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "60px",
-            margin: "35px",
-          }}
-        >
-          <div
-            style={{
-              width: "180px",
-            }}
-          >
+    <h1 className="mb-3 mt-5">Welcome back, <strong>{loggedInUser.user.name}!</strong></h1>
+
+    <p className="mb-5">This infographic helps you to improve your financial health.</p>
+  
+    <div className="d-flex flex-row align-items justify-content-center">
+      <div className={`m-2 ${styles.shadow}`}>
+        <TheChart />
+      </div>  
+      <div className={`m-2 ${styles.shadow}`}>
+        <TheChartEliel />
+      </div>  
+    </div>
+
+    <div className="container">
+    <div className="d-flex flex-row align-items justify-content-center mt-5">   
             <Link to="/transaction/list-transactions">
-              <Card
-                hoverable
-                style={{
-                  // width: "90px",
-                  border: "1px solid #1d3557f2",
-                  borderRadius: "9px",
-                  padding: "10px",
-                }}
-                cover={
-                  <DollarCircleOutlined
-                    style={{ color: "#1d3557f2", fontSize: "48px" }}
-                  />
-                }
-              >
-                <Meta title="Transactions" />
-              </Card>
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+                <DollarCircleOutlined style={{ color: "#fcfaf9", fontSize: "30px" }}/> Transaction 
+              </button>
             </Link>
-          </div>
-          <div
-            style={{
-              width: "180px",
-            }}
-          >
+
             <Link to="/upload-csv">
-              <Card
-                hoverable
-                style={{
-                  // width: "90px",
-                  border: "1px solid #1d3557f2",
-                  borderRadius: "9px",
-                  padding: "10px",
-                }}
-                cover={
-                  <UploadOutlined
-                    style={{ color: "#1d3557f2", fontSize: "48px" }}
-                  />
-                }
-              >
-                <Meta title="Upload csv file" />
-              </Card>
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <UploadOutlined
+                    style={{ color: "#fcfaf9", fontSize: "30px" }}
+                  /> Upload csv file 
+              </button>
             </Link>
-          </div>
-          <div
-            style={{
-              width: "180px",
-            }}
-          >
+
             <Link to="/transaction/manual/create">
-              <Card
-                hoverable
-                style={{
-                  // width: "90px",
-                  border: "1px solid #1d3557f2",
-                  borderRadius: "9px",
-                  padding: "10px",
-                }}
-                cover={
-                  <FormOutlined
-                    style={{ color: "#1d3557f2", fontSize: "48px" }}
-                  />
-                }
-              >
-                <Meta title="Add transaction" />
-              </Card>
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <FormOutlined
+                    style={{ color: "#fcfaf9", fontSize: "30px" }}
+                  /> Add transaction 
+              </button>
             </Link>
-          </div>
-        </div>
-        <div style={{ padding: "10px", margin: "35px" }}>
-          <h2>Setup</h2>
-        </div>
-        <div
-          // className="m-4 p-2 "
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "60px",
-            margin: "35px",
-          }}
-        >
-          <div className="mb-5"
-            style={{
-              width: "180px",
-            }}
-          >
+
             <Link to="/category/page-category">
-              <Card
-                hoverable
-                style={{
-                  // width: "90px",
-                  border: "1px solid #1d3557f2",
-                  borderRadius: "9px",
-                  padding: "10px",
-                }}
-                cover={
-                  <CheckCircleOutlined
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <CheckCircleOutlined
                     style={{
-                      color: "#1d3557f2",
-                      fontSize: "48px",
+                      color: "#fcfaf9",
+                      fontSize: "30px",
                     }}
-                  />
-                }
-              >
-                <Meta title="Categories" />{" "}
-              </Card>
+                  /> Categories 
+              </button>
             </Link>
-          </div>
-          <div className="mb-5"
-            style={{
-              width: "180px",
-            }}
-          >
+
             <Link to="/my-banks">
-              <Card
-                hoverable
-                style={{
-                  // width: "90px",
-                  border: "1px solid #1d3557f2",
-                  borderRadius: "9px",
-                  padding: "10px",
-                }}
-                cover={
-                  <BankOutlined
-                    style={{ color: "#1d3557f2", fontSize: "48px" }}
-                  />
-                }
-              >
-                <Meta title="Bank Statement Templates" />
-              </Card>
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <BankOutlined
+                    style={{ color: "#fcfaf9", fontSize: "30px" }}
+                  /> Bank Templates 
+              </button>
             </Link>
-          </div>
+            
         </div>
-      </div>
+     </div>
+</div>   
+
+
     </>
   );
 }

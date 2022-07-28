@@ -48,118 +48,80 @@ const ClassifyButton = () => {
         </Button>
         <Drawer
           width={"300px"}
-          title="Classify"
+          title="close"
           placement="left"
           onClose={onClose}
           visible={visible}
         >
-          <div>
-            <h2>Transactions</h2>
+
+
+
+
+  
+
             <div className={styles.transactions}>
+
+            <h2 className="text-center">Setup</h2>
+
+            <Link to="/profile">
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
               <div>
-                <Link to="/transaction/list-transactions">
-                  <Card
-                    hoverable
-                    cover={
-                      <DollarCircleOutlined
-                        style={{
-                          color: "#1d3557f2",
-                          fontSize: "48px",
-                        }}
-                      />
-                    }
-                  >
-                    <Meta title="Transactions List" />
-                  </Card>
-                </Link>
-              </div>
-              <div>
-                <Link to="/upload-csv">
-                  <Card
-                    hoverable
-                    cover={
-                      <UploadOutlined
-                        style={{
-                          color: "#1d3557f2",
-                          fontSize: "48px",
-                        }}
-                      />
-                    }
-                  >
-                    <Meta title="Upload csv file" />
-                  </Card>
-                </Link>
-              </div>
-              <div>
-                <Link to="/transaction/manual/create">
-                  <Card
-                    hoverable
-                    cover={
-                      <FormOutlined
-                        style={{
-                          color: "#1d3557f2",
-                          fontSize: "48px",
-                        }}
-                      />
-                    }
-                  >
-                    <Meta title="Add transaction" />
-                  </Card>
-                </Link>
-              </div>
+              <PieChartOutlined
+                      style={{
+                        color: "#fcfaf9",
+                        fontSize: "30px",
+                      }}
+                    /> Profile
+              </div>      
+              </button>
+            </Link>  
+
+            <Link to="/upload-csv">
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <UploadOutlined
+                    style={{ color: "#fcfaf9", fontSize: "30px" }}
+                  /> Upload csv file 
+              </button>
+            </Link>
+
+            <Link to="/my-banks">
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <BankOutlined
+                    style={{ color: "#fcfaf9", fontSize: "30px" }}
+                  /> Bank Templates 
+              </button>
+            </Link>
+
+            <h2 className="text-center">Transactions</h2>
+
+            <Link to="/transaction/list-transactions">
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+                <DollarCircleOutlined style={{ color: "#fcfaf9", fontSize: "30px" }}/> Transaction 
+              </button>
+            </Link>
+
+            <Link to="/transaction/manual/create">
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <FormOutlined
+                    style={{ color: "#fcfaf9", fontSize: "30px" }}
+                  /> Add transaction 
+              </button>
+            </Link>
+
+            <Link to="/category/page-category">
+              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <CheckCircleOutlined
+                    style={{
+                      color: "#fcfaf9",
+                      fontSize: "30px",
+                    }}
+                  /> Categories 
+              </button>
+            </Link>
+
             </div>
-          </div>
-          <div style={{ marginTop: "25px" }}>
-            <h2>Settings</h2>
-            <div className={styles.transactions}>
-              <Link to="/profile">
-                <Card
-                  hoverable
-                  cover={
-                    <PieChartOutlined
-                      style={{
-                        color: "#1d3557f2",
-                        fontSize: "48px",
-                      }}
-                    />
-                  }
-                >
-                  <Meta title="Profile" />{" "}
-                </Card>
-              </Link>
-              <Link to="/category/page-category">
-                <Card
-                  hoverable
-                  cover={
-                    <CheckCircleOutlined
-                      style={{
-                        color: "#1d3557f2",
-                        fontSize: "48px",
-                      }}
-                    />
-                  }
-                >
-                  <Meta title="Categories" />{" "}
-                </Card>
-              </Link>
-              <Link to="/my-banks">
-                <Card
-                  hoverable
-                  cover={
-                    <BankOutlined
-                      style={{
-                        color: "#1d3557f2",
-                        fontSize: "48px",
-                      }}
-                    />
-                  }
-                >
-                  <Meta title="Bank Statement Templates" />
-                </Card>
-              </Link>
-            </div>
-          </div>
         </Drawer>
+        
       </div>
     </>
   );
