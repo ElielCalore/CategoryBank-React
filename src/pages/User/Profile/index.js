@@ -39,13 +39,13 @@ export function Profile() {
           style={{
             display: "flex",
             flexDirection: "row",
-            gap: "2.0rem",
+            gap: "60px",
             margin: "35px",
           }}
         >
           <div
             style={{
-              width: "120px",
+              width: "180px",
             }}
           >
             <Link to="/transaction/list-transactions">
@@ -69,7 +69,7 @@ export function Profile() {
           </div>
           <div
             style={{
-              width: "120px",
+              width: "180px",
             }}
           >
             <Link to="/upload-csv">
@@ -93,7 +93,7 @@ export function Profile() {
           </div>
           <div
             style={{
-              width: "120px",
+              width: "180px",
             }}
           >
             <Link to="/transaction/manual/create">
@@ -124,13 +124,13 @@ export function Profile() {
           style={{
             display: "flex",
             flexDirection: "row",
-            gap: "2.0rem",
+            gap: "60px",
             margin: "35px",
           }}
         >
           <div
             style={{
-              width: "120px",
+              width: "180px",
             }}
           >
             <Link to="/category/page-category">
@@ -157,7 +157,7 @@ export function Profile() {
           </div>
           <div
             style={{
-              width: "120px",
+              width: "180px",
             }}
           >
             <Link to="/my-banks">
