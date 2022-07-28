@@ -49,7 +49,6 @@ export function PageCategory() {
       <Toaster />
 
       <h2>Categories</h2>
-
 			<div className="container mb-4 mt-3">
 				<h2>Categories</h2>
 					<div className="d-flex justify-content-between">
