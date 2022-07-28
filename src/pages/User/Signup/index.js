@@ -45,7 +45,7 @@ export function Signup(props) {
         <div className={styles.formContainer}>
           <form onSubmit={handleSubmit} className="d-flex flex-column">
             <div className="text-center b-1">
-              <strong>Sign-up</strong>
+              <h2>Sign-up</h2>
             </div>
             <label htmlFor="formName">Name:</label>
             <input
@@ -75,10 +75,14 @@ export function Signup(props) {
               value={form.password}
               onChange={handleChange}
             />
-
-            <button type="submit" className={`btn btn-danger ${styles.button}`}>
-              Cadastrar
-            </button>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <button
+                type="submit"
+                className={`btn btn-danger ${styles.button}`}
+              >
+                <strong>Start Classify!</strong>
+              </button>
+            </div>
           </form>
         </div>
       </div>

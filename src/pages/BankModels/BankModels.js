@@ -35,7 +35,7 @@ export function BankModels() {
         {banks.map((elem) => {
           return (
             <div className="gap-0  mx-auto py-3 m-3" key={elem._id}>
-              <h2>{`${elem.bankName} Model`}</h2>
+              <h3>{`${elem.bankName} Model`}</h3>
               <Link to={`/bank-model/${elem._id}`}>
                 <button className="btn btn-primary btn-lg p-2 m-0">Edit</button>
               </Link>

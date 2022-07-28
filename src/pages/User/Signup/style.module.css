@@ -33,12 +33,14 @@ body {
 
 .formContainer {
   border-radius: 5px;
-  background-color:#fcfaf9;
+  background-color: #fcfaf9;
   padding: 20px 30px 50px 30px;
-  /* box-shadow: 0.5px 10px 15px rgba(0, 0, 0, 0.8); */
+  box-shadow: 4px 4px 28px rgba(29, 53, 87, 0.3),
+    4px 4px 52px rgba(252, 250, 249, 0.2);
+  border-radius: 9px;
   width: 500px;
-  height: 800px;
-  margin-top: 150px;
+  /* height: 800px; */
+  margin-top: 45px;
   margin-left: 2%;
   margin-right: 2%;
 }
@@ -48,6 +50,8 @@ body {
   border: 2px solid #f06449 !important;
   padding: 5px 20px 5px 20px !important;
   border-radius: 18px !important;
+  width: 200px;
+  font-size: 36px;
 }
 
 .button:hover {
