@@ -42,21 +42,20 @@ export function PageCategory() {
 
 			<div className="container mb-4 mt-3">
 				<h2>Categories</h2>
-					<div className="d-flex">
+					<div className="d-flex justify-content-between">
 						<Link to="/category/create">
-							<button type="button">Create Category</button>
+							<button type="button" className={`btn btn-primary ${styles.loggedBtn}`}>Add New</button>
 						</Link>
 						<form>
-							<input placeholder=" search by category" className={styles.inputbar} name="name" type="text" onChange={handleChange} />
+							<input placeholder=" search by category"  className={`form-control ${styles.inputbar}`} name="name" type="text" onChange={handleChange} />
 						</form>
 					</div>
 			</div>
 			<div className="container">
 				<table className="table">
 					<thead>
-						<th>Code</th>
+						<th>Category</th>
 						<th>Description</th>
-						<th></th>
 						<th></th>
 					</thead>
 					<tbody>
@@ -70,14 +69,15 @@ export function PageCategory() {
 										<p>{current.description}</p>
 									</td>
 									<td>
-										<Link to={`/category/edit/${current._id}`}>
-											<button>EDIT</button>
-										</Link>
-									</td>
-									<td>
-										<Link to={`/category/delete/${current._id}`}>
-											<button>DELETE</button>
-										</Link>
+										<div className="d-flex flex-row-reverse">
+											<Link to={`/category/delete/${current._id}`}>
+												<button className={`btn btn-primary ${styles.loggedDelete}`}>Delete</button>
+											</Link>
+
+											<Link to={`/category/edit/${current._id}`}>
+												<button className={`btn btn-primary ${styles.loggedBtn}`}>Edit</button>
+											</Link>
+										</div>
 									</td>
 								</tr>
 							);

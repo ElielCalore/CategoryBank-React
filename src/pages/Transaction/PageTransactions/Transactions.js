@@ -79,16 +79,22 @@ export function Transactions() {
 
 		<div className="container mb-4 mt-3">
 			<h2>Transactions</h2>
-			<div className="d-flex">
-				<button onClick={handleEdit}>Edit</button>
+			<div className="d-flex justify-content-between">
+				<div>
+				<button onClick={handleEdit} className={`btn btn-primary ${styles.loggedBtn}`}>Edit</button>
 				<Link to="/transaction/manual/create">
-					<button>Add Transaction</button>
+					<button className={`btn btn-primary ${styles.loggedBtn}`}>Add Transaction</button>
 				</Link>
 				<Link to="/upload-csv">
-					<button>Upload CSV file</button>
+					<button className={`btn btn-primary ${styles.loggedBtn}`}>Upload CSV file</button>
 				</Link>
+				{edit ? 
+				(<button onClick={handleSubmit} className={`btn btn-primary ${styles.loggedSave}`}>Save</button>) :
+				(<button onClick={handleSubmit} className={`btn btn-primary ${styles.loggedSave}`} disabled>Save</button>)}
+				</div>
+
 				<form>
-					<input placeholder=" search by description" name="name" type="text" onChange={handleChange} className={styles.inputbar}/>
+					<input placeholder=" search by description" name="name" type="text" onChange={handleChange} className={`form-control ${styles.inputbar}`}/>
 				</form>
 			</div>
 		</div>
@@ -113,13 +119,13 @@ export function Transactions() {
 													<p>{curr.date}</p>
 												</td>
 												<td>
-													<input id={i} value={curr.description} name="description" type="text" onChange={handleUpdate} />
+													<input id={i} value={curr.description} name="description" type="text" onChange={handleUpdate} className="form-control" />
 												</td>
 												<td>
-													<input id={i} value={curr.amount} name="amount" type="number" onChange={handleUpdate} />
+													<input id={i} value={curr.amount} name="amount" type="number" onChange={handleUpdate} className="form-control" />
 												</td>
 												<td>
-													<select id={i} name="category" onChange={handleUpdate} defaultValue="default">
+													<select id={i} name="category" onChange={handleUpdate} defaultValue="default" className="form-control">
 														<option disabled value="default">
 															select a category
 														</option>
@@ -130,8 +136,8 @@ export function Transactions() {
 													</select>
 												</td>
 												<td>
-													<button id={i} value={curr._id} onClick={handleDelete}>
-														delete
+													<button id={i} value={curr._id} onClick={handleDelete} className={`btn btn-primary ${styles.loggedDelete}`} >
+														Delete
 													</button>
 												</td>
 											</tr>
@@ -140,7 +146,7 @@ export function Transactions() {
 								})}
 							</tbody>
 						</table>
-						<button onClick={handleSubmit}>save</button>
+
 					</div>
 				</>
 			) : (
