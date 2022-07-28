@@ -29,66 +29,20 @@ export function Profile() {
   return (
     <>
       <LoggedNavbar />
-      <div>
+      <div style={{ margin: "50px" }}>
         <h1>Welcome back, {loggedInUser.user.name}!</h1>
-        <div className="m-4 p-2 ">
-          <div>
-            <h2>Setup</h2>
-          </div>
-          <div
-            style={{
-              width: "120px",
-            }}
-          >
-            <Link to="/category/page-category">
-              <Card
-                hoverable
-                style={{
-                  // width: "90px",
-                  border: "1px solid #1d3557f2",
-                  borderRadius: "9px",
-                  padding: "10px",
-                }}
-                cover={
-                  <CheckCircleOutlined
-                    style={{
-                      color: "#1d3557f2",
-                      fontSize: "48px",
-                    }}
-                  />
-                }
-              >
-                <Meta title="Categories" />{" "}
-              </Card>
-            </Link>
-          </div>
-          <div
-            style={{
-              width: "120px",
-            }}
-          >
-            <Link to="/my-banks">
-              <Card
-                hoverable
-                style={{
-                  // width: "90px",
-                  border: "1px solid #1d3557f2",
-                  borderRadius: "9px",
-                  padding: "10px",
-                }}
-                cover={
-                  <BankOutlined
-                    style={{ color: "#1d3557f2", fontSize: "48px" }}
-                  />
-                }
-              >
-                <Meta title="Bank Statement Templates" />
-              </Card>
-            </Link>
-          </div>
-          <div>
-            <h2>Transactions</h2>
-          </div>
+
+        <div style={{ padding: "10px", margin: "35px" }}>
+          <h2>Transactions</h2>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "2.0rem",
+            margin: "35px",
+          }}
+        >
           <div
             style={{
               width: "120px",
@@ -158,6 +112,70 @@ export function Profile() {
                 }
               >
                 <Meta title="Add transaction" />
+              </Card>
+            </Link>
+          </div>
+        </div>
+        <div style={{ padding: "10px", margin: "35px" }}>
+          <h2>Setup</h2>
+        </div>
+        <div
+          // className="m-4 p-2 "
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "2.0rem",
+            margin: "35px",
+          }}
+        >
+          <div
+            style={{
+              width: "120px",
+            }}
+          >
+            <Link to="/category/page-category">
+              <Card
+                hoverable
+                style={{
+                  // width: "90px",
+                  border: "1px solid #1d3557f2",
+                  borderRadius: "9px",
+                  padding: "10px",
+                }}
+                cover={
+                  <CheckCircleOutlined
+                    style={{
+                      color: "#1d3557f2",
+                      fontSize: "48px",
+                    }}
+                  />
+                }
+              >
+                <Meta title="Categories" />{" "}
+              </Card>
+            </Link>
+          </div>
+          <div
+            style={{
+              width: "120px",
+            }}
+          >
+            <Link to="/my-banks">
+              <Card
+                hoverable
+                style={{
+                  // width: "90px",
+                  border: "1px solid #1d3557f2",
+                  borderRadius: "9px",
+                  padding: "10px",
+                }}
+                cover={
+                  <BankOutlined
+                    style={{ color: "#1d3557f2", fontSize: "48px" }}
+                  />
+                }
+              >
+                <Meta title="Bank Statement Templates" />
               </Card>
             </Link>
           </div>

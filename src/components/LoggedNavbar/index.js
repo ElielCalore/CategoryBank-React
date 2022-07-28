@@ -1,5 +1,6 @@
 import styles from "./style.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import ClassifyButton from "./ClassifyButton";
 
 export function LoggedNavbar() {
   const navigate = useNavigate();
@@ -16,11 +17,14 @@ export function LoggedNavbar() {
       >
         <li className="nav-item">
           <span className={`${styles.logoFont}`}>
-            <Link to={"/profile"}>
+            <div>
+              <ClassifyButton />
+            </div>
+            {/* <Link to={"/profile"}>
               <button className={styles.buttonClear} id="classify">
                 Classify
               </button>
-            </Link>
+            </Link> */}
           </span>
         </li>
         {
