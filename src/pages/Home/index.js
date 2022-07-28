@@ -48,9 +48,17 @@ export function Home() {
             className={`container-fluid ${styles.divHome}`}
             style={{ backgroundImage: `url(${classify})` }}
           >
-            <div className={`${styles.formContainer} ${styles.textWhite}`}>
+            <div
+              className={`${styles.formContainer} ${styles.textWhite}`}
+              style={{
+                boxShadow:
+                  "4px 4px 28px rgba(29, 53, 87, 0.3), 4px 4px 52px rgba(252, 250, 249, 0.2)",
+              }}
+            >
               {" "}
-              <h1 className="m-5">Your financial life in your hands</h1>{" "}
+              <h1 className="m-5" style={{ color: "#fcfaf9" }}>
+                Your financial life in your hands
+              </h1>{" "}
             </div>
           </div>
         </>
@@ -58,7 +66,7 @@ export function Home() {
 
       {navButtons[1].value && (
         <div className={`container-fluid mt-5 ${styles.divHome}`}>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-sm-evenly">
             <div className="d-flex flex-column justify-content-center align-items-center">
               <img
                 src={adriano}
@@ -221,36 +229,57 @@ export function Home() {
               </div>
             </div>
           </div>
-          <div className="text-center">
-            <strong>
-              This project was conceived by Caio Garcia, who saw the need to
-              have an application in which all his banking transactions could be
-              categorized, and with that in mind, we embarked with him, and this
-              was our result.
-            </strong>
+          <div className="text-center mt-5">
+            <span>
+              This project was initially conceived by{" "}
+              <strong>Caio Garcia</strong>, who saw the need to have an
+              application in which all his banking transactions could be
+              categorized. <strong>Adriano</strong> and <strong>Eliel</strong>{" "}
+              highly backed him up and built up this incredibly application.
+            </span>
           </div>
         </div>
       )}
 
       {navButtons[2].value && (
         <div
-          className={`container-fluid d-flex align-items-center justify-content-center ${styles.divHome}`}
-          style={{ backgroundImage: `url(${mission})` }}
+          className={`container-fluid d-flex align-items-center justify-content-center ${styles.ourmission}`}
+          // style={{ backgroundImage: `url(${mission})` }}
         >
-          <div
-            className={`container ${styles.textBlue} ${styles.formContainer2}`}
-          >
-            {" "}
-            <h1 className={styles.paragraph2}>
-              Simplify your expense tracking
-            </h1>
-            <p className={styles.paragraph}>
+          <div style={{ display: "flex", gap: "35px", marginTop: "45px" }}>
+            <div>
+              <img
+                // className="img-fluid "
+                src={mission}
+                alt="our mission"
+                style={{
+                  width: "700px",
+                  height: "874.54px",
+                  marginLeft: "60px",
+                }}
+              />
+            </div>
+            <div
+              className={`container-fluid ${styles.textBlue} ${styles.formContainer2}`}
+            >
               {" "}
-              We believe the right financial tools can help you build peace of
-              mind, establish healthy financial habits, and achieve your goals.
-              Our mission is to be the tool that does this for you. We're in
-              this together.
-            </p>
+              <h1 className={styles.paragraph2}>
+                Simplify your expense tracking
+              </h1>
+              <p className={styles.paragraph}>
+                {" "}
+                We believe the right financial tools can help you build peace of
+                mind, establish healthy financial habits, and achieve your
+                goals.
+                <br />
+                <br />
+                <p style={{ marginTop: "10px" }}>
+                  {" "}
+                  Our mission is to be the tool that does this for you.
+                  <strong> We're in this together.</strong>
+                </p>
+              </p>
+            </div>
           </div>
         </div>
       )}

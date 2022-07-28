@@ -43,13 +43,14 @@ body {
 }
 
 .formContainer2 {
+  margin-top: 10%;
+  width: 200px;
   border-radius: 5px;
   background-color: #fcfaf9;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 40px;
   height: 80%;
-
 }
 
 .button {
@@ -79,11 +80,22 @@ body {
   min-height: 100%;
   min-width: 100%;
   background-size: cover;
-  position: fixed
+  background-position: left;
+  position: fixed;
+}
+
+.ourmission {
+  margin-top: 50px;
+  /* height: 95%; */
+  min-width: 100%;
+  background-repeat: no-repeat;
+  background-size: 960px 1020px;
+  background-position: center;
+  position: fixed;
 }
 
 .textWhite {
-  color: #fcfaf9 !important;  
+  color: #fcfaf9 !important;
 }
 
 .textBlue {
@@ -109,8 +121,3 @@ body {
   width: 250px;
   height: 250px;
 }
-
-
-
-
-
