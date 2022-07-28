@@ -16,6 +16,7 @@ export function CreateTransactionManual() {
     category: "",
   });
   const [category, setCategory] = useState([]);
+
   useEffect(() => {
     async function handleCategory(e) {
       try {
