@@ -84,8 +84,8 @@ export function Transactions() {
     <>
       <LoggedNavbar />
 
-		<div className="container mb-4 mt-3">
-			<h2>Transactions</h2>
+		<div className="container mb-4">
+			<h2 className="mt-5">Transactions</h2>
 			<div className="d-flex justify-content-between">
 				<div>
 				<button onClick={handleEdit} className={`btn btn-primary ${styles.loggedBtn}`}>Edit</button>
