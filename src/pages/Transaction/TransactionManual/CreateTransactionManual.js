@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { LoggedNavbar } from "../../../components/LoggedNavbar/index";
 import { DateConverter } from "../UploadCSV/date";
+import styles from "./style.module.css"
 
 export function CreateTransactionManual() {
   const navigate = useNavigate();
@@ -85,8 +86,8 @@ export function CreateTransactionManual() {
         <form>
           <div className="mb-4">
             <div>
-              <label>Transaction Type</label>
-              <select defaultValue="default" onChange={handleTransactionType}>
+              <label className="form-label"><h5>Transaction Type</h5></label>
+              <select defaultValue="default" onChange={handleTransactionType} className="form-select mb-4">
                 <option disabled value="default">
                   Select transaction type
                 </option>
@@ -135,6 +136,7 @@ export function CreateTransactionManual() {
             name="select"
             onChange={SubmitCategory}
             defaultValue="Default"
+            className="form-control"
           >
             <option disabled value="Default">
               Select A Category
@@ -149,8 +151,8 @@ export function CreateTransactionManual() {
           </select>
 
           <div>
-            <button onClick={handleSubmit} className="btn btn-primary">
-              submit
+            <button onClick={handleSubmit}  className={`btn btn-primary mt-4 mb-5 ${styles.loggedSave}`}>
+              Submit
             </button>
           </div>
         </form>

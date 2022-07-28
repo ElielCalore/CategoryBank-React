@@ -1,41 +1,41 @@
 .csvForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  color: black;
-  width: 1200px;
-  margin: 55px 0px 55px 55px;
-  border: 1px solid white;
-  padding: 45px;
-  border-radius: 9px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+	color: black;
+	width: 1200px;
+	margin: 55px 0px 55px 55px;
+	border: 1px solid white;
+	padding: 45px;
+	border-radius: 9px;
 }
 
 .csvForm input {
-  font-size: 24px;
+	font-size: 24px;
 }
 .csvForm label {
-  font-size: 24px;
+	font-size: 24px;
 }
 
 .csvForm select {
-  font-size: 24px;
+	font-size: 24px;
 }
 
 .csvForm option {
-  font-size: 24px;
+	font-size: 24px;
 }
 .csvForm button {
-  font-size: 24px;
-  width: 120px;
-  border-radius: 9px;
+	font-size: 24px;
+	width: 120px;
+	border-radius: 9px;
 }
 
-td .csvForm {
+/* td .csvForm {
   width: 100%;
   border: 1px solid white;
   padding: 5px;
-}
+} */
 /* .csvForm table, td, tr, th {
   width: 100%;
   border: 1px solid white;

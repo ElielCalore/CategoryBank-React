@@ -84,146 +84,125 @@ export function Transactions() {
     <>
       <LoggedNavbar />
 
-      <h2>Transactions</h2>
-      <div className="d-flex">
-        <button onClick={handleEdit}>Edit</button>
-        <Link to="/transaction/manual/create">
-          <button>Add Transaction</button>
-        </Link>
-        <Link to="/upload-csv">
-          <button>Upload CSV file</button>
-        </Link>
-        <form>
-          <input
-            placeholder=" search by description"
-            name="name"
-            type="text"
-            onChange={handleChange}
-            className={styles.inputbar}
-          />
-        </form>
-      </div>
+		<div className="container mb-4 mt-3">
+			<h2>Transactions</h2>
+			<div className="d-flex justify-content-between">
+				<div>
+				<button onClick={handleEdit} className={`btn btn-primary ${styles.loggedBtn}`}>Edit</button>
+				<Link to="/transaction/manual/create">
+					<button className={`btn btn-primary ${styles.loggedBtn}`}>Add Transaction</button>
+				</Link>
+				<Link to="/upload-csv">
+					<button className={`btn btn-primary ${styles.loggedBtn}`}>Upload CSV file</button>
+				</Link>
+				{edit ? 
+				(<button onClick={handleSubmit} className={`btn btn-primary ${styles.loggedSave}`}>Save</button>) :
+				(<button onClick={handleSubmit} className={`btn btn-primary ${styles.loggedSave}`} disabled>Save</button>)}
+				</div>
 
-      {edit ? (
-        //Edit
-        <>
-          <div>
-            <table className="table">
-              <thead>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Category</th>
-              </thead>
-              <tbody>
-                {transactionsClone.map((curr, i) => {
-                  return (
-                    <>
-                      <tr>
-                        <td>
-                          <p>{curr.date}</p>
-                        </td>
-                        <td>
-                          <input
-                            id={i}
-                            value={curr.description}
-                            name="description"
-                            type="text"
-                            onChange={handleUpdate}
-                          />
-                        </td>
-                        <td>
-                          <input
-                            id={i}
-                            value={curr.amount}
-                            name="amount"
-                            type="number"
-                            onChange={handleUpdate}
-                          />
-                        </td>
-                        <td>
-                          <select
-                            id={i}
-                            name="category"
-                            onChange={handleUpdate}
-                            defaultValue="default"
-                          >
-                            <option disabled value="default">
-                              select a category
-                            </option>
+				<form>
+					<input placeholder=" search by description" name="name" type="text" onChange={handleChange} className={`form-control ${styles.inputbar}`}/>
+				</form>
+			</div>
+		</div>
 
-                            {categories.map((cat) => {
-                              return (
-                                <option value={cat._id}>{cat.code}</option>
-                              );
-                            })}
-                          </select>
-                        </td>
-                        <td>
-                          <button
-                            id={i}
-                            value={curr._id}
-                            onClick={handleDelete}
-                          >
-                            delete
-                          </button>
-                        </td>
-                      </tr>
-                    </>
-                  );
-                })}
-              </tbody>
-            </table>
-            <button onClick={handleSubmit}>save</button>
-          </div>
-        </>
-      ) : (
-        //No edition
-        <>
-          <div>
-            <table className="table">
-              <thead>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Category</th>
-              </thead>
-              <tbody>
-                {transactionsClone.map((curr, i) => {
-                  return (
-                    <>
-                      <tr>
-                        <td>
-                          <p>{curr.date}</p>
-                        </td>
-                        <td>
-                          <p>{curr.description}</p>
-                        </td>
-                        <td>
-                          <p>{curr.amount}</p>
-                        </td>
-                        <td>
-                          {curr.category ? (
-                            <p>
-                              {
-                                categories.filter((ele) => {
-                                  return ele._id === curr.category;
-                                })[0].code
-                              }
-                            </p>
-                          ) : (
-                            <p></p>
-                          )}
-                        </td>
-                      </tr>
-                    </>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </>
-      )}
-    </>
-  );
+			{edit ? (
+				//Edit
+				<>
+					<div className="container">
+						<table className="table">
+							<thead>
+								<th>Date</th>
+								<th>Description</th>
+								<th>Amount</th>
+								<th>Category</th>
+							</thead>
+							<tbody>
+								{transactionsClone.map((curr, i) => {
+									return (
+										<>
+											<tr>
+												<td>
+													<p>{curr.date}</p>
+												</td>
+												<td>
+													<input id={i} value={curr.description} name="description" type="text" onChange={handleUpdate} className="form-control" />
+												</td>
+												<td>
+													<input id={i} value={curr.amount} name="amount" type="number" onChange={handleUpdate} className="form-control" />
+												</td>
+												<td>
+													<select id={i} name="category" onChange={handleUpdate} defaultValue="default" className="form-control">
+														<option disabled value="default">
+															select a category
+														</option>
+
+														{categories.map((cat) => {
+															return <option value={cat._id}>{cat.code}</option>;
+														})}
+													</select>
+												</td>
+												<td>
+													<button id={i} value={curr._id} onClick={handleDelete} className={`btn btn-primary ${styles.loggedDelete}`} >
+														Delete
+													</button>
+												</td>
+											</tr>
+										</>
+									);
+								})}
+							</tbody>
+						</table>
+
+					</div>
+				</>
+			) : (
+				//No edition
+				<>
+					<div className="container">
+						<table className="table">
+							<thead>
+								<th>Date</th>
+								<th>Description</th>
+								<th>Amount</th>
+								<th>Category</th>
+							</thead>
+							<tbody>
+								{transactionsClone.map((curr, i) => {
+									return (
+										<>
+											<tr>
+												<td>
+													<p>{curr.date}</p>
+												</td>
+												<td>
+													<p>{curr.description}</p>
+												</td>
+												<td>
+													<p>{curr.amount}</p>
+												</td>
+												<td>
+													{curr.category ? (
+														<p>
+															{
+																categories.filter((ele) => {
+																	return ele._id === curr.category;
+																})[0].code
+															}
+														</p>
+													) : (
+														<p></p>
+													)}
+												</td>
+											</tr>
+										</>
+									);
+								})}
+							</tbody>
+						</table>
+					</div>
+				</>
+			)}
+		</>
+	);
 }
