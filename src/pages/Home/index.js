@@ -9,6 +9,7 @@ import caio from "../../assets/images/caio.jpg";
 import eliel from "../../assets/images/eliel.jpg";
 import github from "../../assets/images/github.png";
 import linkedin from "../../assets/images/linkedin.png";
+import faqs from "../../assets/images/faqs.png";
 
 //IMPORT CSS
 import styles from "./style.module.css";
@@ -17,6 +18,7 @@ import styles from "./style.module.css";
 import { Login } from "../User/Login";
 import { Signup } from "../User/Signup";
 import { Link } from "react-router-dom";
+import { Collapse } from "antd";
 
 export function Home() {
   const [navButtons, setNavButtons] = useState([
@@ -27,6 +29,7 @@ export function Home() {
     { id: "login", value: false },
     { id: "create", value: false },
   ]);
+  const { Panel } = Collapse;
 
   function handleNav(e) {
     const buttonsState = navButtons.map((current) => {
@@ -81,7 +84,13 @@ export function Home() {
                   <strong>Co-Founder</strong>
                 </h5>
               </div>
-              <div className="d-flex justify-content-center align-items-center">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "15px",
+                }}
+              >
                 <div>
                   <a
                     target="_blank"
@@ -131,7 +140,13 @@ export function Home() {
                   <strong>Co-Founder</strong>
                 </h5>
               </div>
-              <div className="d-flex justify-content-center align-items-center">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "15px",
+                }}
+              >
                 <div>
                   <a
                     target="_blank"
@@ -187,7 +202,13 @@ export function Home() {
                 </h5>
               </div>
 
-              <div className="d-flex justify-content-center align-items-center">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "15px",
+                }}
+              >
                 <div>
                   <a
                     target="_blank"
@@ -286,9 +307,73 @@ export function Home() {
 
       {navButtons[3].value && (
         <div className={`container-fluid ${styles.divHome}`}>
-          <div className={styles.textBlue}>
-            {" "}
-            <h1 className="m-5">Que esse projeto vai ficar dahora!!!</h1>{" "}
+          <div
+            className={styles.textBlue}
+            style={{ display: "flex", gap: "60px", marginTop: "120px" }}
+          >
+            <img
+              src={faqs}
+              alt="FAQs image"
+              style={{
+                width: "800px",
+                height: "451.13px",
+                marginLeft: "60px",
+              }}
+            />{" "}
+            <div style={{ width: "600px" }}>
+              <h1 className="m-5">FAQ's</h1>{" "}
+              <Collapse
+                defaultActiveKey={["1"]}
+                bordered="false"
+                ghost="true"
+                width="200px"
+              >
+                <Panel
+                  header="What is Classify"
+                  key="1"
+                  style={{ fontSize: "28px" }}
+                >
+                  <p style={{ fontSize: "18px" }}>
+                    <strong>Classify</strong> is a personal application where
+                    you can import your expenses and profits and tag them the
+                    way you like.
+                  </p>
+                </Panel>
+                <Panel
+                  header="What is a csv file?"
+                  key="2"
+                  style={{ fontSize: "28px" }}
+                >
+                  <p style={{ fontSize: "18px" }}>
+                    Also known as <strong>comma-separated values</strong>, a csv
+                    file is the most common format Banks use to export your
+                    statements. Such files are well-known for separating every
+                    information it contains by commas.
+                  </p>
+                </Panel>
+                <Panel
+                  header="Where I can get my Bank Statement as csv?"
+                  key="3"
+                  style={{ fontSize: "28px" }}
+                >
+                  <p style={{ fontSize: "18px" }}>
+                    In most Banks you can export your transactions as csv. You
+                    usually need to go to your bank transactions page and look
+                    for a export button.
+                  </p>
+                </Panel>
+                <Panel
+                  header="I have an issue. How can I contact you?"
+                  key="4"
+                  style={{ fontSize: "28px" }}
+                >
+                  <p style={{ fontSize: "18px" }}>
+                    If you experience any technical issue, you may contact us
+                    directly. Please check our details in About Us
+                  </p>
+                </Panel>
+              </Collapse>
+            </div>
           </div>
         </div>
       )}
