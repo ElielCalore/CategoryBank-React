@@ -249,9 +249,14 @@ export function Home() {
           <div style={{ display: "flex", gap: "35px", marginTop: "45px" }}>
             <div>
               <img
+                // className="img-fluid "
                 src={mission}
                 alt="our mission"
-                style={{ width: "740px", height: "860px", marginLeft: "60px" }}
+                style={{
+                  width: "700px",
+                  height: "874.54px",
+                  marginLeft: "60px",
+                }}
               />
             </div>
             <div
@@ -265,8 +270,14 @@ export function Home() {
                 {" "}
                 We believe the right financial tools can help you build peace of
                 mind, establish healthy financial habits, and achieve your
-                goals. Our mission is to be the tool that does this for you.
-                We're in this together.
+                goals.
+                <br />
+                <br />
+                <p style={{ marginTop: "10px" }}>
+                  {" "}
+                  Our mission is to be the tool that does this for you.
+                  <strong> We're in this together.</strong>
+                </p>
               </p>
             </div>
           </div>
