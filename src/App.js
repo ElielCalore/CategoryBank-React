@@ -10,6 +10,8 @@ import { Profile } from "./pages/User/Profile/index";
 import { ErrorPage } from "./pages/ErrorPage";
 import "./app.css";
 
+import { TheChart } from "./components/Chart";
+
 //IMPORTS
 
 //CATEGORY PAGES
@@ -35,6 +37,7 @@ function App() {
     <>
       <AuthContextComponent>
         <Routes>
+          <Route path="/chart" element={<TheChart />} />
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
