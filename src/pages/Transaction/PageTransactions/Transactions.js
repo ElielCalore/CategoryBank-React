@@ -87,8 +87,7 @@ export function Transactions() {
 					<button>Upload CSV file</button>
 				</Link>
 				<form>
-					<label>Search :</label>
-					<input name="name" type="text" onChange={handleChange} className={styles.inputbar}/>
+					<input placeholder=" search by description" name="name" type="text" onChange={handleChange} className={styles.inputbar}/>
 				</form>
 			</div>
 

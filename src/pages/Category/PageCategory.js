@@ -43,15 +43,16 @@ export function PageCategory() {
 
 			<h2>Categories</h2>
 
-			<div className="d-flex justify-content-center">
+			<div className="d-flex">
 				<Link to="/category/create">
 					<button type="button">
 						Create Category
 					</button>
 				</Link>
 				<form>
-				<label>Search :</label>
+
 				<input
+					 placeholder=" search by category"
 					className={styles.inputbar}
 					name="name"
 					type="text"
