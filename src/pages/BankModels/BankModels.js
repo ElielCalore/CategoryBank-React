@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import ClassifyModel from "../../assets/bank/ClassifyTemplate.csv";
 import { LoggedNavbar } from "../../components/LoggedNavbar";
 import { Toaster, toast } from "react-hot-toast";
+import { Card } from "antd";
+
+import styles from "./style.module.css";
 
 export function BankModels() {
   const [banks, setBanks] = useState([]);
@@ -31,26 +34,61 @@ export function BankModels() {
           <p>Here you can find all your Bank Statement csv models.</p>
         </div>
       </div>
-      <div className="d-flex" style={{ flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "15px",
+          justifyContent: "space-around",
+          margin: "95px",
+        }}
+      >
         {banks.map((elem) => {
           return (
-            <div className="gap-0  mx-auto py-3 m-3" key={elem._id}>
-              <h3>{`${elem.bankName} Model`}</h3>
-              <Link to={`/bank-model/${elem._id}`}>
-                <button className="btn btn-primary btn-lg p-2 m-0">Edit</button>
-              </Link>
+            <div key={elem._id}>
+              <Card
+                style={{
+                  // width: "90px",
+                  border: "1px solid #1d3557f2",
+                  borderRadius: "9px",
+                  padding: "10px",
+                  backgroundColor: "#fcfaf9",
+                  boxShadow:
+                    "2px 2px 28px rgba(29, 53, 87, 0.3), 2px 2px 52px rgba(252, 250, 249, 0.2)",
+                }}
+              >
+                <h3>{`${elem.bankName} Model`}</h3>
+                <Link to={`/bank-model/${elem._id}`}>
+                  <button className={`btn btn-primary ${styles.loggedBtn}`}>
+                    Edit
+                  </button>
+                </Link>
+              </Card>
             </div>
           );
         })}
       </div>
-      <div className="text-center m-5">
+      <div
+        style={{
+          display: "flex",
+          gap: "45px",
+          margin: "25px",
+          justifyContent: "center",
+        }}
+      >
         <Link to="/new-bank-model/">
-          <button className="btn btn-primary btn-lg px-3 mx-1">
+          <button
+            className={`btn btn-primary ${styles.loggedBtn}`}
+            style={{ fontSize: "28px" }}
+          >
             Create New Model
           </button>
         </Link>
         <a href={ClassifyModel} download="ClassifyTemplate.csv">
-          <button className="btn btn-primary btn-lg px-2">
+          <button
+            className={`btn btn-primary ${styles.loggedBtn}`}
+            style={{ fontSize: "28px" }}
+          >
             Download Our Model
           </button>
         </a>
