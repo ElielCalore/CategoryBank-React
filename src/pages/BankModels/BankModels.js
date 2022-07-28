@@ -39,7 +39,7 @@ export function BankModels() {
           display: "flex",
           flexWrap: "wrap",
           gap: "15px",
-          justifyContent: "space-around",
+          justifyContent: "center",
           margin: "95px",
         }}
       >
@@ -59,7 +59,10 @@ export function BankModels() {
               >
                 <h3>{`${elem.bankName} Model`}</h3>
                 <Link to={`/bank-model/${elem._id}`}>
-                  <button className={`btn btn-primary ${styles.loggedBtn}`}>
+                  <button
+                    className={`btn btn-primary ${styles.loggedBtn}`}
+                    styles={{ "text-align": "center" }}
+                  >
                     Edit
                   </button>
                 </Link>
