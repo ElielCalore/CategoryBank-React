@@ -128,7 +128,7 @@ export function Profile() {
             margin: "35px",
           }}
         >
-          <div
+          <div className="mb-5"
             style={{
               width: "180px",
             }}
@@ -155,7 +155,7 @@ export function Profile() {
               </Card>
             </Link>
           </div>
-          <div
+          <div className="mb-5"
             style={{
               width: "180px",
             }}
@@ -180,9 +180,6 @@ export function Profile() {
             </Link>
           </div>
         </div>
-        <button className="btn btn-primary" onClick={handleLogOut}>
-          Logout
-        </button>
       </div>
     </>
   );

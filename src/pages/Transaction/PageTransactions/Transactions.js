@@ -109,7 +109,7 @@ export function Transactions() {
 			{edit ? (
 				//Edit
 				<>
-					<div className="container">
+					<div className="container mb-3">
 						<table className="table">
 							<thead>
 								<th>Date</th>
