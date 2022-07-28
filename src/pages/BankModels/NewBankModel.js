@@ -42,8 +42,7 @@ export function NewBankModel() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "30px",
-          margin: "45px",
+          margin: "40px 0px 0px 0px",
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
