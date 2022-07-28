@@ -96,3 +96,4 @@ export function PageCategory() {
 			</div>
 		</div>
 	);
+	}
