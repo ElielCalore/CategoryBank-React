@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./style.module.css";
 
 export function BankModelForm(props) {
   const bankModel = props.bank;
@@ -11,14 +12,16 @@ export function BankModelForm(props) {
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+    <div className="d-flex align-items-center justify-content-center mt-2 mb-5">
+      <div className={styles.formContainer} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         <div>
           <label>
-            <h3>Bank Name</h3>
+            <h3 className="mt-4">Bank Name</h3>
           </label>
         </div>
         <div>
           <input
+            className="form-control"
             name="bankName"
             style={{ width: "400px" }}
             placeholder="The bank name"
@@ -37,6 +40,7 @@ export function BankModelForm(props) {
         </div>
         <div>
           <input
+          className="form-control"
             name="delimiter"
             type="text"
             style={{ width: "400px" }}
@@ -55,6 +59,7 @@ export function BankModelForm(props) {
         </div>
         <div>
           <input
+          className="form-control"
             name="description"
             style={{ width: "400px" }}
             placeholder="Which colunm corresponds to Date?"
@@ -69,6 +74,7 @@ export function BankModelForm(props) {
         </div>
         <div>
           <input
+          className="form-control"
             name="date"
             style={{ width: "400px" }}
             placeholder="Which colunm corresponds to Date?"
@@ -83,6 +89,7 @@ export function BankModelForm(props) {
         </div>
         <div>
           <select
+          className="form-control"
             defaultValue="default"
             name="dateFormat"
             // value={bankModel.dateFormat}
@@ -103,6 +110,7 @@ export function BankModelForm(props) {
             </legend>
 
             <select
+            className="form-control"
               defaultValue="default"
               onChange={(e) => {
                 setFormat(e.target.value);
@@ -111,8 +119,8 @@ export function BankModelForm(props) {
               <option disabled value="default">
                 Select the File Format
               </option>
-              <option value="amount">Amount colunm only</option>
-              <option value="debit-credit">Debit/Credit colunms</option>
+              <option className="form-control" value="amount">Amount colunm only</option>
+              <option className="form-control" value="debit-credit">Debit/Credit colunms</option>
             </select>
           </fieldset>
         </div>
@@ -122,6 +130,7 @@ export function BankModelForm(props) {
               <h3>Amount Colunm</h3>
             </label>
             <input
+            className="form-control"
               name="amount"
               style={{ width: "400px" }}
               placeholder="Which colunm corresponds to Amount?"
@@ -136,6 +145,7 @@ export function BankModelForm(props) {
                 <h3>Debit Colunm</h3>
               </label>
               <input
+              className="form-control"
                 name="debit"
                 style={{ width: "400px" }}
                 placeholder="Which colunm corresponds to Debit?"
@@ -148,6 +158,7 @@ export function BankModelForm(props) {
                 <h3>Credit Colunm</h3>
               </label>
               <input
+              className="form-control"
                 name="credit"
                 style={{ width: "400px" }}
                 placeholder="Which colunm corresponds to Credit?"
@@ -157,6 +168,7 @@ export function BankModelForm(props) {
             </div>
           </>
         )}
+        </div>
       </div>
     </>
   );
