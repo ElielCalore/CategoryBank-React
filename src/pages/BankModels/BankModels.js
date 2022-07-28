@@ -57,15 +57,17 @@ export function BankModels() {
                     "2px 2px 28px rgba(29, 53, 87, 0.3), 2px 2px 52px rgba(252, 250, 249, 0.2)",
                 }}
               >
-                <h3>{`${elem.bankName} Model`}</h3>
+                <h3 className=" d-flex flex-column align-items-center">{`${elem.bankName} Model`}
                 <Link to={`/bank-model/${elem._id}`}>
                   <button
-                    className={`btn btn-primary ${styles.loggedBtn}`}
+                    className={`btn btn-primary mt-4 ${styles.loggedBtn}`}
                     styles={{ "text-align": "center" }}
                   >
                     Edit
                   </button>
                 </Link>
+                </h3>
+                
               </Card>
             </div>
           );

@@ -59,3 +59,16 @@ span {
   border-radius: 9px;
   width: 250px;
 }
+
+.loggedBtn {
+  background-color: #1d3557f2 !important;
+  border: 2px solid !important;
+  /* padding: 4px 20px 4px 20px !important; */
+  border-radius: 7px !important;
+  margin-right: 1px;
+}
+
+.loggedBtn:hover {
+  background-color: #457b9d !important;
+  border-color: #457b9d !important;
+}

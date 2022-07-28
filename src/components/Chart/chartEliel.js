@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 
-export function TheChart() {
+export function TheChartEliel() {
   const filter = "";
-  const chartId = "62e2e990-e5b8-4f29-8c93-c87aebd68893";
+  const chartId = "62e30190-5694-4389-8af5-5999c2037778";
   const width = "560px";
   const height = "340px";
 
