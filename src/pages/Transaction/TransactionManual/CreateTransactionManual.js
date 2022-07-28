@@ -81,56 +81,14 @@ export function CreateTransactionManual() {
   return (
     <div>
       <LoggedNavbar />
-      <div className="col-md-8 col-sm-12 col-lg-8 container mt-5">
+      <div className="d-flex align-items-center justify-content-center mt-5">
         <Toaster />
         <form>
-          <div className="mb-4">
-            <div>
-              <label className="form-label"><h5>Transaction Type</h5></label>
-              <select defaultValue="default" onChange={handleTransactionType} className="form-select mb-4">
-                <option disabled value="default">
-                  Select transaction type
-                </option>
-                <option>Money In</option>
-                <option>Money Out</option>
-              </select>
-            </div>
-            <label htmlFor="date-input" className="form-label">
-              <h5>Transaction Date: </h5>
-            </label>
-            <input
-              onChange={handleChange}
-              type="text"
-              name="date"
-              className="form-control mb-4"
-              placeholder="DD/MM/YYYY"
-              value={form.date}
-            />
-            <label htmlFor="description-input" className="form-label">
-              <h5>Transaction description: </h5>
-            </label>
-            <textarea
-              id="description-input"
-              onChange={handleChange}
-              type="text"
-              name="description"
-              className="form-control mb-4"
-              value={form.description}
-            />
-          </div>
-          <label htmlFor="amount-input" className="form-label">
-            <h5>Transaction Value: </h5>
-          </label>
-          <input
-            onChange={handleChange}
-            type="number"
-            name="amount"
-            min="0"
-            className="form-control mb-4"
-            value={form.amount}
-          />
-          <label htmlFor="category-input" className="form-label">
-            <h5>Select Category: </h5>
+          <div className={`mb-5 ${styles.formContainer}`}>
+            <div className="mt-4">
+            <label htmlFor="category-input" className="form-label">
+            <h1 className="mb-5">Add Transaction</h1>
+            <h5>Select Category </h5>
           </label>
           <select
             name="select"
@@ -139,7 +97,7 @@ export function CreateTransactionManual() {
             className="form-control"
           >
             <option disabled value="Default">
-              Select A Category
+              Select a Category
             </option>
             {category.map((currentElement) => {
               return (
@@ -149,12 +107,58 @@ export function CreateTransactionManual() {
               );
             })}
           </select>
+              <label className="form-label mt-4"><h5>Transaction Type</h5></label>
+              <select defaultValue="default" onChange={handleTransactionType} className="form-select mb-4">
+                <option disabled value="default">
+                  Select transaction type
+                </option>
+                <option>Money In</option>
+                <option>Money Out</option>
+              </select>
+              
+            </div>
+            <label htmlFor="date-input" className="form-label">
+              <h5>Date </h5>
+            </label>
+            <input
+              onChange={handleChange}
+              type="text"
+              name="date"
+              className="form-control mb-4"
+              placeholder="DD/MM/YYYY"
+              value={form.date}
+            />
+           
+          <label htmlFor="amount-input" className="form-label">
+            <h5>Amount </h5>
+          </label>
+          <input
+            onChange={handleChange}
+            type="number"
+            name="amount"
+            min="0"
+            className="form-control mb-4"
+            value={form.amount}
+          />
+           <label htmlFor="description-input" className="form-label">
+              <h5>Description </h5>
+            </label>
+            <textarea
+              id="description-input"
+              onChange={handleChange}
+              type="text"
+              name="description"
+              className="form-control mb-4"
+              value={form.description}
+            />
 
           <div>
-            <button onClick={handleSubmit}  className={`btn btn-primary mt-4 mb-5 ${styles.loggedSave}`}>
+            <button onClick={handleSubmit} className={`btn btn-primary mt-4 mb-2 ${styles.loggedBtn}`}>
               Submit
             </button>
           </div>
+          </div>
+          
         </form>
       </div>
     </div>
