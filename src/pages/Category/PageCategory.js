@@ -60,7 +60,7 @@ export function PageCategory() {
 					</div>
 			</div>
 			<div className="container mb-3">
-				<table className="table">
+				<table className="table mb-5">
 					<thead>
 						<th>Category</th>
 						<th>Description</th>

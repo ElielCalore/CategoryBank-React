@@ -274,8 +274,8 @@ export function Home() {
                 src={mission}
                 alt="our mission"
                 style={{
-                  width: "700px",
-                  height: "874.54px",
+                  width: "630px",
+                  height: "787px",
                   marginLeft: "60px",
                 }}
               />
@@ -308,7 +308,7 @@ export function Home() {
       {navButtons[3].value && (
         <div className={`container-fluid ${styles.divHome}`}>
           <div
-            className={styles.textBlue}
+            className="container"
             style={{ display: "flex", gap: "60px", marginTop: "120px" }}
           >
             <img
@@ -318,6 +318,7 @@ export function Home() {
                 width: "800px",
                 height: "451.13px",
                 marginLeft: "60px",
+                marginTop: "40px"
               }}
             />{" "}
             <div style={{ width: "600px" }}>

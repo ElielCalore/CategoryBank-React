@@ -110,7 +110,7 @@ export function Transactions() {
 				//Edit
 				<>
 					<div className="container mb-3">
-						<table className="table">
+						<table className="table mb-5">
 							<thead>
 								<th>Date</th>
 								<th>Description</th>

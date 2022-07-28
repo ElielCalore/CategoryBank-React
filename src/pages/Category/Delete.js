@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { LoggedNavbar } from "../../components/LoggedNavbar/index";
+import styles from "./style.module.css";
 
 export function Delete() {
   const { id } = useParams();
@@ -49,21 +50,18 @@ export function Delete() {
   return (
     <div>
       <LoggedNavbar />
-      <div className="col-md-8 col-sm-12 col-lg-8 container mt-5">
+      <div className="d-flex align-items-center justify-content-center mt-2 mb-5">
         <Toaster />
-        <form>
+        <form className={styles.formContainer}>
           <div className="mb-4">
-            <label htmlFor="code-input" className="form-label">
-              <h5>product code: </h5>
-            </label>
-            <p>{form.code}</p>
-            <label htmlFor="about-input" className="form-label">
-              <h5>category description: </h5>
-            </label>
-            <p>{form.description}</p>
+          <h1 className="mb-4">Delete Category</h1>
+            <p><h5>Category: </h5>{form.code}</p>
+            <p><h5>Description: </h5>{form.description}</p>
           </div>
           <div>
-            <button onClick={handleDelete} className="btn btn-danger">
+
+            <p>Deleting a category will remove all your transactions records in the database. Do you want to proceed?</p>
+            <button onClick={handleDelete}  className={`btn btn-primary ${styles.loggedDelete}`}>
               CONFIRM
             </button>
           </div>
