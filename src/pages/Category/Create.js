@@ -34,12 +34,12 @@ export function Create() {
   return (
     <div>
       <LoggedNavbar />
-      <div className="d-flex align-items-center justify-content-center mt-5 mb-5">
+      <div className="d-flex align-items-center justify-content-center mt-2 mb-5">
         <Toaster />
-        <form className={`mb-5 ${styles.formContainer}`} required>
-          <div className="mt-4">
+        <form className={styles.formContainer} required>
+          <div className="mt-2">
             <label htmlFor="code-input" className="form-label">
-              <h1 className="mb-5">Add Category</h1>
+              <h1 className="mb-4">Add Category</h1>
               <h5>Category Name</h5>
             </label>
             <input
@@ -65,7 +65,7 @@ export function Create() {
           </div>
           <div>
             <button onClick={handleSubmit} className={`btn btn-primary ${styles.loggedBtn}`}>
-              Submit
+              Send
             </button>
           </div>
         </form>

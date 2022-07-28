@@ -115,6 +115,7 @@ export function UploadCSV() {
       <LoggedNavbar />
       <div className="d-flex align-items-center justify-content-center mt-5">
       <div className={`d-flex flex-column ${styles.formContainer}`}>
+      <h1 className="mb-2 mt-2">Upload CSV</h1>
         <select
           className="form-control mb-4 mt-4"
           defaultValue={"Select your bank"}

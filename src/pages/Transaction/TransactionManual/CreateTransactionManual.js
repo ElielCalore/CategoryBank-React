@@ -85,7 +85,7 @@ export function CreateTransactionManual() {
         <Toaster />
         <form>
           <div className={`mb-5 ${styles.formContainer}`}>
-            <div className="mt-4">
+            <div className="mt-2">
             <label htmlFor="category-input" className="form-label">
             <h1 className="mb-5">Add Transaction</h1>
             <h5>Select Category </h5>
@@ -154,7 +154,7 @@ export function CreateTransactionManual() {
 
           <div>
             <button onClick={handleSubmit} className={`btn btn-primary mt-4 mb-2 ${styles.loggedBtn}`}>
-              Submit
+              Send
             </button>
           </div>
           </div>
