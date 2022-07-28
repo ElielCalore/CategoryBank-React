@@ -11,9 +11,13 @@ export function BankModelForm(props) {
 
   return (
     <>
-      <div className="d-flex flex-column">
-        <div className="p-4" style={{ width: "400px" }}>
-          <label>Bank Name</label>
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <div>
+          <label>
+            <h3>Bank Name</h3>
+          </label>
+        </div>
+        <div>
           <input
             name="bankName"
             style={{ width: "400px" }}
@@ -22,14 +26,16 @@ export function BankModelForm(props) {
             onChange={handleChange}
           ></input>
         </div>
-        <div className="p-4" style={{ width: "400px" }}>
+        <div>
           <label
             data-toggle="tooltip"
             data-placement="top"
             title="What digit separates values in the bank statement? (eg. comma, semi-colons)"
           >
-            File Delimiter
+            <h3>File Delimiter</h3>
           </label>
+        </div>
+        <div>
           <input
             name="delimiter"
             type="text"
@@ -42,8 +48,12 @@ export function BankModelForm(props) {
             title="What digit separates values in the bank statement? (eg. comma, semi-colons)"
           ></input>
         </div>
-        <div className="p-4" style={{ width: "400px" }}>
-          <label>Description Colunm</label>
+        <div>
+          <label>
+            <h3>Description Colunm</h3>
+          </label>
+        </div>
+        <div>
           <input
             name="description"
             style={{ width: "400px" }}
@@ -52,8 +62,12 @@ export function BankModelForm(props) {
             onChange={handleChange}
           ></input>
         </div>
-        <div className="p-4" style={{ width: "400px" }}>
-          <label>Date Colunm</label>
+        <div>
+          <label>
+            <h3>Date Colunm</h3>
+          </label>
+        </div>
+        <div>
           <input
             name="date"
             style={{ width: "400px" }}
@@ -62,8 +76,12 @@ export function BankModelForm(props) {
             onChange={handleChange}
           ></input>
         </div>
-        <div className="p-4" style={{ width: "400px" }}>
-          <label>Date Format Colunm</label>
+        <div>
+          <label>
+            <h3>Date Format Colunm</h3>
+          </label>
+        </div>
+        <div>
           <select
             defaultValue="default"
             name="dateFormat"
@@ -78,30 +96,31 @@ export function BankModelForm(props) {
             <option>YY/MM/DD</option>
           </select>
         </div>
-        <fieldset>
-          <div>
-            <legend>File Format:</legend>
-          </div>
-          <div>
-            <div>
-              <select
-                defaultValue="default"
-                onChange={(e) => {
-                  setFormat(e.target.value);
-                }}
-              >
-                <option disabled value="default">
-                  Select the File Format
-                </option>
-                <option value="amount">Amount colunm only</option>
-                <option value="debit-credit">Debit/Credit colunms</option>
-              </select>
-            </div>
-          </div>
-        </fieldset>
+        <div>
+          <fieldset>
+            <legend>
+              <h3>File Format:</h3>
+            </legend>
+
+            <select
+              defaultValue="default"
+              onChange={(e) => {
+                setFormat(e.target.value);
+              }}
+            >
+              <option disabled value="default">
+                Select the File Format
+              </option>
+              <option value="amount">Amount colunm only</option>
+              <option value="debit-credit">Debit/Credit colunms</option>
+            </select>
+          </fieldset>
+        </div>
         {format === "amount" ? (
-          <div className="p-4" style={{ width: "400px" }}>
-            <label>Amount Colunm</label>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label>
+              <h3>Amount Colunm</h3>
+            </label>
             <input
               name="amount"
               style={{ width: "400px" }}
@@ -112,8 +131,10 @@ export function BankModelForm(props) {
           </div>
         ) : (
           <>
-            <div className="p-4" style={{ width: "400px" }}>
-              <label>Debit Colunm</label>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <label>
+                <h3>Debit Colunm</h3>
+              </label>
               <input
                 name="debit"
                 style={{ width: "400px" }}
@@ -122,8 +143,10 @@ export function BankModelForm(props) {
                 onChange={handleChange}
               ></input>
             </div>
-            <div className="p-4" style={{ width: "400px" }}>
-              <label>Credit Colunm</label>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <label>
+                <h3>Credit Colunm</h3>
+              </label>
               <input
                 name="credit"
                 style={{ width: "400px" }}

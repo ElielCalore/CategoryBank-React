@@ -58,11 +58,11 @@ body {
   min-height: 100%;
   min-width: 100%;
   background-size: cover;
-  position: fixed
+  position: fixed;
 }
 
 .textWhite {
-  color: #fcfaf9 !important;  
+  color: #fcfaf9 !important;
 }
 
 .textBlue {
@@ -91,7 +91,7 @@ body {
 
 .icon {
   width: 30px;
-  height: 30px
+  height: 30px;
 }
 
 .but {
@@ -101,7 +101,7 @@ body {
 
 .inputbar {
   width: 450px !important;
-  margin-right:45px
+  margin-right: 45px;
 }
 
 .loggedBtn {
@@ -133,7 +133,7 @@ body {
 .loggedDelete {
   background-color: #f06449 !important;
   border: 2px solid #f06449 !important;
-  padding: 2px 10px 2px 10px !important;
+  padding: 4px 20px 4px 20px !important;
   border-radius: 7px !important;
   margin-right: 1px;
 }
@@ -142,5 +142,3 @@ body {
   background-color: #de0400 !important;
   border: 2px solid #de0400 !important;
 }
-
-

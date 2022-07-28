@@ -5,6 +5,8 @@ import { BankModelForm } from "../../components/BankModelForm/BankModelForm";
 import { LoggedNavbar } from "../../components/LoggedNavbar";
 import { Toaster, toast } from "react-hot-toast";
 
+import styles from "./style.module.css";
+
 export function BankModelDetail() {
   const { bankId } = useParams();
   const [bankModel, setBankModel] = useState({});
@@ -57,18 +59,40 @@ export function BankModelDetail() {
     <>
       <LoggedNavbar />
       <Toaster />
-      <h1>Bank Model Details</h1>
-      <BankModelForm bank={bankModel} setBank={setBankModel} />
-      <div className="d-flex">
-        <div className="p-2">
-          <button className="btn btn-primary" onClick={SaveChanges}>
-            Save
-          </button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+          margin: "45px",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <h1>Bank Model Details</h1>
         </div>
-        <div className="p-2">
-          <button className="btn btn-danger" onClick={Delete}>
-            Delete
-          </button>
+        <div>
+          <BankModelForm bank={bankModel} setBank={setBankModel} />
+        </div>
+        <div className="d-flex">
+          <div className="p-2">
+            <button
+              className={`btn btn-primary ${styles.loggedBtn}`}
+              onClick={SaveChanges}
+            >
+              Save
+            </button>
+          </div>
+          <div className="p-2">
+            <button
+              className={`btn btn-primary ${styles.loggedDelete}`}
+              onClick={Delete}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </>

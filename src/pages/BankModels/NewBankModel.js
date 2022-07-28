@@ -4,6 +4,7 @@ import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { LoggedNavbar } from "../../components/LoggedNavbar";
 import { Toaster, toast } from "react-hot-toast";
+import styles from "./style.module.css";
 
 export function NewBankModel() {
   const navigate = useNavigate();
@@ -37,12 +38,31 @@ export function NewBankModel() {
     <>
       <LoggedNavbar />
       <Toaster />
-      <h1>Create New Bank Model</h1>
-      <BankModelForm bank={bankModel} setBank={setBankModel} />
-      <div className="p-2">
-        <button className="btn btn-primary" onClick={Save}>
-          Save
-        </button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+          margin: "45px",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <h1>Create New Bank Model</h1>
+        </div>
+        <div>
+          <BankModelForm bank={bankModel} setBank={setBankModel} />
+        </div>
+        <div className="p-2">
+          <button
+            className={`btn btn-primary ${styles.loggedBtn}`}
+            onClick={Save}
+          >
+            Save
+          </button>
+        </div>
       </div>
     </>
   );
