@@ -29,8 +29,8 @@ export function BankModels() {
     <>
       <div>
         <LoggedNavbar />
-        <div className="text-center m-5">
-          <h1>Your current Bank Models</h1>
+        <div className="container mb-4 mt-3">
+          <h2 className="mt-5">Your Banks</h2>
           <p>Here you can find all your Bank Statement csv models.</p>
         </div>
       </div>
@@ -78,18 +78,18 @@ export function BankModels() {
       >
         <Link to="/new-bank-model/">
           <button
-            className={`btn btn-primary ${styles.loggedBtn}`}
+            className={`btn btn-primary mb-5 ${styles.loggedBtn}`}
             style={{ fontSize: "28px" }}
           >
-            Create New Model
+            Create Model
           </button>
         </Link>
         <a href={ClassifyModel} download="ClassifyTemplate.csv">
           <button
-            className={`btn btn-primary ${styles.loggedBtn}`}
+            className={`btn btn-primary mb-5 ${styles.loggedBtn}`}
             style={{ fontSize: "28px" }}
           >
-            Download Our Model
+            Download Model
           </button>
         </a>
       </div>

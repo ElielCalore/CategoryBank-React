@@ -49,7 +49,7 @@ export function PageCategory() {
       <Toaster />
 
 			<div className="container mb-4 mt-3">
-				<h2>Categories</h2>
+				<h2 className="mt-5">Categories</h2>
 					<div className="d-flex justify-content-between">
 						<Link to="/category/create">
 							<button type="button" className={`btn btn-primary ${styles.loggedBtn}`}>Add New</button>
@@ -59,7 +59,7 @@ export function PageCategory() {
 						</form>
 					</div>
 			</div>
-			<div className="container">
+			<div className="container mb-3">
 				<table className="table">
 					<thead>
 						<th>Category</th>
