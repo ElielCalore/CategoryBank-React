@@ -77,6 +77,7 @@ export function Transactions() {
 		<>
 			<LoggedNavbar />
 
+		<div className="container mb-4 mt-3">
 			<h2>Transactions</h2>
 			<div className="d-flex">
 				<button onClick={handleEdit}>Edit</button>
@@ -90,11 +91,12 @@ export function Transactions() {
 					<input placeholder=" search by description" name="name" type="text" onChange={handleChange} className={styles.inputbar}/>
 				</form>
 			</div>
+		</div>
 
 			{edit ? (
 				//Edit
 				<>
-					<div>
+					<div className="container">
 						<table className="table">
 							<thead>
 								<th>Date</th>
@@ -144,7 +146,7 @@ export function Transactions() {
 			) : (
 				//No edition
 				<>
-					<div>
+					<div className="container">
 						<table className="table">
 							<thead>
 								<th>Date</th>
