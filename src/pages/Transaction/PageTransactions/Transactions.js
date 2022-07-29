@@ -211,6 +211,7 @@ export function Transactions() {
                 })}
               </tbody>
             </table>
+			<div className={styles.footer}></div>
           </div>
         </>
       ) : (
@@ -257,6 +258,7 @@ export function Transactions() {
                 })}
               </tbody>
             </table>
+			<div className={styles.footer}></div>
           </div>
         </>
       )}
