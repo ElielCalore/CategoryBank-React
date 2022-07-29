@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { LoggedNavbar } from "../../../components/LoggedNavbar/index";
 import { DateConverter } from "../UploadCSV/date";
-import styles from "./style.module.css"
+import styles from "./style.module.css";
 
 export function CreateTransactionManual() {
   const navigate = useNavigate();
@@ -46,7 +46,6 @@ export function CreateTransactionManual() {
   }
 
   function handleTransactionType(e) {
-    console.log(e.target.value);
     if (e.target.value === "Money Out") {
       return setTransactionType("Money Out");
     } else {
@@ -56,7 +55,6 @@ export function CreateTransactionManual() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(transactionType);
 
     if (transactionType === "Money Out") {
       form.amount = form.amount * -1;
@@ -86,36 +84,41 @@ export function CreateTransactionManual() {
         <form>
           <div className={`mb-5 ${styles.formContainer}`}>
             <div className="mt-2">
-            <label htmlFor="category-input" className="form-label">
-            <h1 className="mb-5">Add Transaction</h1>
-            <h5>Select Category </h5>
-          </label>
-          <select
-            name="select"
-            onChange={SubmitCategory}
-            defaultValue="Default"
-            className="form-control"
-          >
-            <option disabled value="Default">
-              Select a Category
-            </option>
-            {category.map((currentElement) => {
-              return (
-                <option value={currentElement._id}>
-                  {currentElement.code}
+              <label htmlFor="category-input" className="form-label">
+                <h1 className="mb-5">Add Transaction</h1>
+                <h5>Select Category </h5>
+              </label>
+              <select
+                name="select"
+                onChange={SubmitCategory}
+                defaultValue="Default"
+                className="form-control"
+              >
+                <option disabled value="Default">
+                  Select a Category
                 </option>
-              );
-            })}
-          </select>
-              <label className="form-label mt-4"><h5>Transaction Type</h5></label>
-              <select defaultValue="default" onChange={handleTransactionType} className="form-select mb-4">
+                {category.map((currentElement) => {
+                  return (
+                    <option value={currentElement._id}>
+                      {currentElement.code}
+                    </option>
+                  );
+                })}
+              </select>
+              <label className="form-label mt-4">
+                <h5>Transaction Type</h5>
+              </label>
+              <select
+                defaultValue="default"
+                onChange={handleTransactionType}
+                className="form-select mb-4"
+              >
                 <option disabled value="default">
                   Select transaction type
                 </option>
                 <option>Money In</option>
                 <option>Money Out</option>
               </select>
-              
             </div>
             <label htmlFor="date-input" className="form-label">
               <h5>Date </h5>
@@ -128,19 +131,19 @@ export function CreateTransactionManual() {
               placeholder="DD/MM/YYYY"
               value={form.date}
             />
-           
-          <label htmlFor="amount-input" className="form-label">
-            <h5>Amount </h5>
-          </label>
-          <input
-            onChange={handleChange}
-            type="number"
-            name="amount"
-            min="0"
-            className="form-control mb-4"
-            value={form.amount}
-          />
-           <label htmlFor="description-input" className="form-label">
+
+            <label htmlFor="amount-input" className="form-label">
+              <h5>Amount </h5>
+            </label>
+            <input
+              onChange={handleChange}
+              type="number"
+              name="amount"
+              min="0"
+              className="form-control mb-4"
+              value={form.amount}
+            />
+            <label htmlFor="description-input" className="form-label">
               <h5>Description </h5>
             </label>
             <textarea
@@ -152,13 +155,15 @@ export function CreateTransactionManual() {
               value={form.description}
             />
 
-          <div>
-            <button onClick={handleSubmit} className={`btn btn-primary mt-4 mb-2 ${styles.loggedBtn}`}>
-              Send
-            </button>
+            <div>
+              <button
+                onClick={handleSubmit}
+                className={`btn btn-primary mt-4 mb-2 ${styles.loggedBtn}`}
+              >
+                Send
+              </button>
+            </div>
           </div>
-          </div>
-          
         </form>
       </div>
     </div>
