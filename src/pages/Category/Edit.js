@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { LoggedNavbar } from "../../components/LoggedNavbar/index";
+import styles from "./style.module.css";
 
 export function Edit() {
   const { id } = useParams();
@@ -51,12 +52,13 @@ export function Edit() {
   return (
     <div>
       <LoggedNavbar />
-      <div className="col-md-8 col-sm-12 col-lg-8 container mt-5">
+      <div  className="d-flex align-items-center justify-content-center mt-2 mb-5">
         <Toaster />
-        <form>
+        <form className={styles.formContainer}>
           <div className="mb-4">
             <label htmlFor="code-input" className="form-label">
-              <h5>product code: </h5>
+            <h1 className="mb-4">Edit Category</h1>
+              <h5>Category </h5>
             </label>
             <input
               onChange={handleChange}
@@ -66,7 +68,7 @@ export function Edit() {
               value={form.code}
             />
             <label htmlFor="about-input" className="form-label">
-              <h5>category description: </h5>
+              <h5>Description </h5>
             </label>
             <textarea
               id="description-input"
@@ -78,7 +80,7 @@ export function Edit() {
             />
           </div>
           <div>
-            <button onClick={handleSubmit} className="btn btn-primary">
+            <button onClick={handleSubmit} className={`btn btn-primary ${styles.loggedBtn}`}>
               Submit
             </button>
           </div>

@@ -50,13 +50,13 @@ export function Profile() {
     <div className="container">
     <div className="d-flex flex-row align-items justify-content-center mt-5">   
             <Link to="/transaction/list-transactions">
-              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <button className={`btn btn-primary m-1 mb-5 ${styles.loggedBtn}`}>
                 <DollarCircleOutlined style={{ color: "#fcfaf9", fontSize: "30px" }}/> Transaction 
               </button>
             </Link>
 
             <Link to="/upload-csv">
-              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <button className={`btn btn-primary m-1 mb-5 ${styles.loggedBtn}`}>
               <UploadOutlined
                     style={{ color: "#fcfaf9", fontSize: "30px" }}
                   /> Upload csv file 
@@ -64,7 +64,7 @@ export function Profile() {
             </Link>
 
             <Link to="/transaction/manual/create">
-              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <button className={`btn btn-primary m-1 mb-5 ${styles.loggedBtn}`}>
               <FormOutlined
                     style={{ color: "#fcfaf9", fontSize: "30px" }}
                   /> Add transaction 
@@ -72,7 +72,7 @@ export function Profile() {
             </Link>
 
             <Link to="/category/page-category">
-              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <button className={`btn btn-primary m-1 mb-5 ${styles.loggedBtn}`}>
               <CheckCircleOutlined
                     style={{
                       color: "#fcfaf9",
@@ -83,7 +83,7 @@ export function Profile() {
             </Link>
 
             <Link to="/my-banks">
-              <button className={`btn btn-primary m-1 ${styles.loggedBtn}`}>
+              <button className={`btn btn-primary m-1 mb-5 ${styles.loggedBtn}`}>
               <BankOutlined
                     style={{ color: "#fcfaf9", fontSize: "30px" }}
                   /> Bank Templates 
