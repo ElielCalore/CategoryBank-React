@@ -84,7 +84,7 @@ export function UploadCSV() {
       toast.success("File uploaded successfully!");
       setTimeout(() => {
         navigate("/transaction/list-transactions");
-      }, 1000);
+      }, 1900);
     }
   }
 
@@ -114,84 +114,88 @@ export function UploadCSV() {
       <Toaster />
       <LoggedNavbar />
       <div className="d-flex align-items-center justify-content-center mt-5">
-      <div className={`d-flex flex-column ${styles.formContainer}`}>
-      <h1 className="mb-2 mt-2">Upload CSV</h1>
-        <select
-          className="form-control mb-4 mt-4"
-          defaultValue={"Select your bank"}
-          onChange={(e) => {
-            if (e.target.value === "Create new model") {
-              return navigate("/new-bank-model");
-            }
-            setBankModel(banks[e.target.value]);
-            console.log(bankModel.date);
-          }}
-        >
-          <option value={"Select your bank"} disabled>
-            Select your bank
-          </option>
-          {banks.map((elem, i) => {
-            return (
-              <option id={elem._id} value={i}>
-                {elem.bankName}
-              </option>
-            );
-          })}
-          <option name="new-model" id="new-model">
-            Create new model
-          </option>
-        </select>
-        {bankModel.length === 0 ? (
-          <input type="file" accept=".csv" onChange={processCSV} disabled />
-        ) : (
-          <input type="file" accept=".csv" onChange={processCSV} />
-        )}
+        <div className={`d-flex flex-column ${styles.formContainer}`}>
+          <h1 className="mb-2 mt-2">Upload CSV</h1>
+          <select
+            className="form-control mb-4 mt-4"
+            defaultValue={"Select your bank"}
+            onChange={(e) => {
+              if (e.target.value === "Create new model") {
+                return navigate("/new-bank-model");
+              }
+              setBankModel(banks[e.target.value]);
+            }}
+          >
+            <option value={"Select your bank"} disabled>
+              Select your bank
+            </option>
+            {banks.map((elem, i) => {
+              return (
+                <option id={elem._id} value={i}>
+                  {elem.bankName}
+                </option>
+              );
+            })}
+            <option name="new-model" id="new-model">
+              Create new model
+            </option>
+          </select>
+          {bankModel.length === 0 ? (
+            <input type="file" accept=".csv" onChange={processCSV} disabled />
+          ) : (
+            <input type="file" accept=".csv" onChange={processCSV} />
+          )}
 
-        {transactions[0] ? (
-          <>
-            <table>
-              <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-              </tr>
+          {transactions[0] ? (
+            <>
+              <table>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                </tr>
 
-              {transactions.map((elem, i) => {
-                return (
-                  <tr>
-                    <td>
-                      <p>{transactions[i]["date"]}</p>
-                    </td>
-                    <td>
-                      <input
-                        value={transactions[i]["description"]}
-                        name="description"
-                        onChange={handleUpdate}
-                        id={i}
-                      />
-                    </td>
-                    <td>
-                      <p>{transactions[i]["amount"]}</p>
-                    </td>
-                    <td>
-                      <button
-                        className={`btn btn-danger`}
-                        onClick={handleDelete}
-                        id={i}
-                      >
-                        delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </table>
-          </>
-        ) : (
-          <></>
-        )}
-        <button onClick={sendToBack} className={`btn btn-primary mt-4 mb-2 ${styles.loggedBtn}`}>SEND</button>
-      </div>
+                {transactions.map((elem, i) => {
+                  return (
+                    <tr>
+                      <td>
+                        <p>{transactions[i]["date"]}</p>
+                      </td>
+                      <td>
+                        <input
+                          value={transactions[i]["description"]}
+                          name="description"
+                          onChange={handleUpdate}
+                          id={i}
+                        />
+                      </td>
+                      <td>
+                        <p>{transactions[i]["amount"]}</p>
+                      </td>
+                      <td>
+                        <button
+                          className={`btn btn-danger`}
+                          onClick={handleDelete}
+                          id={i}
+                        >
+                          delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </table>
+            </>
+          ) : (
+            <></>
+          )}
+          <button
+            onClick={sendToBack}
+            className={`btn btn-primary mt-4 mb-2 ${styles.loggedBtn}`}
+          >
+            SEND
+          </button>
+        </div>
       </div>
     </>
   );

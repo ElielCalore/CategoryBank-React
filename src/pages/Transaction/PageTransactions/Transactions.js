@@ -50,7 +50,6 @@ export function Transactions() {
       const clone = [...transactions];
       clone.splice(e.target.id, 1);
       setTransactions(clone);
-      console.log(transactions);
       GetData();
     } catch (error) {
       console.log(error);
