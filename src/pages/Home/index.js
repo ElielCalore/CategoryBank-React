@@ -113,11 +113,11 @@ export function Home() {
                 <div>
                   <a target="_blank" href={"https://github.com/adhkr81"}>
                     <svg
-                      height="32"
+                      height="27"
                       aria-hidden="true"
                       viewBox="0 0 16 16"
                       version="1.1"
-                      width="32"
+                      width="27"
                       data-view-component="true"
                       className="octicon octicon-mark-github v-align-middle"
                     >
@@ -169,11 +169,11 @@ export function Home() {
                 <div>
                   <a target="_blank" href={"https://github.com/caio-garcia"}>
                     <svg
-                      height="32"
+                      height="27"
                       aria-hidden="true"
                       viewBox="0 0 16 16"
                       version="1.1"
-                      width="32"
+                      width="27"
                       data-view-component="true"
                       className="octicon octicon-mark-github v-align-middle"
                     >
@@ -232,11 +232,11 @@ export function Home() {
                 <div>
                   <a target="_blank" href={"https://github.com/ElielCalore"}>
                     <svg
-                      height="32"
+                      height="27"
                       aria-hidden="true"
                       viewBox="0 0 16 16"
                       version="1.1"
-                      width="32"
+                      width="27"
                       data-view-component="true"
                       className="octicon octicon-mark-github v-align-middle"
                     >
@@ -250,7 +250,7 @@ export function Home() {
               </div>
             </div>
           </div>
-          <div className="text-center mt-5">
+          <div className="container text-center mt-5">
             <span>
               This project was initially conceived by{" "}
               <strong>Caio Garcia</strong>, who saw the need to have an
