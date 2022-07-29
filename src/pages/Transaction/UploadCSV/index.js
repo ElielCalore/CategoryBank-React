@@ -81,11 +81,11 @@ export function UploadCSV() {
           return toast.error("Could not upload the file, please try again!");
         }
       }
-      toast.success("File uploaded successfully!");
-      setTimeout(() => {
-        navigate("/transaction/list-transactions");
-      }, 1900);
     }
+    toast.success("File uploaded successfully!");
+    setTimeout(() => {
+      navigate("/transaction/list-transactions");
+    }, 1900);
   }
 
   function handleUpdate(e) {
