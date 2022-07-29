@@ -59,8 +59,8 @@ export function PageCategory() {
 						</form>
 					</div>
 			</div>
-			<div className="container mb-3">
-				<table className="table mb-5">
+			<div className="container">
+				<table className="table">
 					<thead>
 						<th>Category</th>
 						<th>Description</th>
@@ -92,6 +92,7 @@ export function PageCategory() {
 						})}
 					</tbody>
 				</table>
+				<div className={styles.footer}></div>
 			</div>
 		</div>
 	);
